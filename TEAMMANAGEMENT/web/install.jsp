@@ -18,7 +18,7 @@
     <body>
         <h2>Database initialization in progress</h2>
         <%
-            /* How to customize:
+            /* How to customize :
              * 1. Update the database name on dbname.
              * 2. Create the list of tables, under tablenames[].
              * 3. Create the list of table definition, under tables[].
