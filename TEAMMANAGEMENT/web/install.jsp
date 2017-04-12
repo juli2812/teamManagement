@@ -48,7 +48,7 @@
                     stmt.executeUpdate("DROP TABLE " + dbname + "." + tablename); 
                     out.println("<pre> -> DROP TABLE " + dbname + "." + tablename + "<pre>");
                 } catch (SQLException e) { 
-                    // table didn't exist; it is the first time
+                    // table didn't exist; it is the first time hola
                 }
             }
             
