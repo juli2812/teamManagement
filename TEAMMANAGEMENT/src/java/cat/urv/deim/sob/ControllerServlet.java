@@ -1,8 +1,14 @@
 package cat.urv.deim.sob;
 
+import cat.urv.deim.sob.command.DirEsportiuCommand;
 import cat.urv.deim.sob.command.Command;
+import cat.urv.deim.sob.command.EntrenadorCommand;
+import cat.urv.deim.sob.command.RegistrarClubCommand;
+import cat.urv.deim.sob.command.PresidentCommand;
 import cat.urv.deim.sob.command.WriteCommand;
 import cat.urv.deim.sob.command.InitCommand;
+import cat.urv.deim.sob.command.JugadorCommand;
+import cat.urv.deim.sob.command.LoginCommand;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
@@ -18,6 +24,12 @@ public class ControllerServlet extends HttpServlet {
         // list of commands
         this.commands.put("init", new InitCommand());
         this.commands.put("write", new WriteCommand());
+        this.commands.put("club", new DirEsportiuCommand());
+        this.commands.put("diresportiu", new PresidentCommand());
+        this.commands.put("crear", new RegistrarClubCommand());
+        this.commands.put("login", new LoginCommand());
+        this.commands.put("entrenador", new EntrenadorCommand());
+        this.commands.put("jugador", new JugadorCommand());
     }
 
     protected void processCommand(
@@ -29,7 +41,7 @@ public class ControllerServlet extends HttpServlet {
         String formAction = request.getParameter("form_action");
 
         if (null == formAction) {
-            formAction = "init";
+            formAction = "login";
         }
 
         // 2. choose related command
