@@ -16,14 +16,7 @@ public class WriteCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        User user = new User();
 
-        user.setFirstName(request.getParameter("first_name"));
-        user.setLastName(request.getParameter("last_name"));
-        user.setEmail(request.getParameter("email"));
-        user.setPhone(request.getParameter("phone"));
-
-        request.setAttribute("user", user);
 
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();

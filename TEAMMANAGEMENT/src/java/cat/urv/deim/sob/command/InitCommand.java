@@ -16,10 +16,9 @@ public class InitCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        request.setAttribute("user", new User());
 
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/view.jsp").forward(request, response);
+        context.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

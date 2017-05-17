@@ -271,8 +271,6 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> <% out.println(userName+" "+surName); %></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> <% out.println(userType); %></a>
-                        </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -288,118 +286,23 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     
-                    <%if((userType!=null) && userType.equals("president")){%>
+                    <%if((userType!=null) && userType.equals("President")){%>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>President<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Afegir director esportiu</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Hola</a>
-                                </li>
-                            </ul>
-                            
+                            <a href="registre_1.jsp?club=true"><i class="fa fa-dashboard fa-fw"></i> Afegir director esportiu</a>                          
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Estadistica Jugadores<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Partido</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Temporada</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="registre.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                    <%}else{%>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Equip<span class="fa arrow"></span></a>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
                                 </li>
                                 <li>
-                                    <a href="assingar_equip.html">Assignar equip</a>
+                                    <a href="assingar_equip.jsp">Assignar equip</a>
                                 </li>
                                 <li>
-                                    <a href="baixa_equip.html">Donar baixa equip</a>
+                                    <a href="baixa_equip.jsp">Donar baixa equip</a>
                                 </li>
                             </ul>
                         </li>
@@ -407,19 +310,19 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Entrenador<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Donar alta entrenador</a>
+                                    <a href="alta_entrenador.jsp">Donar alta entrenador</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Assignar entrenador</a>
+                                    <a href="assignar_entrenador.jsp">Assignar entrenador</a>
                                 </li>
                                 <li>
-                                    <a href="flot.html">Consultar dades entrenador</a>
+                                    <a href="consultar_dades_entrenador.jsp">Consultar dades entrenador</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Actualizar dades entrenador</a>
+                                    <a href="actualitzar_dades_entrenador.jsp">Actualizar dades entrenador</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Donar baixa entrenador</a>
+                                    <a href="baixa_entrenador.jsp">Donar baixa entrenador</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -428,19 +331,127 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Jugador<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Donar alta jugador</a>
+                                    <a href="alta_jugador.jsp">Donar alta jugador</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Assignar jugador</a>
+                                    <a href="assignar_jugador.jsp">Assignar jugador</a>
                                 </li>
                                 <li>
-                                    <a href="flot.html">Consultar dades jugador</a>
+                                    <a href="consultar_dades_jugador.jsp">Consultar dades jugador</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Actualizar dades jugador</a>
+                                    <a href="actualitzar_dades_jugador.jsp">Actualizar dades jugador</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Donar baixa jugador</a>
+                                    <a href="donar_baixa_jugador.jsp">Donar baixa jugador</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                    <%}else if((userType!=null) && userType.equals("Jugador")){%>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="quota.jsp">Consultar quota</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_assistencia.jsp">Consultar assistència</a>
+                                </li>
+                                <li>
+                                    <a href="avisar_absencia.jsp">Avisar absencia</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_jugador.jsp">Consultar tràmit federatiu jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Partit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                    
+                    <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Equip<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="alta_equip.jsp">Donar alta equip</a>
+                                </li>
+                                <li>
+                                    <a href="assingar_equip.jsp">Assignar equip</a>
+                                </li>
+                                <li>
+                                    <a href="baixa_equip.jsp">Donar baixa equip</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Entrenador<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="alta_entrenador.jsp">Donar alta entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="assignar_entrenador.jsp">Assignar entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_dades_entrenador.jsp">Consultar dades entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="actualitzar_dades_entrenador.jsp">Actualizar dades entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="baixa_entrenador.jsp">Donar baixa entrenador</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Jugador<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="alta_jugador.jsp">Donar alta jugador</a>
+                                </li>
+                                <li>
+                                    <a href="assignar_jugador.jsp">Assignar jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_dades_jugador.jsp">Consultar dades jugador</a>
+                                </li>
+                                <li>
+                                    <a href="actualitzar_dades_jugador.jsp">Actualizar dades jugador</a>
+                                </li>
+                                <li>
+                                    <a href="donar_baixa_jugador.jsp">Donar baixa jugador</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -456,7 +467,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header"><%out.println(userType);%></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

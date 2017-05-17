@@ -23,6 +23,7 @@ public class DirEsportiuCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
+        if(!"".equals(request.getParameter("dni"))&&!"".equals(request.getParameter("nom"))&&!"".equals(request.getParameter("cognom1"))&&!"".equals(request.getParameter("adress"))&&!"".equals(request.getParameter("telefon"))&&!"".equals(request.getParameter("idpresident"))&&!"".equals(request.getParameter("datanaix"))&&!"".equals(request.getParameter("contrasenya"))&&!"".equals(request.getParameter("dataincorporacio"))){
         try {
             registrar(request.getParameter("dni"),request.getParameter("nom"),request.getParameter("cognom1"),request.getParameter("cognom2"),request.getParameter("adress"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("idpresident"),request.getParameter("datanaix"),request.getParameter("contrasenya"),request.getParameter("dataincorp"));
             registrarPresident(request.getParameter("idpresident"), request.getParameter("idsuccessor"));
@@ -31,7 +32,13 @@ public class DirEsportiuCommand implements Command {
         }
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/registre_1.html").forward(request, response);
+        context.getRequestDispatcher("/registre_1.jsp?club=false").forward(request, response);
+        }
+        else{
+        ServletContext context = request.getSession().getServletContext();
+        context.getRequestDispatcher("/registre.jsp?faltaParam=true").forward(request, response);
+        
+        }
     }
     public void registrar (String dni, String nom,String cognom1, String cognom2, String address, int telefon, String idUsuari, String dataNaix, String contrasenya, String dataIncorp) throws SQLException, ClassNotFoundException{
         Connection con;

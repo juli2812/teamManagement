@@ -21,6 +21,7 @@ public class CrearCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        if(!"".equals(request.getParameter("nomclub"))&&!"".equals(request.getParameter("idclub"))&&!"".equals(request.getParameter("telefon"))&&!"".equals(request.getParameter("adress"))&&!"".equals(request.getParameter("colorlocal"))&&!"".equals(request.getParameter("colorvisitant"))&&!"".equals(request.getParameter("quotatotal"))){
         try {
             // 1. process the request
             registrarClub(request.getParameter("fkpresident"),request.getParameter("fkdiresportiu"),request.getParameter("nomclub"),Integer.parseInt(request.getParameter("idclub")),Integer.parseInt(request.getParameter("telefon")),request.getParameter("address"),request.getParameter("colorlocal"),request.getParameter("colorvisitant"),Float.parseFloat(request.getParameter("quotatotal")));
@@ -31,7 +32,12 @@ public class CrearCommand implements Command {
         }
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/login.html").forward(request, response);
+        context.getRequestDispatcher("/login.jsp").forward(request, response);
+        }
+        else{
+        ServletContext context = request.getSession().getServletContext();
+        context.getRequestDispatcher("/registre_2.jsp?faltaParam=true").forward(request, response);}
+        
     }
     
     public void registrarClub (String fkPresident, String fkDirEsportiu,String nomClub, int idClub, int telefon, String address, String colorLocal, String colorVisitant, float preuTotalQuota) throws SQLException, ClassNotFoundException{

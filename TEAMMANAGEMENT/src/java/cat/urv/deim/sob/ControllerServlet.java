@@ -1,9 +1,11 @@
 package cat.urv.deim.sob;
 
+import cat.urv.deim.sob.command.AltaEquipCommand;
 import cat.urv.deim.sob.command.ClubCommand;
 import cat.urv.deim.sob.command.Command;
 import cat.urv.deim.sob.command.CrearCommand;
 import cat.urv.deim.sob.command.DirEsportiuCommand;
+import cat.urv.deim.sob.command.EntrenadorNoEquipCommand;
 import cat.urv.deim.sob.command.WriteCommand;
 import cat.urv.deim.sob.command.InitCommand;
 import cat.urv.deim.sob.command.LoginCommand;
@@ -26,6 +28,8 @@ public class ControllerServlet extends HttpServlet {
         this.commands.put("diresportiu", new DirEsportiuCommand());
         this.commands.put("crear", new CrearCommand());
         this.commands.put("login", new LoginCommand());
+        this.commands.put("altaequip", new AltaEquipCommand());
+        this.commands.put("entrenadornoequip", new EntrenadorNoEquipCommand());
     }
 
     protected void processCommand(

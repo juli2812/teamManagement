@@ -20,7 +20,8 @@ public class ClubCommand implements Command {
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        if(!"".equals(request.getParameter("dni"))&&!"".equals(request.getParameter("nom"))&&!"".equals(request.getParameter("cognom1"))&&!"".equals(request.getParameter("adress"))&&!"".equals(request.getParameter("telefon"))&&!"".equals(request.getParameter("iddiresportiu"))&&!"".equals(request.getParameter("datanaix"))&&!"".equals(request.getParameter("contrasenya"))&&!"".equals(request.getParameter("dataincorporacio"))){
         // 1. process the request
         try {
             registrar(request.getParameter("dni"),request.getParameter("nom"),request.getParameter("cognom1"),request.getParameter("cognom2"),request.getParameter("address"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("iddiresportiu"),request.getParameter("datanaix"),request.getParameter("contrasenya"),request.getParameter("dataincorp"));
@@ -29,8 +30,24 @@ public class ClubCommand implements Command {
             Logger.getLogger(DirEsportiuCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
-        ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/registre_2.html").forward(request, response);
+            if("true".equals(request.getParameter("club"))){
+                ServletContext context = request.getSession().getServletContext();
+                context.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+            else{
+                ServletContext context = request.getSession().getServletContext();
+                context.getRequestDispatcher("/registre_2.jsp").forward(request, response);
+            }
+        }
+        else{
+              if("true".equals(request.getParameter("club"))){
+                ServletContext context = request.getSession().getServletContext();
+                context.getRequestDispatcher("/registre_1.jsp?faltaParam=true&club=true").forward(request, response);
+            }
+            else{
+                ServletContext context = request.getSession().getServletContext();
+                context.getRequestDispatcher("/registre_1.jsp?faltaParam=true").forward(request, response);}
+        }
     }
     public void registrar (String dni, String nom,String cognom1, String cognom2, String address, int telefon, String idUsuari, String dataNaix, String contrasenya, String dataIncorp) throws SQLException, ClassNotFoundException{
         Connection con;
