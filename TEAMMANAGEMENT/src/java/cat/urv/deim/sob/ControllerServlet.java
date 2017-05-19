@@ -1,13 +1,18 @@
 package cat.urv.deim.sob;
 
+import cat.urv.deim.sob.command.ActualitzarDadesJugadorCommand;
 import cat.urv.deim.sob.command.AltaEquipCommand;
+import cat.urv.deim.sob.command.AssignarEntrenadorCommand;
 import cat.urv.deim.sob.command.ClubCommand;
 import cat.urv.deim.sob.command.Command;
 import cat.urv.deim.sob.command.CrearCommand;
+import cat.urv.deim.sob.command.DadesJugadorCommand;
 import cat.urv.deim.sob.command.DirEsportiuCommand;
+import cat.urv.deim.sob.command.EntrenadorEquipCommand;
 import cat.urv.deim.sob.command.EntrenadorNoEquipCommand;
 import cat.urv.deim.sob.command.WriteCommand;
 import cat.urv.deim.sob.command.InitCommand;
+import cat.urv.deim.sob.command.JugadorClubCommand;
 import cat.urv.deim.sob.command.LoginCommand;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -30,6 +35,12 @@ public class ControllerServlet extends HttpServlet {
         this.commands.put("login", new LoginCommand());
         this.commands.put("altaequip", new AltaEquipCommand());
         this.commands.put("entrenadornoequip", new EntrenadorNoEquipCommand());
+        this.commands.put("entrenadorequip", new EntrenadorEquipCommand());
+        this.commands.put("assignarentrenador", new AssignarEntrenadorCommand());
+        this.commands.put("jugadorclub", new JugadorClubCommand());
+        this.commands.put("dadesjugador", new DadesJugadorCommand());
+        this.commands.put("actualitzardadesjugador", new ActualitzarDadesJugadorCommand());
+
     }
 
     protected void processCommand(

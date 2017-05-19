@@ -1,5 +1,6 @@
 package cat.urv.deim.sob.command;
 
+import cat.urv.deim.sob.Jugador;
 import cat.urv.deim.sob.Entrenador;
 import cat.urv.deim.sob.Usuari;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.codec.digest.DigestUtils;
 
-public class EntrenadorNoEquipCommand implements Command {
+public class JugadorClubCommand implements Command {
 
     @Override
     public void execute(
@@ -26,40 +26,40 @@ public class EntrenadorNoEquipCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
             int numFedClub=0;
-            ArrayList<Entrenador> dades=new ArrayList();
+            ArrayList<Jugador> dades=new ArrayList();
             HttpSession session = request.getSession(true);
         // 1. process the request
         
         try {
             numFedClub=getNumFed(request.getParameter("idusuari"),request.getParameter("tipususuari"));
             if(numFedClub!=0){
-            dades=getEntrenadors();
+            dades=getJugadors();
             }
             } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(EntrenadorNoEquipCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JugadorClubCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
         if(numFedClub!=0){
-            session.setAttribute("entrenadors", dades);
+            session.setAttribute("jugadors", dades);
             ServletContext context = request.getSession().getServletContext();
-            context.getRequestDispatcher("/assignar_entrenador_1.jsp").forward(request, response);
+            context.getRequestDispatcher("/actualitzar_dades_jugador_1.jsp").forward(request, response);
         }else{
             ServletContext context = request.getSession().getServletContext();
-            context.getRequestDispatcher("/assignar_entrenador.jsp").forward(request, response);
+            context.getRequestDispatcher("/actualitzar_dades_jugador.jsp").forward(request, response);
         }
     }
     
     
-    public ArrayList<Entrenador> getEntrenadors () throws SQLException, ClassNotFoundException{
+    public ArrayList<Jugador> getJugadors () throws SQLException, ClassNotFoundException{
         Connection con;
-        ArrayList<Entrenador> entrenadors = new ArrayList();
-        Entrenador entrenador = null;
+        ArrayList<Jugador> jugadors = new ArrayList();
+        Jugador jugador = null;
         PreparedStatement ps;
         ResultSet resultSet2 = null;
             Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
             con.setSchema("team_management");
-            String query = "SELECT `fk_usuari` FROM `team_management`.`entrenador` WHERE `fk_equip` IS NULL;";
+            String query = "SELECT `fk_usuari` FROM `team_management`.`jugador`;";
             ps = con.prepareStatement(query);
             ResultSet resultSet=ps.executeQuery();
             while (resultSet.next()) {
@@ -68,11 +68,11 @@ public class EntrenadorNoEquipCommand implements Command {
                 ps.setString(1, resultSet.getString(1));
                 resultSet2=ps.executeQuery();
                 if (resultSet2.next()) {
-                    entrenador = new Entrenador(resultSet2.getString(1),resultSet2.getString(2),resultSet.getString(1));
-                    entrenadors.add(entrenador);
+                    jugador = new Jugador(resultSet2.getString(1),resultSet2.getString(2),resultSet.getString(1));
+                    jugadors.add(jugador);
                 }
             }
-            return entrenadors;
+            return jugadors;
     }
     
     

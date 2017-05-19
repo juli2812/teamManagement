@@ -27,7 +27,6 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Entrenador> entrenadors =(ArrayList<Entrenador>) session.getAttribute("entrenadors");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -63,8 +62,7 @@
 
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -467,11 +465,10 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Assignar entrenador</h1>
+                    <h1 class="page-header">Actualitzar dades jugador</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -480,7 +477,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Escull l'entrenador
+                            Llegeix breument
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -489,27 +486,22 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Entrenador</h1>
+                                    <h1>Jugadors</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="entrenadorequip"/>
-                                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
-                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <% if(entrenadors.size()==0){%>
-                                        <b><font color = "red">
-                                            <%out.println("No hi ha cap entrenador sense equip.");%><br></font></b><%}else{%>
-                                            <div class="form-group">
-                                                <label>Nom</label>
-                                                <select class="form-control" name="entrenador" required>
-                                                    <%for(int i = 0; i<entrenadors.size(); i++){%>
-                                                    <option value="<%out.print(entrenadors.get(i).getIdUsuari());%>"><%out.print(entrenadors.get(i).getNom()+" "+entrenadors.get(i).getCognom());%></option>
-                                                    <%}%>
-                                                </select>
-                                            </div>
-                                        <%}%>
-                                        <% if(entrenadors.size()!=0){%>
-                                            <button type="submit" class="btn btn-primary">Assignar entrenador</button>
-                                            <button type="reset" class="btn btn-default">Reset</button>
-                                        <%}%>
+                                    <input type="hidden" name="form_action" value="jugadorclub"/>
+                                    <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                    <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
+                                        <div class="form-group">
+                                            <label>Clica a continuar per a veure una selecció de tots els jugadors.</label>
+                                           </div>
+                        <font color = "blue">
+                        <%
+                            if((request.getParameter("actualitzat")!=null) && request.getParameter("actualitzat").equals("true")){
+                                 out.println("S'han actualitzat les dades.");
+                        }
+                            %></font>
+                        <br>
+                                        <button type="submit" class="btn btn-default">Continuar</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

@@ -4,7 +4,7 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Entrenador"%>
+<%@page import="cat.urv.deim.sob.Jugador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,7 +27,7 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Entrenador> entrenadors =(ArrayList<Entrenador>) session.getAttribute("entrenadors");
+            ArrayList<Jugador> jugadors =(ArrayList<Jugador>) session.getAttribute("jugadors");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -471,7 +471,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Assignar entrenador</h1>
+                    <h1 class="page-header">Actualitzar dades jugador</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -480,7 +480,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Escull l'entrenador
+                            Escull el jugador
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -489,24 +489,24 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Entrenador</h1>
+                                    <h1>Jugador</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="entrenadorequip"/>
+                                        <input type="hidden" name="form_action" value="dadesjugador"/>
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <% if(entrenadors.size()==0){%>
+                                        <% if(jugadors.size()==0){%>
                                         <b><font color = "red">
-                                            <%out.println("No hi ha cap entrenador sense equip.");%><br></font></b><%}else{%>
+                                            <%out.println("No hi ha cap jugador.");%><br></font></b><%}else{%>
                                             <div class="form-group">
                                                 <label>Nom</label>
-                                                <select class="form-control" name="entrenador" required>
-                                                    <%for(int i = 0; i<entrenadors.size(); i++){%>
-                                                    <option value="<%out.print(entrenadors.get(i).getIdUsuari());%>"><%out.print(entrenadors.get(i).getNom()+" "+entrenadors.get(i).getCognom());%></option>
+                                                <select class="form-control" name="jugador" required>
+                                                    <%for(int i = 0; i<jugadors.size(); i++){%>
+                                                    <option value="<%out.print(jugadors.get(i).getIdUsuari());%>"><%out.print(jugadors.get(i).getNom()+" "+jugadors.get(i).getCognom());%></option>
                                                     <%}%>
                                                 </select>
                                             </div>
                                         <%}%>
-                                        <% if(entrenadors.size()!=0){%>
+                                        <% if(jugadors.size()!=0){%>
                                             <button type="submit" class="btn btn-primary">Assignar entrenador</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         <%}%>

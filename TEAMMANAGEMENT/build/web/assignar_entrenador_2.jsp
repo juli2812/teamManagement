@@ -4,6 +4,7 @@
     Author     : BEC.CA2
 --%>
 
+<%@page import="cat.urv.deim.sob.Equip"%>
 <%@page import="cat.urv.deim.sob.Entrenador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,7 +28,8 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Entrenador> entrenadors =(ArrayList<Entrenador>) session.getAttribute("entrenadors");
+            ArrayList<Equip> equips =(ArrayList<Equip>) session.getAttribute("equips");
+            String entrenador = request.getParameter("entrenador");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -480,7 +482,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Escull l'entrenador
+                            Escull l'equip
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -489,27 +491,31 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Entrenador</h1>
+                                    <h1>Entrenador seleccionat</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="entrenadorequip"/>
+                                        <input type="hidden" name="form_action" value="assignarentrenador"/>
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <% if(entrenadors.size()==0){%>
-                                        <b><font color = "red">
-                                            <%out.println("No hi ha cap entrenador sense equip.");%><br></font></b><%}else{%>
+                                        <input type="hidden" name="identrenador" value="<%out.print(request.getParameter("entrenador"));%>"/>
+                                        <label>Nom</label>
+                                        <div class="form-group">
+                                            <input type="text" name="nomentrenador" value="<%out.print(request.getParameter("nom"));%>" disabled/>
+                                        </div>
+                                        <label>Cognom</label>
+                                        <div class="form-group">
+                                            <input type="text" name="cognomentrenador" value="<%out.print(request.getParameter("cognom"));%>" disabled/>
+                                        </div>
                                             <div class="form-group">
-                                                <label>Nom</label>
-                                                <select class="form-control" name="entrenador" required>
-                                                    <%for(int i = 0; i<entrenadors.size(); i++){%>
-                                                    <option value="<%out.print(entrenadors.get(i).getIdUsuari());%>"><%out.print(entrenadors.get(i).getNom()+" "+entrenadors.get(i).getCognom());%></option>
+                                                <h1>Equip</h1>
+                                                <label>Nom de l'equip</label>
+                                                <select id="disabledSelect" class="form-control" name="equip">
+                                                    <%for(int i = 0; i<equips.size(); i++){%>
+                                                    <option value="<%out.print(equips.get(i).getNomEquip());%>"><%out.print(equips.get(i).getNomEquip());%></option>
                                                     <%}%>
                                                 </select>
                                             </div>
-                                        <%}%>
-                                        <% if(entrenadors.size()!=0){%>
                                             <button type="submit" class="btn btn-primary">Assignar entrenador</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
-                                        <%}%>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

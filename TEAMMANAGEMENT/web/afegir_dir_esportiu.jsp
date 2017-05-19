@@ -4,8 +4,6 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Entrenador"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
@@ -27,7 +25,6 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Entrenador> entrenadors =(ArrayList<Entrenador>) session.getAttribute("entrenadors");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -292,7 +289,7 @@
                     <%if((userType!=null) && userType.equals("President")){%>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="afegir_dir_esportiu.jsp?club=true&af=1"><i class="fa fa-plus-circle fa-fw"></i> Afegir director esportiu</a>                          
+                            <a href="afegir_dir_esportiu.jsp"><i class="fa fa-plus-circle fa-fw"></i> Afegir director esportiu</a>                          
                         </li>
                     <ul class="nav" id="side-menu">
                         <li>
@@ -467,11 +464,10 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Assignar entrenador</h1>
+                    <h1 class="page-header">Registra un director esportiu</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -480,39 +476,82 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Escull l'entrenador
+                            Formulari a omplir
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <img src="images/presidentes-galicia-17918.jpg" alt="President" width=450 height=250>
+                                    <img src="images/monchi-sevilla-cosas-avanzadas.jpg" alt="Director esportiu" width=450 height=250>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Entrenador</h1>
+                                    <h1>Director Esportiu</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="entrenadorequip"/>
-                                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
-                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <% if(entrenadors.size()==0){%>
-                                        <b><font color = "red">
-                                            <%out.println("No hi ha cap entrenador sense equip.");%><br></font></b><%}else{%>
-                                            <div class="form-group">
-                                                <label>Nom</label>
-                                                <select class="form-control" name="entrenador" required>
-                                                    <%for(int i = 0; i<entrenadors.size(); i++){%>
-                                                    <option value="<%out.print(entrenadors.get(i).getIdUsuari());%>"><%out.print(entrenadors.get(i).getNom()+" "+entrenadors.get(i).getCognom());%></option>
-                                                    <%}%>
-                                                </select>
-                                            </div>
-                                        <%}%>
-                                        <% if(entrenadors.size()!=0){%>
-                                            <button type="submit" class="btn btn-primary">Assignar entrenador</button>
-                                            <button type="reset" class="btn btn-default">Reset</button>
-                                        <%}%>
+                                        <%
+                            if((request.getParameter("club")!=null) && request.getParameter("club").equals("true")){%>
+                                    <input type="hidden" name="form_action" value="club"/>
+                                    <input type="hidden" name="club" value="true"/>
+                                    <input type="hidden" name="af" value="true"/>
+                        <%} else {%>
+                        <input type="hidden" name="form_action" value="club"/>
+                                    <input type="hidden" name="club" value="false"/>
+                                    <input type="hidden" name="af" value="true"/>
+                        <% } %>
+                                        <div class="form-group">
+                                            <label>Nom d'usuari</label>
+                                            <input class="form-control" placeholder="Segueix l'estil DEddMMyyXXX" maxlength="11" name="iddiresportiu" required>
+                                            <p>On DE és l’identificador del tipus d’usuari que serà sempre aquest per al director esportiu, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms.</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>DNI</label>
+                                            <input class="form-control" maxlength="9" name="dni" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nom</label>
+                                            <input class="form-control" maxlength="20" name="nom" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Primer cognom</label>
+                                            <input class="form-control" maxlength="20" name="cognom1" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Segon cognom</label>
+                                            <input class="form-control" placeholder="(Opcional)" maxlength="20" name="cognom2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Adreça</label>
+                                            <input class="form-control" maxlength="40" name="address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telèfon</label>
+                                            <input class="form-control" type="number" min="600000000" max="99999999999" name="telefon" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data naixement</label>
+                                            <input class="form-control" type="date" name="datanaix" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contrasenya</label>
+                                            <input class="form-control" type="password" maxlength="40" name="contrasenya" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data incorporació</label>
+                                            <input class="form-control" type="date" name="dataincorp" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Compte bancari</label>
+                                            <input class="form-control" placeholder="ESXXXXXXXXXXXXXXXXXX" maxlength="24" name="comptebancari" required>
+                                        </div><b><font color = "red">
+                        <%
+                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
+                                 out.println("Ompleix els camps obligatoris.");
+                        }
+                        %></font></b><br>
+                                        <button type="submit" class="btn btn-default">Continuar</button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>
@@ -521,8 +560,9 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            
             </div>
+            <!-- /.row -->
+        </div>
         <!-- /#page-wrapper -->
 
     </div>

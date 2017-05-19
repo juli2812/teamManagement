@@ -4,7 +4,7 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Entrenador"%>
+<%@page import="cat.urv.deim.sob.Jugador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,7 +27,7 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Entrenador> entrenadors =(ArrayList<Entrenador>) session.getAttribute("entrenadors");
+            Jugador jugador =(Jugador) session.getAttribute("jug");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -471,7 +471,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Assignar entrenador</h1>
+                    <h1 class="page-header">Actualitzar dades jugador</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -480,7 +480,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Escull l'entrenador
+                            Escull el jugador
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -489,27 +489,135 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Entrenador</h1>
+                                    <h1>Jugador</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="entrenadorequip"/>
+                                        <input type="hidden" name="form_action" value="actualitzardadesjugador"/>
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
-                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <% if(entrenadors.size()==0){%>
-                                        <b><font color = "red">
-                                            <%out.println("No hi ha cap entrenador sense equip.");%><br></font></b><%}else{%>
-                                            <div class="form-group">
-                                                <label>Nom</label>
-                                                <select class="form-control" name="entrenador" required>
-                                                    <%for(int i = 0; i<entrenadors.size(); i++){%>
-                                                    <option value="<%out.print(entrenadors.get(i).getIdUsuari());%>"><%out.print(entrenadors.get(i).getNom()+" "+entrenadors.get(i).getCognom());%></option>
+                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/><label>Nom</label>
+                                        <label>Usuari</label>
+                                        <div class="form-group">
+                                            <input type="text" name="usuari" maxlength="11" value="<%out.print(jugador.getIdUsuari());%>" required disabled/>
+                                            <input type="hidden" name="usuari" maxlength="11" value="<%out.print(jugador.getIdUsuari());%>" required/>
+                                        </div>
+                                        <label>NIF</label>
+                                        <div class="form-group">
+                                            <input type="text" name="NIF" maxlength="9" value="<%out.print(jugador.getNIF());%>" required/>
+                                        </div>
+                                        <label>Nom</label>
+                                        <div class="form-group">
+                                            <input type="text" name="nom" maxlength="20" value="<%out.print(jugador.getNom());%>" required/>
+                                        </div>
+                                        <label>Primer cognom</label>
+                                        <div class="form-group">
+                                            <input type="text" name="cognom" maxlength="20" value="<%out.print(jugador.getCognom());%>" required/>
+                                        </div>
+                                        <label>Segon cognom</label>
+                                        <div class="form-group">
+                                            <input type="text" name="cognom2" maxlength="20" value="<%out.print(jugador.getCognom2());%>"/>
+                                        </div>
+                                        <label>Adreça</label>
+                                        <div class="form-group">
+                                            <input type="text" name="address" maxlength="40" value="<%out.print(jugador.getAddress());%>"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telèfon</label>
+                                            <input class="form-control" type="number" min="600000000" max="99999999999" name="telefon" value="<%out.print(jugador.getTelefon());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data naixement</label>
+                                            <input class="form-control" type="date"  name="datanaix"  value="<%out.print(jugador.getDataNaix());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contrasenya</label>
+                                            <input class="form-control" type="password" maxlength="40"  name="contrasenya" value="<%out.print(jugador.getContrasenya());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data incorporació</label>
+                                            <input class="form-control" type="date"  name="dataincorp"  value="<%out.print(jugador.getDataIncorporacio());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Compte bancari</label>
+                                            <input class="form-control" type="text"  name="comptebancari" maxlength="24" value="<%out.print(jugador.getCompteBancari());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Compte tutoritzat</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <%if(jugador.isCompteTutoritzat()){%>
+                                                    <input type="checkbox" name="comptetutoritzat" value="true" checked>Compte tutoritzat
+                                                    <%}else{%>
+                                                    <input type="checkbox" name="comptetutoritzat" value="true">Compte tutoritzat
                                                     <%}%>
-                                                </select>
+                                                </label>
                                             </div>
-                                        <%}%>
-                                        <% if(entrenadors.size()!=0){%>
-                                            <button type="submit" class="btn btn-primary">Assignar entrenador</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Dorsal</label>
+                                            <input class="form-control" type="number"  name="dorsal" min="0" max="99" value="<%out.print(jugador.getDorsal());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Curs escolar</label>
+                                            <%if(null!=jugador.getCursEscolar()){%>
+                                            <input class="form-control" type="text"  name="cursescolar" maxlength="10" value="<%out.print(jugador.getCursEscolar());%>">
+                                            <%}else{%>
+                                            <input class="form-control" type="text"  name="cursescolar" maxlength="10">
+                                            <%}%>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Escola</label>
+                                            <%if(null!=jugador.getEscola()){%>
+                                            <input class="form-control" type="text"  name="escola" maxlength="20" value="<%out.print(jugador.getEscola());%>">
+                                            <%}else{%>
+                                            <input class="form-control" type="text"  name="escola" maxlength="20">
+                                            <%}%>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nom complet pare</label>
+                                            <input class="form-control" type="text"  name="nompare" maxlength="50" value="<%out.print(jugador.getNomCompletPare());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nom complet mare</label>
+                                            <input class="form-control" type="text"  name="nommare" maxlength="50" value="<%out.print(jugador.getNomCompletMare());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fotocopia DNI</label>
+                                            <input class="form-control" type="text"  name="fotocopiadni" maxlength="40" value="<%out.print(jugador.getFotocopiaDNI());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Catsalut</label>
+                                            <input class="form-control" type="text"  name="catsalut" maxlength="40" value="<%out.print(jugador.getNumSalut());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Reconeixement mèdic</label>
+                                            <input class="form-control" type="text"  name="reconmedic" maxlength="14" value="<%out.print(jugador.getReconeixementMedic());%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Tot entregat</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <%if(jugador.isTotEntregat()){%>
+                                                    <input type="checkbox" name="totentregat" value="true" checked>Tot entregat
+                                                    <%}else{%>
+                                                    <input type="checkbox" name="totentergat" value="true">Tot entregat
+                                                    <%}%>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Lesionat</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <%if(jugador.isLesionat()){%>
+                                                    <input type="checkbox" name="lesionat" value="true" checked>Lesionat
+                                                    <%}else{%>
+                                                    <input type="checkbox" name="lesionat" value="true">Lesionat
+                                                    <%}%>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                            <button type="submit" class="btn btn-primary">Actualitzar dades</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
-                                        <%}%>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
