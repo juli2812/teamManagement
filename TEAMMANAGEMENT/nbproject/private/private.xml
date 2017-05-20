@@ -3,20 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/AssignarEntrenadorCommand.java</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/pages/forms.html</file>
             <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/ControllerServlet.java</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/assignar_entrenador_1.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/DadesJugadorCommand.java</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/actualitzar_dades_jugador.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/login.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/index.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/actualitzar_dades_jugador_2.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/Jugador.java</file>
             <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/assignar_entrenador.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/EntrenadorEquipCommand.java</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/actualitzar_dades_jugador_1.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/assignar_entrenador_2.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/JugadorClubCommand.java</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/afegir_dir_esportiu.jsp</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/ActualitzarDadesJugadorCommand.java</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/EntrenadorNoEquipCommand.java</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/actualitzar_dades_jugador_2.jsp</file>
         </group>
     </open-files>
 </project-private>
