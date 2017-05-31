@@ -22,15 +22,22 @@ public class DirEsportiuCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
+        if(!"".equals(request.getParameter("dni"))&&!"".equals(request.getParameter("nom"))&&!"".equals(request.getParameter("cognom1"))&&!"".equals(request.getParameter("adress"))&&!"".equals(request.getParameter("telefon"))&&!"".equals(request.getParameter("idpresident"))&&!"".equals(request.getParameter("datanaix"))&&!"".equals(request.getParameter("contrasenya"))&&!"".equals(request.getParameter("dataincorporacio"))){
         try {
-            registrar(request.getParameter("dni"),request.getParameter("nom"),request.getParameter("cognom1"),request.getParameter("cognom2"),request.getParameter("address"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("iddiresportiu"),request.getParameter("datanaix"),request.getParameter("contrasenya"),request.getParameter("dataincorp"));
-            registrarDirEsportiu(request.getParameter("iddiresportiu"), request.getParameter("comptebancari"));
+            registrar(request.getParameter("dni"),request.getParameter("nom"),request.getParameter("cognom1"),request.getParameter("cognom2"),request.getParameter("adress"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("idpresident"),request.getParameter("datanaix"),request.getParameter("contrasenya"),request.getParameter("dataincorp"));
+            registrarPresident(request.getParameter("idpresident"), request.getParameter("idsuccessor"));
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(PresidentCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirEsportiuCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/registre_2.html").forward(request, response);
+        context.getRequestDispatcher("/registre_1.jsp?club=false").forward(request, response);
+        }
+        else{
+        ServletContext context = request.getSession().getServletContext();
+        context.getRequestDispatcher("/registre.jsp?faltaParam=true").forward(request, response);
+        
+        }
     }
     public void registrar (String dni, String nom,String cognom1, String cognom2, String address, int telefon, String idUsuari, String dataNaix, String contrasenya, String dataIncorp) throws SQLException, ClassNotFoundException{
         Connection con;
@@ -53,20 +60,20 @@ public class DirEsportiuCommand implements Command {
             ps.executeUpdate();
     }
     
-    public void registrarDirEsportiu (String fkUsuari, String compteBancari) throws SQLException, ClassNotFoundException{
+    public void registrarPresident (String fkUsuari, String fkSuccessor) throws SQLException, ClassNotFoundException{
             Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con;
         PreparedStatement ps;
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
         con.setSchema("team_management");
-        String sentenciaSQL = "INSERT INTO `director_esportiu` (`fk_usuari`, `compte_bancari`) VALUES (?,?);";
+        String sentenciaSQL = "INSERT INTO `team_management`.`president` (`fk_usuari`, `fk_successor`) VALUES (?, ?);";
         ps = con.prepareStatement(sentenciaSQL);
         ps.setString(1, fkUsuari);
-        if("".equals(compteBancari)){
+        if("".equals(fkSuccessor)){
             ps.setString(2,null);
         }
         else{
-            ps.setString(2, compteBancari);
+            ps.setString(2, fkSuccessor);
         }
         ps.executeUpdate();
     }
