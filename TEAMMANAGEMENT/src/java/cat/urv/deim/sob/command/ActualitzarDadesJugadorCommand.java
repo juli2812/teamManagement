@@ -30,7 +30,6 @@ public class ActualitzarDadesJugadorCommand implements Command {
             HttpSession session = request.getSession(true);
         // 1. process the request
         
-            System.out.println("ENTRA "+request.getParameter("usuari"));
         try {
             updateJugador(request.getParameter("cursescolar"),request.getParameter("escola"),request.getParameter("nompare"),request.getParameter("nommare"),Boolean.valueOf(request.getParameter("comptetutoritzat")),request.getParameter("comptebancari"),Integer.parseInt(request.getParameter("dorsal")),request.getParameter("fotocopiadni"),"",request.getParameter("catsalut"),request.getParameter("reconmedic"),Boolean.valueOf(request.getParameter("totentregat")),Boolean.valueOf(request.getParameter("lesionat")),request.getParameter("NIF"),request.getParameter("nom"),request.getParameter("cognom"),request.getParameter("cognom2"),request.getParameter("address"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("usuari"),Date.valueOf(request.getParameter("datanaix")),request.getParameter("contrasenya"),Date.valueOf(request.getParameter("dataincorp")));
             } catch (SQLException | ClassNotFoundException ex) {

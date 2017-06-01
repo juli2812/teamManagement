@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/pages/forms.html</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/ControllerServlet.java</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/assignar_entrenador.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/afegir_dir_esportiu.jsp</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/ActualitzarDadesJugadorCommand.java</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/EntrenadorNoEquipCommand.java</file>
-            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/actualitzar_dades_jugador_2.jsp</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/LoginCommand.java</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/CrearCommand.java</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/login.jsp</file>
+            <file>file:/C:/Users/realm/Desktop/Git/teamManagement/TEAMMANAGEMENT/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

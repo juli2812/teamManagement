@@ -288,12 +288,17 @@
                     
                     <%if((userType!=null) && userType.equals("President")){%>
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="afegir_dir_esportiu.jsp"><i class="fa fa-plus-circle fa-fw"></i> Afegir director esportiu</a>                          
-                        </li>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Director Esportiu<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="afegir_dir_esportiu.jsp?club=true&af=1">Afegir director esportiu</a>  
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
@@ -463,6 +468,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+
 
         <div id="page-wrapper">
             <div class="row">

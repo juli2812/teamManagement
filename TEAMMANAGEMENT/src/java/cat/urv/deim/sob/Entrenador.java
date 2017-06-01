@@ -5,8 +5,9 @@ import java.sql.Date;
 public class Entrenador extends Usuari{
     
     private String compteBancari;
+    private String certificat;
     private String nivellEntrenador;
-    private String tipusModalitatActual;
+    private int tipusModalitatActual;
     private String funcioEntrenador;
     private String fotocopiaDNI;
     private String foto;
@@ -14,9 +15,10 @@ public class Entrenador extends Usuari{
     private String reconeixementMedic;
     private boolean totEntregat;
 
-    public Entrenador(String compteBancari, String nivellEntrenador, String tipusModalitatActual, String funcioEntrenador, String fotocopiaDNI, String foto, String numSalut, String reconeixementMedic, boolean totEntregat, String NIF, String nom, String cognom, String cognom2, String address, int telefon, String idUsuari, Date dataNaix, String contrasenya, Date dataIncorporacio) {
+    public Entrenador(String compteBancari, String nivellEntrenador, int tipusModalitatActual, String certificat, String funcioEntrenador, String fotocopiaDNI, String foto, String numSalut, String reconeixementMedic, boolean totEntregat, String NIF, String nom, String cognom, String cognom2, String address, int telefon, String idUsuari, Date dataNaix, String contrasenya, Date dataIncorporacio) {
         super(NIF, nom, cognom, cognom2, address, telefon, idUsuari, dataNaix, contrasenya, dataIncorporacio);
         this.compteBancari = compteBancari;
+        this.certificat = certificat;
         this.nivellEntrenador = nivellEntrenador;
         this.tipusModalitatActual = tipusModalitatActual;
         this.funcioEntrenador = funcioEntrenador;
@@ -25,6 +27,14 @@ public class Entrenador extends Usuari{
         this.numSalut = numSalut;
         this.reconeixementMedic = reconeixementMedic;
         this.totEntregat = totEntregat;
+    }
+
+    public String getCertificat() {
+        return certificat;
+    }
+
+    public void setCertificat(String certificat) {
+        this.certificat = certificat;
     }
 
     public Entrenador(String nom, String cognom, String idUsuari) {
@@ -47,11 +57,11 @@ public class Entrenador extends Usuari{
         this.nivellEntrenador = nivellEntrenador;
     }
 
-    public String getTipusModalitatActual() {
+    public int getTipusModalitatActual() {
         return tipusModalitatActual;
     }
 
-    public void setTipusModalitatActual(String tipusModalitatActual) {
+    public void setTipusModalitatActual(int tipusModalitatActual) {
         this.tipusModalitatActual = tipusModalitatActual;
     }
 
@@ -102,10 +112,5 @@ public class Entrenador extends Usuari{
     public void setTotEntregat(boolean totEntregat) {
         this.totEntregat = totEntregat;
     }
-
-
-
-    
-
     
 }

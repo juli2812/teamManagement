@@ -58,7 +58,6 @@ public class EntrenadorEquipCommand implements Command {
         ArrayList<Equip> equips = new ArrayList();
         Equip equip = null;
         PreparedStatement ps;
-        ResultSet resultSet2 = null;
             Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
             con.setSchema("team_management");
@@ -68,7 +67,6 @@ public class EntrenadorEquipCommand implements Command {
             ResultSet resultSet=ps.executeQuery();
             while (resultSet.next()) {
                 equip= new Equip(resultSet.getString(1),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5));
-                System.out.println(equip.toString());
                 equips.add(equip);
             }
             return equips;
@@ -86,7 +84,7 @@ public class EntrenadorEquipCommand implements Command {
             ps.setString(1, idUsuari);
             ResultSet resultSet=ps.executeQuery();
             if (resultSet.next()) {
-                    entrenador = new Entrenador("","","","","","","","",false,"",resultSet.getString(2),resultSet.getString(3),"","",0,idUsuari,null,"",null);
+                    entrenador = new Entrenador(resultSet.getString(2),resultSet.getString(3),idUsuari);
             }
             return entrenador;
     }

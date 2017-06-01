@@ -24,7 +24,6 @@ public class AltaEquipCommand implements Command {
             int numFedClub=0;
         // 1. process the request
         
-            System.out.println("HOLA: "+numFedClub);
         if(!"".equals(request.getParameter("nomequip"))&&!"".equals(request.getParameter("categoria"))){
         try {
             numFedClub=getNumFed(request.getParameter("idusuari"),request.getParameter("tipususuari"));
@@ -39,7 +38,6 @@ public class AltaEquipCommand implements Command {
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/index.jsp").forward(request, response);
         }else{
-            System.out.println("NUM: "+numFedClub);
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/alta_equip.jsp?faltaParam=true").forward(request, response);
         }

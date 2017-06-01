@@ -291,12 +291,17 @@
                     
                     <%if((userType!=null) && userType.equals("President")){%>
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="afegir_dir_esportiu.jsp?club=true&af=1"><i class="fa fa-plus-circle fa-fw"></i> Afegir director esportiu</a>                          
-                        </li>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Director Esportiu<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="afegir_dir_esportiu.jsp?club=true&af=1">Afegir director esportiu</a>  
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
@@ -468,6 +473,7 @@
         </nav>
 
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -485,7 +491,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="images/presidentes-galicia-17918.jpg" alt="President" width=450 height=250>
+                                    <img src="images/vinilos-decorativos-jugador-futbol.jpg" alt="President" width=370 height=370>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
@@ -493,7 +499,7 @@
                                     <form role="form" method="post" action="controller.do">
                                         <input type="hidden" name="form_action" value="actualitzardadesjugador"/>
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
-                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/><label>Nom</label>
+                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                         <label>Usuari</label>
                                         <div class="form-group">
                                             <input type="text" name="usuari" maxlength="11" value="<%out.print(jugador.getIdUsuari());%>" required disabled/>
@@ -513,11 +519,19 @@
                                         </div>
                                         <label>Segon cognom</label>
                                         <div class="form-group">
+                                            <%if(null==jugador.getCognom2()||"".equals(jugador.getCognom2())){%>
+                                            <input type="text" name="cognom2" maxlength="20"/>
+                                            <%}else{%>
                                             <input type="text" name="cognom2" maxlength="20" value="<%out.print(jugador.getCognom2());%>"/>
+                                            <%}%>
                                         </div>
                                         <label>Adreça</label>
                                         <div class="form-group">
+                                            <%if(null==jugador.getAddress()||"".equals(jugador.getAddress())){%>
+                                            <input type="text" name="address" maxlength="40"/>
+                                            <%}else{%>
                                             <input type="text" name="address" maxlength="40" value="<%out.print(jugador.getAddress());%>"/>
+                                            <%}%>
                                         </div>
                                         <div class="form-group">
                                             <label>Telèfon</label>
@@ -529,7 +543,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Contrasenya</label>
-                                            <input class="form-control" type="password" maxlength="40"  name="contrasenya" value="<%out.print(jugador.getContrasenya());%>" required>
+                                            <input class="form-control" type="password" minlength="8" maxlength="40"  name="contrasenya">
                                         </div>
                                         <div class="form-group">
                                             <label>Data incorporació</label>
@@ -557,7 +571,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Curs escolar</label>
-                                            <%if(null!=jugador.getCursEscolar()){%>
+                                            <%if(null!=jugador.getCursEscolar()||"".equals(jugador.getCursEscolar())){%>
                                             <input class="form-control" type="text"  name="cursescolar" maxlength="10" value="<%out.print(jugador.getCursEscolar());%>">
                                             <%}else{%>
                                             <input class="form-control" type="text"  name="cursescolar" maxlength="10">
@@ -565,7 +579,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Escola</label>
-                                            <%if(null!=jugador.getEscola()){%>
+                                            <%if(null!=jugador.getEscola()||"".equals(jugador.getEscola())){%>
                                             <input class="form-control" type="text"  name="escola" maxlength="20" value="<%out.print(jugador.getEscola());%>">
                                             <%}else{%>
                                             <input class="form-control" type="text"  name="escola" maxlength="20">
@@ -585,7 +599,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Catsalut</label>
-                                            <input class="form-control" type="text"  name="catsalut" maxlength="40" value="<%out.print(jugador.getNumSalut());%>" required>
+                                            <input class="form-control" type="text"  name="catsalut" minlength="14" maxlength="14" value="<%out.print(jugador.getNumSalut());%>" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Reconeixement mèdic</label>

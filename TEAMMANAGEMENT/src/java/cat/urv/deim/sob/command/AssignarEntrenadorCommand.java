@@ -44,7 +44,6 @@ public class AssignarEntrenadorCommand implements Command {
             Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
             con.setSchema("team_management");
-            System.out.println("DENTRO: "+idUsuari+" "+nomEquip);
             String query = "UPDATE `team_management`.`entrenador` SET `fk_equip`=? WHERE `fk_usuari`= ?;";
             ps = con.prepareStatement(query);
                     ps.setString(1, nomEquip);

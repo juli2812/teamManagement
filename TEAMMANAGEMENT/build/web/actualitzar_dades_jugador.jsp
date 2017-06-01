@@ -4,8 +4,6 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Entrenador"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
@@ -62,7 +60,8 @@
 
     <div id="wrapper">
 
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -289,12 +288,17 @@
                     
                     <%if((userType!=null) && userType.equals("President")){%>
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="afegir_dir_esportiu.jsp?club=true&af=1"><i class="fa fa-plus-circle fa-fw"></i> Afegir director esportiu</a>                          
-                        </li>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Director Esportiu<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="afegir_dir_esportiu.jsp?club=true&af=1">Afegir director esportiu</a>  
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
@@ -465,6 +469,7 @@
             <!-- /.navbar-static-side -->
         </nav>
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -482,7 +487,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="images/presidentes-galicia-17918.jpg" alt="President" width=450 height=250>
+                                    <img src="images/vinilos-decorativos-jugador-futbol.jpg" alt="President" width=370 height=370>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
@@ -501,8 +506,10 @@
                         }
                             %></font>
                         <br>
-                                        <button type="submit" class="btn btn-default">Continuar</button>
+                                        <button type="submit" class="btn btn-primary">Continuar</button>
+                                           <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>
+                        
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
