@@ -3,7 +3,6 @@
     Created on : 03-nov-2016, 12:03:44
     Author     : BEC.CA2
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
@@ -14,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
     <%@ page session="true" %>
         <%
             String userId ="";
@@ -30,7 +28,7 @@
     String redirectURL = "login.jsp";
     response.sendRedirect(redirectURL);}
 %>
-    <title>Team Management</title>
+<title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -288,12 +286,17 @@
                     
                     <%if((userType!=null) && userType.equals("President")){%>
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="afegir_dir_esportiu.jsp?club=true&af=1"><i class="fa fa-plus-circle fa-fw"></i> Afegir director esportiu</a>                          
-                        </li>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Director Esportiu<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="afegir_dir_esportiu.jsp?club=true&af=1">Afegir director esportiu</a>  
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
@@ -397,6 +400,57 @@
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
+                    <%}else if((userType!=null) && userType.equals("Entrenador")){%>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-info-circle fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="quota.jsp">Consultar quota</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_assistencia.jsp">Consultar assistència</a>
+                                </li>
+                                <li>
+                                    <a href="avisar_absencia.jsp">Avisar absencia</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_entrenador.jsp">Consultar tràmit federatiu entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
                     
                     <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
                     <ul class="nav" id="side-menu">
@@ -463,6 +517,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+
 
         <div id="page-wrapper">
             <div class="row">
