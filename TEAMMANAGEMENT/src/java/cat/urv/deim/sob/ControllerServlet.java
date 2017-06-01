@@ -16,12 +16,15 @@ import cat.urv.deim.sob.command.DirEsportiuCommand;
 import cat.urv.deim.sob.command.EntrenadorClubCommand;
 import cat.urv.deim.sob.command.EntrenadorEquipCommand;
 import cat.urv.deim.sob.command.EntrenadorNoEquipCommand;
+import cat.urv.deim.sob.command.FitxaEntrenadorJCommand;
 import cat.urv.deim.sob.command.InitCommand;
 import cat.urv.deim.sob.command.JugadorClubCommand;
 import cat.urv.deim.sob.command.JugadorEquipCommand;
 import cat.urv.deim.sob.command.JugadorNoEquipCommand;
+import cat.urv.deim.sob.command.LlistaEntrenadorJugadorCommand;
 import cat.urv.deim.sob.command.LoginCommand;
 import cat.urv.deim.sob.command.MostrarLlistaEquipCommand;
+import cat.urv.deim.sob.command.PartitsEntrenadorCommand;
 import cat.urv.deim.sob.command.TramFedJugadorCommand;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -38,6 +41,9 @@ public class ControllerServlet extends HttpServlet {
         // list of commands
         this.commands.put("init", new InitCommand());
         this.commands.put("club", new ClubCommand());
+        this.commands.put("partitsentrenador", new PartitsEntrenadorCommand());
+        this.commands.put("llistaentrenadors", new LlistaEntrenadorJugadorCommand());
+        this.commands.put("fitxaentrenadorj", new FitxaEntrenadorJCommand());
         this.commands.put("tramfedjug", new TramFedJugadorCommand());
         this.commands.put("mostratramfedjug", new DadesFederativesJugadorCommand());
         this.commands.put("diresportiu", new DirEsportiuCommand());

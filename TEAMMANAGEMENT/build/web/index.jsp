@@ -373,7 +373,7 @@
                                     <a href="consultar_tramit_fed_jugador.jsp">Consultar tràmit federatiu jugador</a>
                                 </li>
                                 <li>
-                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                    <a href="consultar_fitxa_entrenador_j.jsp">Consultar fitxa entrenador</a>
                                 </li>
                                 <li>
                                     <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
@@ -437,6 +437,9 @@
                         <li>
                             <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="valorar_partit.jsp">Valorar partit</a>
+                                </li>
                                 <li>
                                     <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
                                 </li>
