@@ -1,23 +1,35 @@
 package cat.urv.deim.sob;
 
+import cat.urv.deim.sob.command.ActualitzarDadesEntrenadorCommand;
 import cat.urv.deim.sob.command.ActualitzarDadesJugadorCommand;
 import cat.urv.deim.sob.command.AltaEntrenadorCommand;
 import cat.urv.deim.sob.command.AltaEquipCommand;
 import cat.urv.deim.sob.command.AltaJugadorCommand;
+import cat.urv.deim.sob.command.AltaPartitCommand;
 import cat.urv.deim.sob.command.AssignarEntrenadorCommand;
+import cat.urv.deim.sob.command.AssignarEquipCommand;
+import cat.urv.deim.sob.command.AssignarJugadorCommand;
+import cat.urv.deim.sob.command.BaixaEquipCommand;
 import cat.urv.deim.sob.command.ClubCommand;
 import cat.urv.deim.sob.command.Command;
 import cat.urv.deim.sob.command.CrearCommand;
 import cat.urv.deim.sob.command.CrearIncidenciaCommand;
+import cat.urv.deim.sob.command.DadesEntrenadorCommand;
+import cat.urv.deim.sob.command.DadesFederativesJugadorCommand;
 import cat.urv.deim.sob.command.DadesJugadorCommand;
 import cat.urv.deim.sob.command.DirEsportiuCommand;
+import cat.urv.deim.sob.command.EntrenadorClubCommand;
 import cat.urv.deim.sob.command.EntrenadorEquipCommand;
 import cat.urv.deim.sob.command.EntrenadorNoEquipCommand;
 import cat.urv.deim.sob.command.EscollirDestinatariCommand;
 import cat.urv.deim.sob.command.WriteCommand;
 import cat.urv.deim.sob.command.InitCommand;
 import cat.urv.deim.sob.command.JugadorClubCommand;
+import cat.urv.deim.sob.command.JugadorEquipCommand;
+import cat.urv.deim.sob.command.JugadorNoEquipCommand;
 import cat.urv.deim.sob.command.LoginCommand;
+import cat.urv.deim.sob.command.MostrarLlistaEquipCommand;
+import cat.urv.deim.sob.command.TramFedJugadorCommand;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
@@ -48,6 +60,20 @@ public class ControllerServlet extends HttpServlet {
         this.commands.put("actualitzardadesjugador", new ActualitzarDadesJugadorCommand());
         this.commands.put("escollirDestinatari", new EscollirDestinatariCommand());
         this.commands.put("crearIncidencia", new CrearIncidenciaCommand());
+        this.commands.put("assignarequip", new AssignarEquipCommand());
+        this.commands.put("altapartit", new AltaPartitCommand());
+        
+        this.commands.put("tramfedjug", new TramFedJugadorCommand());
+        this.commands.put("mostratramfedjug", new DadesFederativesJugadorCommand());
+        this.commands.put("jugadornoequip", new JugadorNoEquipCommand());
+        this.commands.put("jugadorequip", new JugadorEquipCommand());
+        this.commands.put("assignarjugador", new AssignarJugadorCommand());
+        this.commands.put("entrenadorclub", new EntrenadorClubCommand());
+        this.commands.put("mostrarequips", new MostrarLlistaEquipCommand());
+        this.commands.put("baixaequip", new BaixaEquipCommand());
+        this.commands.put("dadesentrenador", new DadesEntrenadorCommand());
+        this.commands.put("actualitzardadesentrenador", new ActualitzarDadesEntrenadorCommand());
+
     }
 
     protected void processCommand(

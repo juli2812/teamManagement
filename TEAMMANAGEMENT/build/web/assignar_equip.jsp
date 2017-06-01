@@ -1,9 +1,12 @@
 <%-- 
-    Document   : avisarIncidencia
-    Created on : 31-may-2017, 31-may-2017 20:20:46
+    Document   : assignar_equip
+    Created on : 01-jun-2017, 01-jun-2017 12:33:22
     Author     : Maria
 --%>
 
+
+<%@page import="cat.urv.deim.sob.Entrenador"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
@@ -14,8 +17,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
     <%@ page session="true" %>
-
+        <%
+            String userId ="";
+            userId = (String) session.getAttribute("idUsuari");
+            String userName ="";
+            userName = (String) session.getAttribute("nomUsuari");
+            String surName ="";
+            surName = (String) session.getAttribute("cognomUsuari");
+            String userType ="";
+            userType = (String) session.getAttribute("tipusUsuari");
+        %>
+        <% if(null==userId || "".equals(userId)){
+    String redirectURL = "login.jsp";
+    response.sendRedirect(redirectURL);}
+%>
     <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
@@ -26,6 +43,9 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -65,7 +85,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Crear incidencia</h1>
+                    <h1 class="page-header">Assignar equip</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -84,18 +104,16 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Incidència</h1>
+                                    <h1></h1>
                                     <form role="form" method="post" action="controller.do">
                                        
-                        <input type="hidden" name="form_action" value="escollirDestinatari"/>
-                                    <input type="hidden" name="escollirDestinatari" value="false"/>
-                      
+                        <input type="hidden" name="form_action" value="assignarequip"/>
+                                    <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                    <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                         <div class="form-group">
-                                            <label>Destinatari</label>
-                                            <select name="destinatari">    
-                                                <option value="club" selected="selected">club</option>
-                                                <option value="equip">equip</option>
-                                                <option value="jugador">jugador</option>
+                                            <label>A quin tipus d'usuari li vols assignar equip?</label>
+                                            <select name="qui">    
+                                                <option value="jugador" selected="selected">jugador</option>
                                                 <option value="entrenador">entrenador</option>
                                             </select>
                                         </div>

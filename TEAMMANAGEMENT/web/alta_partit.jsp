@@ -1,9 +1,12 @@
 <%-- 
-    Document   : avisarIncidencia
-    Created on : 31-may-2017, 31-may-2017 20:20:46
+    Document   : alta_partit
+    Created on : 01-jun-2017, 01-jun-2017 18:10:19
     Author     : Maria
 --%>
 
+
+<%@page import="cat.urv.deim.sob.Entrenador"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
@@ -14,8 +17,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
     <%@ page session="true" %>
-
+        <%
+            String userId ="";
+            userId = (String) session.getAttribute("idUsuari");
+            String userName ="";
+            userName = (String) session.getAttribute("nomUsuari");
+            String surName ="";
+            surName = (String) session.getAttribute("cognomUsuari");
+            String userType ="";
+            userType = (String) session.getAttribute("tipusUsuari");
+        %>
+        <% if(null==userId || "".equals(userId)){
+    String redirectURL = "login.jsp";
+    response.sendRedirect(redirectURL);}
+%>
     <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
@@ -26,6 +43,9 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -65,7 +85,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Crear incidencia</h1>
+                    <h1 class="page-header">Alta partit</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -84,20 +104,36 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Incidència</h1>
+                                    <h1></h1>
                                     <form role="form" method="post" action="controller.do">
                                        
-                        <input type="hidden" name="form_action" value="escollirDestinatari"/>
-                                    <input type="hidden" name="escollirDestinatari" value="false"/>
-                      
+                        <input type="hidden" name="form_action" value="altapartit"/>
+                                    <div class="form-group">
+                                            <label>Data de l'activitat</label>
+                                             <input class="form-control"  placeholder="yyyy-mm-dd" type="date" name="data" required>
+                                        </div>
                                         <div class="form-group">
+                                            <label>Hora de l'activitat</label>
+                                            <input class="form-control" placeholder="hh:MM:ss" type="time" maxlength="150" name="hora">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Equip</label>
+                                            <div class="form-group">
                                             <label>Destinatari</label>
-                                            <select name="destinatari">    
-                                                <option value="club" selected="selected">club</option>
-                                                <option value="equip">equip</option>
-                                                <option value="jugador">jugador</option>
-                                                <option value="entrenador">entrenador</option>
+                                            <select name="equip">   
+                                        <%
+                                        ArrayList<String> usuaris;
+                                        usuaris = (ArrayList<String>) session.getAttribute("usuaris");
+                                        for(String user: usuaris){
+                                        %>
+                                        <option value="<%out.print(user);%>"><% out.println(user +"<br/>"); %></option>
+                                        <% }%>
                                             </select>
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Rival</label>
+                                            <input class="form-control"  maxlength="150"  name="rival">
                                         </div>
                                         
                                     

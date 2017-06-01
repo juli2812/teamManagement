@@ -139,7 +139,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Compte tutoritzat</label>
-                                            <input class="form-control" type="checkbox" maxlength="11" name="comptetutoritzat" required>
+                                            <input class="checkbox" type="checkbox" maxlength="11" name="comptetutoritzat" required>
                                         </div>  
                                         <div class="form-group">
                                             <label>Dorsal</label>
@@ -179,11 +179,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Tot entregat</label>
-                                            <input class="form-control"  type="checkbox" name="tot_entregat" required>
+                                            <input class="checkbox"  type="checkbox" name="tot_entregat" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Lesionat</label>
-                                            <input class="form-control"  type="checkbox" name="lesionat" required>
+                                            <input class="checkbox"  type="checkbox" name="lesionat" required>
                                         </div>
                                     
                         <%

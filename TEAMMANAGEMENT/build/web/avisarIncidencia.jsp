@@ -96,6 +96,7 @@
                                                 <option value="club" selected="selected">club</option>
                                                 <option value="equip">equip</option>
                                                 <option value="jugador">jugador</option>
+                                                <option value="entrenador">entrenador</option>
                                             </select>
                                         </div>
                                         

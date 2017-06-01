@@ -1,9 +1,10 @@
 <%-- 
-    Document   : avisarIncidencia
-    Created on : 31-may-2017, 31-may-2017 20:20:46
+    Document   : registre_incidencia
+    Created on : 31-may-2017, 31-may-2017 22:15:03
     Author     : Maria
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
@@ -14,9 +15,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
     <%@ page session="true" %>
-
-    <title>Team Management</title>
+        <%
+            ArrayList<String> usuaris;
+            String destino;
+            usuaris = (ArrayList<String>) session.getAttribute("usuaris");
+            destino = (String) session.getAttribute("destinatari");
+        %>
+        
+     <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -87,20 +95,44 @@
                                     <h1>Incidència</h1>
                                     <form role="form" method="post" action="controller.do">
                                        
-                        <input type="hidden" name="form_action" value="escollirDestinatari"/>
-                                    <input type="hidden" name="escollirDestinatari" value="false"/>
-                      
-                                        <div class="form-group">
+                        <input type="hidden" name="form_action" value="crearIncidencia"/>
+                                    <input type="hidden" name="crearIncidencia" value="false"/>
+                                    <input type="hidden" name="destinatari" value="<%out.print(destino);%>"/>
+                                    <div class="form-group">
                                             <label>Destinatari</label>
-                                            <select name="destinatari">    
-                                                <option value="club" selected="selected">club</option>
-                                                <option value="equip">equip</option>
-                                                <option value="jugador">jugador</option>
-                                                <option value="entrenador">entrenador</option>
+                                            <% out.println(destino); %>
+                                                <% if("equip".equals(destino) || "jugador".equals(destino) || "entrenador".equals(destino)){
+                                                %>
+                                             <select name="us">   
+                                        <%
+                                        for(String user: usuaris){
+                                        %>
+                                        <option value="<%out.print(user);%>"><% out.println(user +"<br/>"); %></option>
+                                        <% }}%>
                                             </select>
                                         </div>
-                                        
+                                    <%if("jugador".equals(destino) || "entrenador".equals(destino)) {%>
+                                    <div class="form-group">
+                                            <label>Núm. partits sancionats</label>
+                                            <input class="form-control"  maxlength="50" name="numpartits
+                                                   " required>
+                                        </div>
+                                    <% }
                                     
+                                    %>
+                                            
+                                       <div class="form-group">
+                                            <label>Motiu</label>
+                                            <input class="form-control"  maxlength="50" name="motiu" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data</label>
+                                            <input class="form-control"  placeholder="yyyy-mm-dd" type="data" name="dataincorp" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tipus d'incidencia</label>
+                                            <input class="form-control"  maxlength="50" name="tipusincidencia" required>
+                                        </div>
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
                                  out.println("Omple els camps obligatoris.");
@@ -140,4 +172,3 @@
 </body>
 
 </html>
-

@@ -160,6 +160,10 @@
                                             <input class="form-control"  maxlength="40" name="foto" required>
                                         </div> 
                                         <div class="form-group">
+                                            <label>Catsalut</label>
+                                            <input class="form-control"  maxlength="40" name="numsalut" required>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Reconeixement mèdic</label>
                                             <input class="form-control"  maxlength="40" name="reconeixemt_medic" required>
                                         </div>

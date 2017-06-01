@@ -18,6 +18,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -32,16 +33,23 @@ public class EscollirDestinatariCommand implements Command{
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        ArrayList<String> usuaris = new ArrayList();
+        
           if(!"".equals(request.getParameter("destinatari"))){
         // 1. process the request
         try {
-            obtenirDestinataris(request.getParameter("dni"));
+            usuaris=obtenirDestinataris(request.getParameter("destinatari"));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaEntrenadorCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/index.jsp").forward(request, response);
+        HttpSession session = request.getSession(true);
+        session.setAttribute("destinatari", request.getParameter("destinatari"));
+        session.setAttribute("usuaris", usuaris);
+        if("".equals(request.getParameter("accio")) || request.getParameter("accio") == null){
+        context.getRequestDispatcher("/registre_incidencia.jsp").forward(request, response);
+        }else{context.getRequestDispatcher("/alta_partit.jsp").forward(request, response);}
         }
         else{
         ServletContext context = request.getSession().getServletContext();
@@ -63,19 +71,20 @@ public class EscollirDestinatariCommand implements Command{
             if("jugador".equals(destinatari)){
                 query = "SELECT `fk_usuari`FROM `team_management`.`jugador`;";
             }else if("equip".equals(destinatari)){
-                query = "SELECT  FROM `team_management`.`equip` WHERE `id_usuari`=? AND`contrasenya`=?;";
-            }else{
-                query = "SELECT  FROM `team_management`.`usuari`;";
+                query = "SELECT nom_equip FROM `team_management`.`equip`;";
+            }else if("entrenador".equals(destinatari)){
+                query = "SELECT fk_usuari FROM `team_management`.`entrenador`;";
+            }
+            else{
+                query = "SELECT id_usuari FROM `team_management`.`usuari`;";
             }
             
             ps = con.prepareStatement(query);
-                    ps.setString(1, destinatari);
             
             ResultSet resultSet=ps.executeQuery();
             
             if (resultSet.next()) {
                 resultado.add(resultSet.getString(1));
-                resultado.add(resultSet.getString(2));
             }
             return resultado;
     }
