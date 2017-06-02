@@ -446,6 +446,18 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Entrenament<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="valorar_entrenament.jsp">Valorar entrenament</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_seg_entrenament.jsp">Realitzar seguiment entrenament</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>

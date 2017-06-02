@@ -514,13 +514,11 @@
                                         <div class="form-group">
                                         <label>Tot entregat</label>
                                             <div class="checkbox">
-                                                <label>
                                                     <%if(entrenador.isTotEntregat()){%>
-                                                    <input type="checkbox" name="totentregat" value="true" checked disabled>Tot entregat
+                                                    Tot entregat
                                                     <%}else{%>
-                                                    <input type="checkbox" name="totentregat" value="true" disabled>Tot entregat
+                                                    <font color="red"><b>Documentació pendent</b></font>
                                                     <%}%>
-                                                </label>
                                             </div>
                                         </div>
                                         <br>

@@ -3,7 +3,7 @@ package cat.urv.deim.sob.command;
 import cat.urv.deim.sob.Activitat;
 import cat.urv.deim.sob.Entrenador;
 import cat.urv.deim.sob.Jugador;
-import cat.urv.deim.sob.Partit;
+import cat.urv.deim.sob.Entrenament;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
@@ -22,71 +22,50 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class DecisioValoracioJugadorCommand implements Command {
-private static int id = 0;
+public class DecisioValoracioEntrCommand implements Command {
+
     @Override
     public void execute(
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
             HttpSession session = request.getSession(true);
-                    ArrayList<Jugador> jugadors = null;
         try {
-            valoracioIndividual(Float.parseFloat(request.getParameter("nota")),request.getParameter("comentari"),Date.valueOf(request.getParameter("data")),request.getParameter("idjugador"),Integer.parseInt(request.getParameter("idactivitat")),Integer.parseInt(request.getParameter("assistencia")),Integer.parseInt(request.getParameter("gols")),Integer.parseInt(request.getParameter("tarjeta_groga")),Integer.parseInt(request.getParameter("tarjeta_vermella")),request.getParameter("lessions"),Boolean.parseBoolean(request.getParameter("puntualitat")),Integer.parseInt(request.getParameter("min_jugats")));
+            // 1. process the request
+            valoracioGeneral(request.getParameter("valoraciogeneral"), Integer.parseInt(request.getParameter("idactivitat")));
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(DecisioValoracioJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DecisioValoracioEntrCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
             if("true".equals(request.getParameter("decisio"))){
+                ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
                 try {
-                    jugadors = getJugadorsEquipNoValorats(request.getParameter("nomequip"), Integer.parseInt(request.getParameter("idactivitat")));
+                    jugadors=getJugadorsEquipNoValorats(request.getParameter("nomequip"),Integer.parseInt(request.getParameter("idactivitat")));
                 } catch (SQLException | ClassNotFoundException ex) {
-                    Logger.getLogger(DecisioValoracioJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DecisioValoracioEntrCommand.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 session.setAttribute("jugadors", jugadors);
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/valorar_partit4.jsp").forward(request, response);
+                context.getRequestDispatcher("/valorar_entrenament4.jsp").forward(request, response);
             }
             else{
                 ServletContext context = request.getSession().getServletContext();
-                context.getRequestDispatcher("/valorar_partit.jsp?partitvalorat=true&jugadorsvalorats=true").forward(request, response);
+                context.getRequestDispatcher("/valorar_entrenament.jsp?entrenamentvalorat=true").forward(request, response);
             }
     }
     
-    public void valoracioIndividual(float nota, String comentari, Date data, String fkJugador, int fkPartit, int assistencia, int gols, int tarjetaGroga, int tarjetaVermella, String lessions, boolean puntualitat, int minJugats) throws ClassNotFoundException, SQLException{
+    public void valoracioGeneral(String valoracio, int idActivitat) throws ClassNotFoundException, SQLException{
         Connection con;
         PreparedStatement ps;
         Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
             con.setSchema("team_management");
-            String query = "INSERT INTO `team_management`.`valoracio` (`nota`, `comentari`, `data`) VALUES (?,?,?);";
+            String query = "UPDATE `team_management`.`activitat` SET `valoracio_general`=? WHERE `id_activitat`= ?";
             ps = con.prepareStatement(query);
-            ps.setFloat(1, nota);
-            ps.setString(2, comentari);
-            ps.setDate(3, data);
-            ps.executeUpdate();
-            id++;
-            query = "SELECT count(`fk_partit`) FROM `team_management`.`valoracio_partit` WHERE `fk_jugador`=?;";
-            ps = con.prepareStatement(query);
-            ps.setString(1, fkJugador);
-            ResultSet resultSet=ps.executeQuery();
-            if(resultSet.next()){
-                query = "INSERT INTO `team_management`.`valoracio_partit` (`fk_valoracio`, `fk_jugador`, `fk_partit`,`assistencia`,`gols`,`tarjeta_groga`,`tarjeta_vermella`,`lessions`,`puntualitat`,`min_jugats`,`partits_jugats`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-                ps = con.prepareStatement(query);
-                ps.setInt(1, id);
-                ps.setString(2, fkJugador);
-                ps.setInt(3, fkPartit);
-                ps.setInt(4, assistencia);
-                ps.setInt(5, gols);
-                ps.setInt(6, tarjetaGroga);
-                ps.setInt(7, tarjetaVermella);
-                ps.setString(8, lessions);
-                ps.setBoolean(9,puntualitat);
-                ps.setInt(10, minJugats);
-                ps.setInt(11,(resultSet.getInt(1)+1));
-                ps.executeUpdate();
-            }
-            
+            ps.setString(1, valoracio);
+            ps.setInt(2, idActivitat);
+            ps.execute();
     }
+    
     public ArrayList<Jugador> getJugadorsEquipNoValorats (String nomequip, int idActivitat) throws SQLException, ClassNotFoundException{
         Connection con;
         ArrayList<Jugador> jugadors = new ArrayList();
@@ -106,7 +85,7 @@ private static int id = 0;
                 ps.setString(1, resultSet.getString(1));
                 resultSet2=ps.executeQuery();
                 if (resultSet2.next()) {
-                    query = "SELECT * FROM `team_management`.`valoracio_partit` WHERE `fk_jugador`=? AND `fk_partit`=?;";
+                    query = "SELECT * FROM `team_management`.`valoracio_entrenament` WHERE `fk_jugador`=? AND `fk_entrenament`=?;";
                     ps = con.prepareStatement(query);
                     ps.setString(1, resultSet.getString(1));
                     ps.setInt(2, idActivitat);

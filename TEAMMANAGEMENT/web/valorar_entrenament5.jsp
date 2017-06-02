@@ -27,6 +27,9 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
+            String identrenament =(String) session.getAttribute("identrenament");
+            String idjugador =(String) session.getAttribute("idjugador");
+            String nomequip =(String) session.getAttribute("nomequip");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -404,54 +407,6 @@
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
-                    <%}else if((userType!=null) && userType.equals("Entrenador")){%>
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.html"><i class="fa fa-info-circle fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="quota.jsp">Consultar quota</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_assistencia.jsp">Consultar assistència</a>
-                                </li>
-                                <li>
-                                    <a href="avisar_absencia.jsp">Avisar absencia</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
                     
                     <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
                     <ul class="nav" id="side-menu">
@@ -520,10 +475,11 @@
         </nav>
 
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Realitzar alineació</h1>
+                    <h1 class="page-header">Partit</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -532,7 +488,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Llegeix breument
+                            Segon pas, valoració individual
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -541,22 +497,52 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Equip</h1>
+                                    <h1>Partit</h1>
                                     <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="veurepartitsdisponibles"/>
-                                    <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
-                                    <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
+                                        <input type="hidden" name="form_action" value="valorarjugadorentr"/>
+                                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                        <input type="hidden" name="nomequip" value="<%out.print(nomequip);%>"/>
+                                        <input type="hidden" name="idjugador" value="<%out.print(idjugador);%>"/>
+                                        <input type="hidden" name="idactivitat" value="<%out.print(identrenament);%>"/>
+                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                         <div class="form-group">
-                                            <label>A continuació vosté podrà realitzar l'alineació d'un partit.</label>
-                                           </div>
-                        <br><font color = "blue">
-                        <%
-                            if((request.getParameter("afegit")!=null) && request.getParameter("afegit").equals("true")){
-                                 out.println("S'ha creat l'alineació correctament.");
-                        }
-                            %></font>
-                                       <button type="submit" class="btn btn-primary">Continuar</button>
-                                           <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                            <label>Nota</label>
+                                            <input class="form-control" type="number" min="0" max="10" name="nota" step="0.01" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Comentari</label>
+                                            <textarea class="form-control" rows="3" name="comentari" maxlength="100" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data</label>
+                                            <input class="form-control" type="date" name="data" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Condició física</label>
+                                            <textarea class="form-control" rows="1" name="condfis" maxlength="20" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Actitud</label>
+                                            <textarea class="form-control" rows="1" name="actitud" maxlength="20" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Puntualitat</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="puntualitat" value="true">Puntual
+                                                </label>
+                                            </div>
+                                        </div><div class="form-group">
+                                        <label>Ha vingut</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="havingut" value="true">Ha vingut
+                                                </label>
+                                            </div>
+                                        </div>
+                                            <button name="decisio" type="submit" class="btn btn-primary" value="false">Valorar jugador</button>
+                                            <button name="decisio" type="submit" class="btn btn-primary" value="true">Valorar jugador i continuar</button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

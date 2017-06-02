@@ -4,7 +4,7 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Jugador"%>
+<%@page import="cat.urv.deim.sob.Entrenador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,6 +27,7 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
+            Entrenador entrenador =(Entrenador) session.getAttribute("entrenador");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -404,54 +405,6 @@
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
-                    <%}else if((userType!=null) && userType.equals("Entrenador")){%>
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.html"><i class="fa fa-info-circle fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="quota.jsp">Consultar quota</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_assistencia.jsp">Consultar assistència</a>
-                                </li>
-                                <li>
-                                    <a href="avisar_absencia.jsp">Avisar absencia</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
                     
                     <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
                     <ul class="nav" id="side-menu">
@@ -520,10 +473,11 @@
         </nav>
 
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Realitzar alineació</h1>
+                    <h1 class="page-header">Realitzar seguiment entrenament</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -537,24 +491,19 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="images/WVrLRHWp.jpg" alt="President" width=400 height=400>
+                                    <img src="images/vinilos-decorativos-jugador-futbol.jpg" alt="President" width=370 height=370>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Equip</h1>
+                                    <h1>Entrenament</h1>
                                     <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="veurepartitsdisponibles"/>
+                                    <input type="hidden" name="form_action" value="segentrenament"/>
                                     <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                     <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                         <div class="form-group">
-                                            <label>A continuació vosté podrà realitzar l'alineació d'un partit.</label>
+                                            <label>Clica a continuar per a veure una selecció dels seus entrenaments.</label>
                                            </div>
-                        <br><font color = "blue">
-                        <%
-                            if((request.getParameter("afegit")!=null) && request.getParameter("afegit").equals("true")){
-                                 out.println("S'ha creat l'alineació correctament.");
-                        }
-                            %></font>
+                        <br>
                                        <button type="submit" class="btn btn-primary">Continuar</button>
                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>

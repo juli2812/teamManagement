@@ -27,6 +27,26 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
+            String idjugador =(String) session.getAttribute("idjugador");
+            String idpartit="";
+            idpartit =(String) session.getAttribute("idpartit");
+            String nomequip="";
+            nomequip =(String) session.getAttribute("nomequip");
+            String numjugtit="";
+            numjugtit =(String) session.getAttribute("numjugtit");
+            String numjugsup="";
+            numjugsup =(String) session.getAttribute("numjugsup");
+            String numsuptit="";
+            numsuptit =(String) session.getAttribute("numsuptit");
+            String numdeftit="";
+            numdeftit =(String) session.getAttribute("numdeftit");
+            String nummigtit="";
+            nummigtit =(String) session.getAttribute("nummigtit");
+            String numdavtit="";
+            numdavtit =(String) session.getAttribute("numdavtit");
+            String formacio="";
+            formacio =(String) session.getAttribute("formacio");
+            ArrayList<Jugador> jugadors =(ArrayList<Jugador>) session.getAttribute("jugadors");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -404,54 +424,6 @@
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
-                    <%}else if((userType!=null) && userType.equals("Entrenador")){%>
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.html"><i class="fa fa-info-circle fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="quota.jsp">Consultar quota</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_assistencia.jsp">Consultar assistència</a>
-                                </li>
-                                <li>
-                                    <a href="avisar_absencia.jsp">Avisar absencia</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
-                                </li>
-                                <li>
-                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
                     
                     <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
                     <ul class="nav" id="side-menu">
@@ -520,6 +492,7 @@
         </nav>
 
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -532,7 +505,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Llegeix breument
+                            Selecciona fent control + clic amb el ratolí
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -541,23 +514,43 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Equip</h1>
+                                    <h1>Partit</h1>
                                     <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="veurepartitsdisponibles"/>
-                                    <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
-                                    <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <div class="form-group">
-                                            <label>A continuació vosté podrà realitzar l'alineació d'un partit.</label>
-                                           </div>
-                        <br><font color = "blue">
+                                        <input type="hidden" name="form_action" value="crearalineacio2"/>
+                                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                        <input type="hidden" name="nomequip" value="<%out.print(nomequip);%>"/>
+                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
+                                        <input type="hidden" name="idpartit" value="<%out.print(idpartit);%>"/>
+                                        <input type="hidden" name="numjugtit" value="<%out.print(numjugtit);%>"/>
+                                        <input type="hidden" name="numjugsup" value="<%out.print(numjugsup);%>"/>
+                                        <input type="hidden" name="numdeftit" value="<%out.print(numdeftit);%>"/>
+                                        <input type="hidden" name="nummigtit" value="<%out.print(nummigtit);%>"/>
+                                        <input type="hidden" name="numdavtit" value="<%out.print(numdavtit);%>"/>
+                                        <input type="hidden" name="formacio" value="<%out.print(formacio);%>"/>
+                                        
+                                        <% if(jugadors.size()==0){%>
+                                        <b><font color = "red">
+                                            <%out.println("No tens cap jugador a l'equip");%><br></font></b><%}else{%>
+                                            <div class="form-group">
+                                                <label>Jugadors</label><br>
+                                                            <select name="jugadors_alineacio" multiple size="18">
+                                                            <%for(int i = 0; i<jugadors.size(); i++){%>
+                                                                <option value="<%out.print(jugadors.get(i).getIdUsuari());%>"><%out.print(jugadors.get(i).getNom()+" "+jugadors.get(i).getCognom());%></option>
+                                                            <%}%>
+                                                        </select>
+                                            </div>
+                                        <%}%>
+                                        <% if(jugadors.size()!=0){%>
+                                        <font color = "red"><b>
                         <%
-                            if((request.getParameter("afegit")!=null) && request.getParameter("afegit").equals("true")){
-                                 out.println("S'ha creat l'alineació correctament.");
+                            if((request.getParameter("falten")!=null) && request.getParameter("falten").equals("true")){
+                                 out.println("El númmero de jugadors titulars i suplents no es correspon al seleccionat.");
                         }
-                            %></font>
-                                       <button type="submit" class="btn btn-primary">Continuar</button>
-                                           <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
-                                    </form>
+                            %></b></font><br>
+                                            <button name="decisio" type="submit" class="btn btn-primary" value="false">Assignar jugadors a alineació</button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                        <%}%>
+                                        </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

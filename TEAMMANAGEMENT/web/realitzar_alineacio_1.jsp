@@ -526,7 +526,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Assignar incidència a jugador</h1>
+                    <h1 class="page-header">Realitzar alineació</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -544,21 +544,21 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Jugador</h1>
+                                    <h1>Partit</h1>
                                     <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="dadesassignarincid"/>
+                                    <input type="hidden" name="form_action" value="rivalalineaciosel"/>
                                     <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                     <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                     <input type="hidden" name="nomequip" value="<%out.print(nomequip);%>"/>
                                         <div class="form-group">
-                                            <label>Clica a continuar per a afegir una incidència al jugador seleccionat.</label>
+                                            <label>Clica a continuar per a crear l'alineació.</label>
                                            </div>
                                     <% if(partits.size()==0){%>
                                         <b><font color = "red">
                                             <%out.println("No hi ha cap convocatoria disponible.");%><br></font></b><%}else{%>
                                             <div class="form-group">
-                                                <label>Nom</label>
-                                                <select class="form-control" name="idjugador" required>
+                                                <label>Rival</label>
+                                                <select class="form-control" name="idpartit" required>
                                                     <%for(int i = 0; i<partits.size(); i++){%>
                                                     <option value="<%out.print(partits.get(i).getIdActivitat());%>"><%out.print(partits.get(i).getRival());%></option>
                                                     <%}%>
