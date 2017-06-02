@@ -513,7 +513,7 @@
                                             </div>
                                         <%}%>
                                         <% if(equips.size()!=0){%>
-                                            <button type="submit" class="btn btn-primary">Veure dades</button>
+                                            <button type="submit" class="btn btn-primary">Donar baixa competicions</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         <%}%>
                                     </form>

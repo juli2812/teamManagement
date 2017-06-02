@@ -528,7 +528,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tràmits federatius entrenador</h1>
+                    <h1 class="page-header">Dades entrenador</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -537,7 +537,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Dades del tràmit federatiu
+                            Dades personals entrenador
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -554,8 +554,6 @@
                                             <label>Usuari</label>
                                             <input class="form-control" placeholder="Segueix l'estil EddMMyyXXX" maxlength="10" name="identrenador" value="<%out.print(entrenador.getIdUsuari());%>" required disabled>
                                             <input type="hidden" name="identrenador" maxlength="10" value="<%out.print(entrenador.getIdUsuari());%>" required disabled/>
-                                        
-                                            <p>On E és l’identificador del tipus d’usuari que serà sempre aquest per al entrenador, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms.</p>
                                         </div>
                                         <div class="form-group">
                                             <label>DNI</label>
@@ -572,9 +570,9 @@
                                         <div class="form-group">
                                             <label>Segon cognom</label>
                                             <%if(null==entrenador.getAddress()){%>
-                                            <input class="form-control" placeholder="(Opcional)" maxlength="20" name="cognom2" disabled>
+                                            <input class="form-control" maxlength="20" name="cognom2" disabled>
                                             <%}else{%>
-                                            <input class="form-control" placeholder="(Opcional)" maxlength="20" name="cognom2" value="<%out.print(entrenador.getCognom2());%>" disabled>
+                                            <input class="form-control" maxlength="20" name="cognom2" value="<%out.print(entrenador.getCognom2());%>" disabled>
                                             <%}%>
                                         </div>
                                         <div class="form-group">
@@ -591,11 +589,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Data naixement</label>
-                                            <input class="form-control" placeholder="yyyy-mm-dd" type="date" name="datanaix" value="<%out.print(entrenador.getDataNaix());%>" required disabled>
+                                            <input class="form-control" type="date" name="datanaix" value="<%out.print(entrenador.getDataNaix());%>" required disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>Data incorporació</label>
-                                            <input class="form-control" placeholder="yyyy-mm-dd" type="date" name="dataincorp" value="<%out.print(entrenador.getDataIncorporacio());%>" required disabled>
+                                            <input class="form-control" type="date" name="dataincorp" value="<%out.print(entrenador.getDataIncorporacio());%>" required disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>Nivell entrenador</label>

@@ -111,7 +111,7 @@
                                             <input class="form-control" type="number" min="600000000" max="99999999999" name="telefon" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Nom d'usuari</label>
+                                            <label>Usuari</label>
                                             <input class="form-control" placeholder="Segueix l'estil PddMMyyXXX" maxlength="9"  name="idpresident" required>
                                             <p>On P és l’identificador del tipus d’usuari que serà sempre aquest per al president, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms)</p>
                                         </div>
@@ -128,7 +128,7 @@
                                             <input class="form-control" type="date"  name="dataincorp" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Nom d'usuari successor</label>
+                                            <label>President successor</label>
                                             <input class="form-control" placeholder="(Opcional) Segueix l'estil PddMMyyXXX" maxlength="9"  name="idsuccessor">
                                             <p>On P és l’identificador del tipus d’usuari que serà sempre aquest per al president, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms.</p>
                                         </div>

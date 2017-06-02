@@ -505,7 +505,7 @@
                                     <input type="hidden" name="af" value="true"/>
                         <% } %>
                                         <div class="form-group">
-                                            <label>Nom d'usuari</label>
+                                            <label>Usuari</label>
                                             <input class="form-control" placeholder="Segueix l'estil DEddMMyyXXX" maxlength="11" name="iddiresportiu" required>
                                             <p>On DE és l’identificador del tipus d’usuari que serà sempre aquest per al director esportiu, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms.</p>
                                         </div>

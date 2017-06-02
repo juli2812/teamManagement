@@ -37,6 +37,7 @@ import cat.urv.deim.sob.command.JugadorNoEquipCommand;
 import cat.urv.deim.sob.command.LlistaEntrenadorJugadorCommand;
 import cat.urv.deim.sob.command.LoginCommand;
 import cat.urv.deim.sob.command.MostrarLlistaEquipCommand;
+import cat.urv.deim.sob.command.ObtenirSegEntrenamentCommand;
 import cat.urv.deim.sob.command.PartitsEntrenadorCommand;
 import cat.urv.deim.sob.command.RealitzarAlineacioMostrarPartitsCommand;
 import cat.urv.deim.sob.command.TramFedJugadorCommand;
@@ -72,6 +73,7 @@ public class ControllerServlet extends HttpServlet {
         this.commands.put("decisioventrenament", new DecisioValoracioEntrCommand());
         this.commands.put("dadesvalorarpartit", new ValoracioGralPartitEntrenadorCommand());
         this.commands.put("dadesvalorarentrenament", new ValoracioGralEntrenamentEntrenadorCommand());
+        this.commands.put("dadesseguimententrenament", new ObtenirSegEntrenamentCommand());
         this.commands.put("partitsentrenador", new PartitsEntrenadorCommand());
         this.commands.put("entrenamentsentrenador", new EntrenamentsEntrenadorCommand());
         this.commands.put("llistaentrenadors", new LlistaEntrenadorJugadorCommand());
