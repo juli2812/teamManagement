@@ -4,7 +4,7 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Partit"%>
+<%@page import="cat.urv.deim.sob.Activitat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,7 +27,9 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Partit> partits =(ArrayList<Partit>) session.getAttribute("partits");
+            Activitat activitat =(Activitat) session.getAttribute("activitat");
+            String idpartit =(String) session.getAttribute("idpartit");
+            String nomequip =(String) session.getAttribute("nomequip");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -486,7 +488,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Escull el rival del partit
+                            Primer pas, valoració general
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -497,25 +499,20 @@
                                 <div class="col-lg-6">
                                     <h1>Partit</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="dadesvalorarpartit"/>
+                                        <input type="hidden" name="form_action" value="decisiovpartit"/>
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                        <input type="hidden" name="idactivitat" value="<%out.print(idpartit);%>"/>
+                                        <input type="hidden" name="nomequip" value="<%out.print(nomequip);%>"/>
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <% if(partits.size()==0){%>
-                                        <b><font color = "red">
-                                            <%out.println("No hi ha cap partit sense equip.");%><br></font></b><%}else{%>
-                                            <div class="form-group">
-                                                <label>Rival</label>
-                                                <select class="form-control" name="idpartit" required>
-                                                    <%for(int i = 0; i<partits.size(); i++){%>
-                                                    <option value="<%out.print(partits.get(i).getIdActivitat());%>"><%out.print(partits.get(i).getRival());%></option>
-                                                    <%}%>
-                                                </select>
-                                            </div>
+                                        <label>Valoració general</label>
+                                        <%if(null==activitat.getValoracioGeneral()||"".equals(activitat.getValoracioGeneral())){%>
+                                            <textarea class="form-control" rows="3" name="valoraciogeneral"maxlength="100" required></textarea>
+                                        <%}else{%>
+                                            <textarea class="form-control" rows="3" name="valoraciogeneral" maxlength="100" required><%out.print(activitat.getValoracioGeneral());%></textarea>
                                         <%}%>
-                                        <% if(partits.size()!=0){%>
-                                            <button type="submit" class="btn btn-primary">Escull partit</button>
+                                            <button name="decisio" type="submit" class="btn btn-primary" value="false">Valorar partit</button>
+                                            <button name="decisio" type="submit" class="btn btn-primary" value="true">Valorar partit y jugadors</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
-                                        <%}%>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

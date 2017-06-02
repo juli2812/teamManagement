@@ -505,8 +505,8 @@
                                            </div>
                         <font color = "blue">
                         <%
-                            if((request.getParameter("afegit")!=null) && request.getParameter("afegit").equals("true")){
-                                 out.println("El partit s'ha valorat correctament.");
+                            if((request.getParameter("partitvalorat")!=null) && request.getParameter("partitvalorat").equals("true")){
+                                 out.println("El partit s'ha valorat correctament a nivell general.");
                         }
                             %></font>
                         <br>

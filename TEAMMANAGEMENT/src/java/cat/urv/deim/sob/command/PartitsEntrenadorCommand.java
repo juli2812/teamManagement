@@ -36,7 +36,6 @@ public class PartitsEntrenadorCommand implements Command {
         
         try {
             equip=getEquipEntrenador(request.getParameter("idusuari"));
-            System.out.println("EQUIP: "+equip);
             partits=getPartitsEntrenador(equip);
             } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PartitsEntrenadorCommand.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,6 +43,7 @@ public class PartitsEntrenadorCommand implements Command {
         // 2. produce the view with the web result
             
             
+            session.setAttribute("nomequip", equip);
             session.setAttribute("partits", partits);
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/valorar_partit2.jsp").forward(request, response);
@@ -93,11 +93,9 @@ public class PartitsEntrenadorCommand implements Command {
         while (resultSet.next()) {
                 query = "SELECT * FROM `team_management`.`partit` WHERE `fk_activitat`=?;";
                 ps = con.prepareStatement(query);
-                System.out.println("DD: "+resultSet.getInt(1));
                 ps.setInt(1, resultSet.getInt(1));
                 resultSet2=ps.executeQuery();
                 if(resultSet2.next()){
-                    System.out.println("OO");
                     t = resultSet.getTime(4);
                     d = resultSet.getDate(3);
                     data= new Date(0);
@@ -105,7 +103,6 @@ public class PartitsEntrenadorCommand implements Command {
                     data.setTime(t.getTime());
                     partit = new Partit(resultSet2.getString(2), resultSet.getInt(1), data, resultSet.getString(5));
                     partits.add(partit);
-                    System.out.println("PARTIT: "+toString());
                 }
             }
             return partits;

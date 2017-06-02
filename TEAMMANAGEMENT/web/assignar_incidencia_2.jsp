@@ -4,7 +4,7 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Partit"%>
+<%@page import="cat.urv.deim.sob.Jugador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,7 +27,9 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Partit> partits =(ArrayList<Partit>) session.getAttribute("partits");
+            String idjugador =(String) session.getAttribute("idjugador");
+            String nomequip =(String) session.getAttribute("nomequip");
+            ArrayList<Integer> idsactivitat= (ArrayList<Integer>) session.getAttribute("idsactivitat");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -486,7 +488,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Escull el rival del partit
+                            Segon pas, valoració individual
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -497,23 +499,40 @@
                                 <div class="col-lg-6">
                                     <h1>Partit</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="dadesvalorarpartit"/>
+                                        <input type="hidden" name="form_action" value="assignarincjug"/>
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                        <input type="hidden" name="nomequip" value="<%out.print(nomequip);%>"/>
+                                        <input type="hidden" name="idjugador" value="<%out.print(idjugador);%>"/>
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <% if(partits.size()==0){%>
+                                        <% if(idsactivitat.size()==0){%>
                                         <b><font color = "red">
-                                            <%out.println("No hi ha cap partit sense equip.");%><br></font></b><%}else{%>
+                                            <%out.println("No hi ha cap activitat del seu equip.");%><br></font></b><%}else{%>
                                             <div class="form-group">
-                                                <label>Rival</label>
-                                                <select class="form-control" name="idpartit" required>
-                                                    <%for(int i = 0; i<partits.size(); i++){%>
-                                                    <option value="<%out.print(partits.get(i).getIdActivitat());%>"><%out.print(partits.get(i).getRival());%></option>
+                                                <label>Activitat</label>
+                                                <select class="form-control" name="idactivitat" required>
+                                                    <%for(int i = 0; i<idsactivitat.size(); i++){%>
+                                                    <option value="<%out.print(idsactivitat.get(i).intValue());%>"><%out.print(idsactivitat.get(i).intValue());%></option>
                                                     <%}%>
                                                 </select>
                                             </div>
                                         <%}%>
-                                        <% if(partits.size()!=0){%>
-                                            <button type="submit" class="btn btn-primary">Escull partit</button>
+                                        <% if(idsactivitat.size()!=0){%>
+                                        <div class="form-group">
+                                            <label>Núm. partits sancionats</label>
+                                            <input class="form-control"  maxlength="50" name="numpartits" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Motiu</label>
+                                            <input class="form-control"  maxlength="50" name="motiu" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data</label>
+                                            <input class="form-control" type="date" name="dataincid" required></div>
+                                        <div class="form-group">
+                                            <label>Tipus d'incidencia</label>
+                                            <input class="form-control"  maxlength="50" name="tipusincidencia" required>
+                                        </div>
+                                            <button name="decisio" type="submit" class="btn btn-primary" value="false">Assignar incidència</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         <%}%>
                                     </form>

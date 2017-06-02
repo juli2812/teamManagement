@@ -269,6 +269,14 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> <% out.println(userName+" "+surName); %></a>
                         </li>
+                        <%if((userType!=null) && userType.equals("Entrenador")){%>
+                        <li><a href="#"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Oficina</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-fw"></i> Partit</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-fw"></i> Entrenament</a>
+                        </li>
+                        <%}%>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -427,6 +435,9 @@
                                     <a href="consultar_tramit_fed_entrenador.jsp">Consultar tràmit federatiu entrenador</a>
                                 </li>
                                 <li>
+                                    <a href="assignar_incidencia.jsp">Assignar incidència jugador</a>
+                                </li>
+                                <li>
                                     <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
                                 </li>
                                 <li>
@@ -445,6 +456,9 @@
                                 </li>
                                 <li>
                                     <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_alineacio.jsp">Realitzar alineació</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

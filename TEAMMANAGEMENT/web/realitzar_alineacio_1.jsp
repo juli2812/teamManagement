@@ -27,6 +27,8 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
+            String nomequip = "";
+            nomequip = (String) session.getAttribute("nomequip");
             ArrayList<Partit> partits =(ArrayList<Partit>) session.getAttribute("partits");
         %>
         <% if(null==userId || "".equals(userId)){
@@ -405,6 +407,54 @@
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
+                    <%}else if((userType!=null) && userType.equals("Entrenador")){%>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-info-circle fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="quota.jsp">Consultar quota</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_assistencia.jsp">Consultar assistència</a>
+                                </li>
+                                <li>
+                                    <a href="avisar_absencia.jsp">Avisar absencia</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
                     
                     <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
                     <ul class="nav" id="side-menu">
@@ -473,11 +523,10 @@
         </nav>
 
 
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Partit</h1>
+                    <h1 class="page-header">Assignar incidència a jugador</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -486,26 +535,30 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Escull el rival del partit
+                            Llegeix breument
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="images/WVrLRHWp.jpg" alt="President" width=400 height=400>
+                                    <img src="images/ancelotti_1407834c.jpg" alt="President" width=460 height=287>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Partit</h1>
+                                    <h1>Jugador</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="dadesvalorarpartit"/>
-                                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
-                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <% if(partits.size()==0){%>
+                                    <input type="hidden" name="form_action" value="dadesassignarincid"/>
+                                    <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                    <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
+                                    <input type="hidden" name="nomequip" value="<%out.print(nomequip);%>"/>
+                                        <div class="form-group">
+                                            <label>Clica a continuar per a afegir una incidència al jugador seleccionat.</label>
+                                           </div>
+                                    <% if(partits.size()==0){%>
                                         <b><font color = "red">
-                                            <%out.println("No hi ha cap partit sense equip.");%><br></font></b><%}else{%>
+                                            <%out.println("No hi ha cap convocatoria disponible.");%><br></font></b><%}else{%>
                                             <div class="form-group">
-                                                <label>Rival</label>
-                                                <select class="form-control" name="idpartit" required>
+                                                <label>Nom</label>
+                                                <select class="form-control" name="idjugador" required>
                                                     <%for(int i = 0; i<partits.size(); i++){%>
                                                     <option value="<%out.print(partits.get(i).getIdActivitat());%>"><%out.print(partits.get(i).getRival());%></option>
                                                     <%}%>
@@ -513,7 +566,7 @@
                                             </div>
                                         <%}%>
                                         <% if(partits.size()!=0){%>
-                                            <button type="submit" class="btn btn-primary">Escull partit</button>
+                                            <button type="submit" class="btn btn-primary">Continuar</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         <%}%>
                                     </form>
