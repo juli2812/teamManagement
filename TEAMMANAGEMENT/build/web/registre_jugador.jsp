@@ -94,7 +94,7 @@
                       
                                         <div class="form-group">
                                             <label>Nom d'usuari</label>
-                                            <input class="form-control" placeholder="Segueix l'estil JddMMyyXXX" maxlength="9" name="idjugador" required>
+                                            <input class="form-control" placeholder="Segueix l'estil JddMMyyXXX" maxlength="11" name="idjugador" required>
                                             <p>On J és l’identificador del tipus d’usuari que serà sempre aquest per al jugador, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms.</p>
                                         </div>
                                         <div class="form-group">
@@ -139,7 +139,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Compte tutoritzat</label>
-                                            <input class="checkbox" type="checkbox" maxlength="11" name="comptetutoritzat" required>
+                                            <input class="checkbox" type="checkbox" maxlength="11" name="comptetutoritzat" >
                                         </div>  
                                         <div class="form-group">
                                             <label>Dorsal</label>
@@ -147,7 +147,7 @@
                                         </div>                
                                         <div class="form-group">
                                             <label>Curs Escolar</label>
-                                            <input class="form-control"  maxlength="10" name="curs_escolar" required>
+                                            <input class="form-control"  maxlength="10" name="cursescolar" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Escola</label>
@@ -163,27 +163,27 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Fotocopia DNI</label>
-                                            <input class="form-control"  maxlength="40" name="fotocopia_DNI" required>
+                                            <input class="form-control"  maxlength="40" name="fotocopiadni" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Foto</label>
-                                            <input class="form-control"  maxlength="40" name="foto" required>
+                                            <input class="form-control"  maxlength="100" name="foto" required>
                                         </div> 
                                         <div class="form-group">
                                             <label>Catsalut</label>
-                                            <input class="form-control"  maxlength="40" name="num_catsalut" required>
+                                            <input class="form-control"  maxlength="40" name="numcatsalut" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Reconeixement mèdic</label>
-                                            <input class="form-control"  maxlength="40" name="reconeixement_medic" required>
+                                            <input class="form-control"  maxlength="40" name="reconeixementmedic" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Tot entregat</label>
-                                            <input class="checkbox"  type="checkbox" name="tot_entregat" required>
+                                            <input class="checkbox"  type="checkbox" name="totentregat" >
                                         </div>
                                         <div class="form-group">
                                             <label>Lesionat</label>
-                                            <input class="checkbox"  type="checkbox" name="lesionat" required>
+                                            <input class="checkbox"  type="checkbox" name="lesionat" >
                                         </div>
                                     
                         <%

@@ -13,6 +13,7 @@ public class Jugador extends Usuari{
     private int dorsal;
     private String fotocopiaDNI;
     private String foto;
+    private int fotoB;
     private String numSalut;
     private String reconeixementMedic;
     private boolean totEntregat;
@@ -37,12 +38,34 @@ public class Jugador extends Usuari{
         this.reconeixementMedic = reconeixementMedic;
         this.totEntregat = totEntregat;
         this.lesionat = lesionat;
-    }    
+    }   
+    
+        public Jugador(String cursEscolar, String escola, String nomCompletPare, String nomCompletMare, boolean compteTutoritzat, String compteBancari, int dorsal, String fotocopiaDNI, String foto, String numSalut, String reconeixementMedic, boolean totEntregat, boolean lesionat, String NIF, String nom, String cognom, String cognom2, String address, int telefon, String idUsuari, Date dataNaix, String contrasenya, Date dataIncorporacio, int fotoB) {
+        super(NIF, nom, cognom, cognom2, address, telefon, idUsuari, dataNaix, contrasenya, dataIncorporacio);
+        this.cursEscolar = cursEscolar;
+        this.escola = escola;
+        this.nomCompletPare = nomCompletPare;
+        this.nomCompletMare = nomCompletMare;
+        this.compteTutoritzat = compteTutoritzat;
+        this.compteBancari = compteBancari;
+        this.dorsal = dorsal;
+        this.fotocopiaDNI = fotocopiaDNI;
+        this.foto = foto;
+        this.numSalut = numSalut;
+        this.reconeixementMedic = reconeixementMedic;
+        this.totEntregat = totEntregat;
+        this.lesionat = lesionat;
+        this.fotoB = fotoB;
+    }   
 
     public String getCursEscolar() {
         return cursEscolar;
     }
 
+    public int getFotoB(){
+        return fotoB;
+    }
+    
     public void setCursEscolar(String cursEscolar) {
         this.cursEscolar = cursEscolar;
     }

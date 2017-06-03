@@ -5,6 +5,9 @@
  */
 package cat.urv.deim.sob.command;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,7 +39,7 @@ public class AltaJugadorCommand implements Command{
         // 1. process the request
         try {
             registrar(request.getParameter("dni"),request.getParameter("nom"),request.getParameter("cognom1"),request.getParameter("cognom2"),request.getParameter("address"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("idjugador"),request.getParameter("datanaix"),request.getParameter("contrasenya"),request.getParameter("dataincorp"));
-            registrarJugador(request.getParameter("idjugador"),request.getParameter("idequip"),request.getParameter("comptebancari"), request.getParameter("cursescolar"), request.getParameter("escola"), request.getParameter("nompare"), request.getParameter("nommare"), request.getParameter("comptetutoritzat"), Integer.parseInt(request.getParameter("dorsal")), request.getParameter("fotocopiadni"), request.getParameter("numcatsalut"), request.getParameter("reconeixementmedic"), Boolean.parseBoolean(request.getParameter("totentregat")), Boolean.parseBoolean(request.getParameter("lesionat")));
+            registrarJugador(request.getParameter("idjugador"),request.getParameter("idequip"),request.getParameter("comptebancari"), request.getParameter("cursescolar"), request.getParameter("escola"), request.getParameter("nompare"), request.getParameter("nommare"), request.getParameter("comptetutoritzat"), Integer.parseInt(request.getParameter("dorsal")), request.getParameter("fotocopiadni"), request.getParameter("numcatsalut"), request.getParameter("reconeixementmedic"), Boolean.parseBoolean(request.getParameter("totentregat")), Boolean.parseBoolean(request.getParameter("lesionat")),request.getParameter("foto"));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,13 +74,14 @@ public class AltaJugadorCommand implements Command{
             ps.executeUpdate();
     }
     
-    public void registrarJugador (String fkUsuari, String fkEquip, String compteBancari, String cursEscolar, String escola, String nompare, String nommare, String comptetutoritzat, int dorsal, String fotocopiaDNI, String numCatSalut, String reconeixementMedic, Boolean totEntregat, Boolean lesionat) throws SQLException, ClassNotFoundException{
+    public void registrarJugador (String fkUsuari, String fkEquip, String compteBancari, String cursEscolar, String escola, String nompare, String nommare, String comptetutoritzat, int dorsal, String fotocopiaDNI, String numCatSalut, String reconeixementMedic, Boolean totEntregat, Boolean lesionat,  String foto) throws SQLException, ClassNotFoundException{
             Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con;
         PreparedStatement ps;
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
         con.setSchema("team_management");
         int fkClub;
+
         
         String obtenirClubSQL = "SELECT id_club FROM club";
         ps = con.prepareStatement(obtenirClubSQL);
@@ -86,7 +90,7 @@ public class AltaJugadorCommand implements Command{
         rs.next();
         fkClub = Integer.parseInt(rs.getString("id_club"));
         
-        String sentenciaSQL = "INSERT INTO `jugador` (`fk_usuari`, `fk_club`, `fk_equip`, `compte_bancari`, `curs_escolar`, `escola`, `nom_complet_pare`, `nom_complet_mare`, `compte_tutoritzat`, `dorsal`, `fotocopia_DNI`, `num_catsalut`, `reconeixement_medic`, `tot_entregat`, `lesionat`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        String sentenciaSQL = "INSERT INTO `jugador` (`fk_usuari`, `fk_club`, `fk_equip`, `compte_bancari`, `curs_escolar`, `escola`, `nom_complet_pare`, `nom_complet_mare`, `compte_tutoritzat`, `dorsal`, `fotocopia_DNI`, `num_catsalut`, `reconeixement_medic`, `tot_entregat`, `lesionat`, `foto`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
        
         ps = con.prepareStatement(sentenciaSQL);
         ps.setString(1, fkUsuari);
@@ -128,6 +132,21 @@ public class AltaJugadorCommand implements Command{
         
         if("false".equals(lesionat)){ ps.setString(15, "0");}
         else ps.setString(15, "1");
+        
+        //Para la foto
+        FileInputStream fis = null;
+        ps.setBinaryStream(16, null);
+        try {
+            File file = new File(foto);
+            System.out.println("llega a aqui");
+            fis = new FileInputStream(file);
+            
+            ps.setBinaryStream(16, fis, (int) file.length());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AltaJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //---------------
+
         
         ps.executeUpdate();
     }

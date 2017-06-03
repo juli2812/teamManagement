@@ -1,5 +1,6 @@
 package cat.urv.deim.sob;
 
+import cat.urv.deim.sob.command.AvisarAbsenciaCommand;
 import cat.urv.deim.sob.command.ActualitzarDadesEntrenadorCommand;
 import cat.urv.deim.sob.command.ActualitzarDadesJugadorCommand;
 import cat.urv.deim.sob.command.AltaEntrenadorCommand;
@@ -12,12 +13,16 @@ import cat.urv.deim.sob.command.AssignarJugadorCommand;
 import cat.urv.deim.sob.command.BaixaEquipCommand;
 import cat.urv.deim.sob.command.ClubCommand;
 import cat.urv.deim.sob.command.Command;
+import cat.urv.deim.sob.command.ConsultarDadesEntrenadorCommand;
+import cat.urv.deim.sob.command.ConsultarDadesJugadorCommand;
 import cat.urv.deim.sob.command.CrearCommand;
 import cat.urv.deim.sob.command.CrearIncidenciaCommand;
 import cat.urv.deim.sob.command.DadesEntrenadorCommand;
 import cat.urv.deim.sob.command.DadesFederativesJugadorCommand;
-import cat.urv.deim.sob.command.DadesJugadorCommand;
+import cat.urv.deim.sob.command.*;
 import cat.urv.deim.sob.command.DirEsportiuCommand;
+import cat.urv.deim.sob.command.DonarBaixaEntrenadorCommand;
+import cat.urv.deim.sob.command.DonarBaixaJugadorCommand;
 import cat.urv.deim.sob.command.EntrenadorClubCommand;
 import cat.urv.deim.sob.command.EntrenadorEquipCommand;
 import cat.urv.deim.sob.command.EntrenadorNoEquipCommand;
@@ -62,6 +67,11 @@ public class ControllerServlet extends HttpServlet {
         this.commands.put("crearIncidencia", new CrearIncidenciaCommand());
         this.commands.put("assignarequip", new AssignarEquipCommand());
         this.commands.put("altapartit", new AltaPartitCommand());
+        this.commands.put("consultardadesentrenador", new ConsultarDadesEntrenadorCommand());
+        this.commands.put("consultardadesjugador", new ConsultarDadesJugadorCommand());
+        this.commands.put("donarbaixajugador", new DonarBaixaJugadorCommand()); 
+        this.commands.put("donarbaixaentrenador", new DonarBaixaEntrenadorCommand());
+        this.commands.put("avisarabsencia", new AvisarAbsenciaCommand());
         
         this.commands.put("tramfedjug", new TramFedJugadorCommand());
         this.commands.put("mostratramfedjug", new DadesFederativesJugadorCommand());
