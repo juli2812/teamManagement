@@ -426,6 +426,12 @@
                                     <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
                                 </li>
                                 <li>
+                                    <a href="consultar_tramit_fed_entrenador.jsp">Consultar tràmit federatiu entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="assignar_incidencia.jsp">Assignar incidència jugador</a>
+                                </li>
+                                <li>
                                     <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
                                 </li>
                                 <li>
@@ -434,16 +440,40 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Entrenament<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="valorar_entrenament.jsp">Valorar entrenament</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_seg_entrenament.jsp">Realitzar seguiment entrenament</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="alta_partit_0.jsp">Donar alta partit/s</a>
                                 </li>
                                 <li>
+                                    <a href="realitzar_convocatoria.jsp">Realitzar convocatoria</a>
+                                </li>
+                                <li>
+                                    <a href="valorar_partit.jsp">Valorar partit</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
                                     <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
                                 </li>
                                 <li>
                                     <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_alineacio.jsp">Realitzar alineació</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

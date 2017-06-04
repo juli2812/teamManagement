@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/donar_baixa_jugador_2.jsp</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/donar_baixa_jugador_1.jsp</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/CrearIncidenciaCommand.java</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/DonarBaixaEntrenadorCommand.java</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/donar_baixa_jugador.jsp</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/DonarBaixaJugadorCommand.java</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/CrearModifConvoCommand.java</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/index.jsp</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/realitzar_convocatoria.jsp</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/EscollirDestinatariCommand.java</file>
             <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/ControllerServlet.java</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/AltaJugadorCommand.java</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/TramFedJugadorCommand.java</file>
         </group>
     </open-files>
 </project-private>
