@@ -417,6 +417,9 @@
                                     <a href="avisar_absencia.jsp">Avisar absencia</a>
                                 </li>
                                 <li>
+                                    <a href="consultar_absencia.jsp">Consultar absencia</a>
+                                </li>
+                                <li>
                                     <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
                                 </li>
                                 <li>
@@ -467,7 +470,7 @@
                                     <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
                                 </li>
                                 <li>
-                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                    <a href="consultar_est_partit_equip.jsp">Consultar estadistica partit/s equip</a>
                                 </li>
                                 <li>
                                     <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>

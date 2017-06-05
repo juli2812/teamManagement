@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Maria
  */
-public class ObtenirJugadorsCommand implements Command{
+public class ObtenirEquipsCommand implements Command{
     
     @Override
     public void execute(
@@ -32,13 +32,13 @@ public class ObtenirJugadorsCommand implements Command{
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<String> usuaris = new ArrayList();
+        ArrayList<String> equips = new ArrayList();
         
          
         // 1. process the request
         try {
             
-                usuaris=obtenirDestinataris();
+                equips=obtenirDestinataris();
 
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaEntrenadorCommand.class.getName()).log(Level.SEVERE, null, ex);
@@ -47,14 +47,9 @@ public class ObtenirJugadorsCommand implements Command{
         ServletContext context = request.getSession().getServletContext();
         HttpSession session = request.getSession(true);
         
-        session.setAttribute("usuaris", usuaris);
-        if("estadistica".equals(request.getParameter("opcio"))){
-            context.getRequestDispatcher("/consultar_est_partit_1.jsp").forward(request, response);
-        }else if("fitxajugador".equals(request.getParameter("opcio"))){
-            context.getRequestDispatcher("/consultar_fitxa_jugador_1.jsp").forward(request, response);
-        }else{
-        context.getRequestDispatcher("/consultar_assistencia_1.jsp").forward(request, response);
-        }
+        session.setAttribute("usuaris", equips);
+            context.getRequestDispatcher("/consultar_est_partit_equip_1.jsp").forward(request, response);
+        
     }
     public ArrayList<String> obtenirDestinataris () throws SQLException, ClassNotFoundException{
         ArrayList<String> resultado;
@@ -66,10 +61,8 @@ public class ObtenirJugadorsCommand implements Command{
             con.setSchema("team_management");
             
             String query = "";
-            query = "SELECT `fk_usuari`FROM `team_management`.`jugador`;";
-
+            query = "SELECT `nom_equip`FROM `team_management`.`equip`;";
             ps = con.prepareStatement(query);
-            
             ResultSet resultSet=ps.executeQuery();
             
             while (resultSet.next()) {

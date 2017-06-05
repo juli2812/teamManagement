@@ -1,9 +1,8 @@
 <%-- 
-    Document   : consultar_assistencia
-    Created on : 04-jun-2017, 04-jun-2017 18:17:28
+    Document   : consultar_est_partit
+    Created on : 04-jun-2017, 04-jun-2017 19:43:23
     Author     : Maria
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%
@@ -80,7 +79,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Assistencia </h1>
+                    <h1 class="page-header">Consultar Estadistiques </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -99,18 +98,30 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Assistencia</h1>
+                                    <h1>Estadistica</h1>
                                     <%if("Jugador".equals(userType)){%>
                                     <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="consultarassistencia"/>
+                                    <input type="hidden" name="form_action" value="mostrarestadistica"/>
                                     <input type="hidden" name="jugador" value="<%out.print(userId);%>"/>
-                                    
+                                    <div class="form-group">
+                                            <TABLE class="table">
+                                                <tr>
+                                                <td>Partit</td>
+                                                <td><input type="radio" class="radio" name="opcio" value="partit" ></td>
+                                                </tr>
+                                                <tr>
+                                                <td>Temporada</td>
+                                                <td><input type="radio" class="radio" name="opcio" value="temporada" ></td>
+                                                </tr>
+                                              </table>
+                                        </div>
                                     <%}else{%>
                                     <form role="form" method="post" action="controller.do">
                                        
                         <input type="hidden" name="form_action" value="obtenirjugadors"/>
+                        <input type="hidden" name="opcio" value="estadistica"/>
                                         <div class="form-group">
-                                            <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'assistencia. Premi el botó per continuar.</label>
+                                            <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'estadistica. Premi el botó per continuar.</label>
                                         </div>
                                     <%}%>    
                                     

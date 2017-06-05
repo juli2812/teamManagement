@@ -1,10 +1,10 @@
 <%-- 
-    Document   : consultar_assistencia
-    Created on : 04-jun-2017, 04-jun-2017 18:17:28
+    Document   : consultar_valor_entrenament_1
+    Created on : 05-jun-2017, 05-jun-2017 13:08:32
     Author     : Maria
 --%>
 
-
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%
             String userId ="";
@@ -20,17 +20,6 @@
     String redirectURL = "login.jsp";
     response.sendRedirect(redirectURL);}
 %>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <%@ page session="true" %>
-
     <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
@@ -41,6 +30,9 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -80,7 +72,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Assistencia </h1>
+                    <h1 class="page-header">Consultar Absencia</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -89,7 +81,6 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -99,26 +90,25 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Assistencia</h1>
-                                    <%if("Jugador".equals(userType)){%>
-                                    <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="consultarassistencia"/>
-                                    <input type="hidden" name="jugador" value="<%out.print(userId);%>"/>
-                                    
-                                    <%}else{%>
+                                    <h1></h1>
                                     <form role="form" method="post" action="controller.do">
                                        
-                        <input type="hidden" name="form_action" value="obtenirjugadors"/>
+                        <input type="hidden" name="form_action" value="obtenirValoracionsEntrenament"/>
+                        <input type="hidden" name="accio" value="una"/>
                                         <div class="form-group">
-                                            <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'assistencia. Premi el botó per continuar.</label>
+                                            <div class="form-group">
+                                            <label>Escull entrenament</label>
+                                            <select name="ve">   
+                                        <%
+                                        ArrayList<String> entrenaments;
+                                        entrenaments = (ArrayList<String>) session.getAttribute("ves");
+                                        for(String ab: entrenaments){
+                                        %>
+                                        <option value="<%out.print(ab);%>"><% out.println(ab +"<br/>"); %></option>
+                                        <% }%>
+                                            </select>
                                         </div>
-                                    <%}%>    
-                                    
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Omple els camps obligatoris.");
-                        }
-                        %></font></b><br>
+                                        </div>      
                                         <button type="submit" class="btn btn-default">Continuar</button>
                                     </form>
                                 </div>
@@ -147,10 +137,4 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
-
-</body>
-
-</html>
-
+    

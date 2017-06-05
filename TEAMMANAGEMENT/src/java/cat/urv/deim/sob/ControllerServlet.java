@@ -78,6 +78,15 @@ public class ControllerServlet extends HttpServlet {
         this.commands.put("modificarConvo", new ModificarConvocatoriaCommand());
         this.commands.put("obtenirjugadors", new ObtenirJugadorsCommand());
         this.commands.put("consultarassistencia", new ConsultarAssistenciaCommand());
+        this.commands.put("mostrarestadistica", new MostrarEstadisticaCommand());
+        this.commands.put("mostrarestadisticapartit", new MostrarEstadisticaPartitCommand());
+        this.commands.put("obtenirequips", new ObtenirEquipsCommand());
+        this.commands.put("mostrarestadisticaequip", new MostrarEstadisticaEquipCommand());
+        this.commands.put("mostrarestadisticapartitequip", new MostrarEstadisticaPartitEquipCommand());
+        this.commands.put("obtenirAbsencies", new ObtenirAbsenciesCommand());
+        this.commands.put("obtenirValoracionsEntrenament", new ObtenirValoracionsEntrenamentCommand());
+        this.commands.put("mostrarquota", new MostrarQuotaCommand());
+        this.commands.put("fitxajugador", new FitxaJugadorCommand());
         
         this.commands.put("tramfedjug", new TramFedJugadorCommand());
         this.commands.put("mostratramfedjug", new DadesFederativesJugadorCommand());

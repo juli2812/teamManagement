@@ -1,10 +1,8 @@
 <%-- 
-    Document   : consultar_assistencia
-    Created on : 04-jun-2017, 04-jun-2017 18:17:28
+    Document   : consultar_est_partit_equip
+    Created on : 05-jun-2017, 05-jun-2017 8:55:31
     Author     : Maria
 --%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%
             String userId ="";
@@ -80,7 +78,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Assistencia </h1>
+                    <h1 class="page-header">Consultar Estadistiques </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -99,26 +97,16 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Assistencia</h1>
-                                    <%if("Jugador".equals(userType)){%>
-                                    <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="consultarassistencia"/>
-                                    <input type="hidden" name="jugador" value="<%out.print(userId);%>"/>
-                                    
-                                    <%}else{%>
+                                    <h1>Estadistica Equip</h1>
+                                   
                                     <form role="form" method="post" action="controller.do">
                                        
-                        <input type="hidden" name="form_action" value="obtenirjugadors"/>
+                        <input type="hidden" name="form_action" value="obtenirequips"/>
+                        <input type="hidden" name="opcio" value="estadistica"/>
                                         <div class="form-group">
-                                            <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'assistencia. Premi el botó per continuar.</label>
+                                            <label>A continuació es mostraràn una llista de equips on podrà escollir de quin veure'n l'estadistica. Premi el botó per continuar.</label>
                                         </div>
-                                    <%}%>    
                                     
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Omple els camps obligatoris.");
-                        }
-                        %></font></b><br>
                                         <button type="submit" class="btn btn-default">Continuar</button>
                                     </form>
                                 </div>

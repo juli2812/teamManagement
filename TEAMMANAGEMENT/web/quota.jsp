@@ -1,9 +1,8 @@
 <%-- 
-    Document   : consultar_assistencia
-    Created on : 04-jun-2017, 04-jun-2017 18:17:28
+    Document   : quota
+    Created on : 05-jun-2017, 05-jun-2017 19:35:04
     Author     : Maria
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%
@@ -80,7 +79,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Assistencia </h1>
+                    <h1 class="page-header">Consultar Quota </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -99,20 +98,15 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Assistencia</h1>
-                                    <%if("Jugador".equals(userType)){%>
+                                    <h1>Quota</h1>
+                                   
                                     <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="consultarassistencia"/>
+                                    <input type="hidden" name="form_action" value="mostrarquota"/>
                                     <input type="hidden" name="jugador" value="<%out.print(userId);%>"/>
-                                    
-                                    <%}else{%>
-                                    <form role="form" method="post" action="controller.do">
-                                       
-                        <input type="hidden" name="form_action" value="obtenirjugadors"/>
+
                                         <div class="form-group">
-                                            <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'assistencia. Premi el botó per continuar.</label>
-                                        </div>
-                                    <%}%>    
+                                            <label>Informació de l'estat del pagament del jugador.</label>
+                                        </div> 
                                     
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){

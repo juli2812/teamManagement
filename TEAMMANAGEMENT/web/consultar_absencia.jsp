@@ -1,9 +1,8 @@
 <%-- 
-    Document   : consultar_assistencia
-    Created on : 04-jun-2017, 04-jun-2017 18:17:28
+    Document   : consultar_absencia
+    Created on : 05-jun-2017, 05-jun-2017 11:43:42
     Author     : Maria
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%
@@ -80,7 +79,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Assistencia </h1>
+                    <h1 class="page-header">Consultar Absències</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -99,21 +98,13 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Assistencia</h1>
-                                    <%if("Jugador".equals(userType)){%>
+                                    <h1>Estadistica</h1>
                                     <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="consultarassistencia"/>
-                                    <input type="hidden" name="jugador" value="<%out.print(userId);%>"/>
-                                    
-                                    <%}else{%>
-                                    <form role="form" method="post" action="controller.do">
-                                       
-                        <input type="hidden" name="form_action" value="obtenirjugadors"/>
+                                    <input type="hidden" name="form_action" value="obtenirAbsencies"/>
+                                    <input type="hidden" name="accio" value="tots"/>
                                         <div class="form-group">
-                                            <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'assistencia. Premi el botó per continuar.</label>
+                                            <label>A continuació es mostraràn una llista de jugadors i dates d'absencia. Premi el botó per continuar.</label>
                                         </div>
-                                    <%}%>    
-                                    
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
                                  out.println("Omple els camps obligatoris.");
@@ -153,4 +144,3 @@
 </body>
 
 </html>
-

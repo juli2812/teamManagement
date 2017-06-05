@@ -107,7 +107,8 @@
                                         <% }%>
                                             </select>
                                         </div>
-                                        </div>                                  
+                                        </div> 
+                                            
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
                                  out.println("Omple els camps obligatoris.");

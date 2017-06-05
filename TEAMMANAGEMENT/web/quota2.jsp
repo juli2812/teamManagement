@@ -1,10 +1,9 @@
 <%-- 
-    Document   : consultar_assistencia
-    Created on : 04-jun-2017, 04-jun-2017 18:17:28
+    Document   : quota2
+    Created on : 05-jun-2017, 05-jun-2017 19:52:53
     Author     : Maria
 --%>
-
-
+<%@page import="cat.urv.deim.sob.Quota"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%
             String userId ="";
@@ -15,6 +14,7 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
+            Quota q = (Quota) session.getAttribute("quota");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -80,7 +80,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Assistencia </h1>
+                    <h1 class="page-header">Consultar Quota </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -99,28 +99,18 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Assistencia</h1>
-                                    <%if("Jugador".equals(userType)){%>
-                                    <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="consultarassistencia"/>
-                                    <input type="hidden" name="jugador" value="<%out.print(userId);%>"/>
-                                    
-                                    <%}else{%>
-                                    <form role="form" method="post" action="controller.do">
-                                       
-                        <input type="hidden" name="form_action" value="obtenirjugadors"/>
-                                        <div class="form-group">
-                                            <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'assistencia. Premi el botó per continuar.</label>
-                                        </div>
-                                    <%}%>    
-                                    
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Omple els camps obligatoris.");
-                        }
-                        %></font></b><br>
-                                        <button type="submit" class="btn btn-default">Continuar</button>
-                                    </form>
+                                    <h1> Quota del jugador <%out.print(userId);%></h1>
+                                    <div class="form-group">
+                                        <label>La data limit per pagar la quota de <font color="blue"> <%out.print(q.getQuantitat()+"€");%></font> és el <font color="blue"> <%out.print(q.getDataLimit());%></font>.</label>
+                                        <%if(!q.isPagada()){%>
+                                        <label>Estat: <font color="red"> Falta pagar la quota.</font></font></label>
+                                        <%}else{%>
+                                        <label>Estat: <font color="green"> Quota pagada.</font></font></label>
+                                        <%}%>
+                                    </div> 
+                                    <a href="index.jsp">
+                                            <span class="btn btn-primary">Continuar</span>
+                                            </a>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : consultar_assistencia
-    Created on : 04-jun-2017, 04-jun-2017 18:17:28
+    Document   : consultar_class_comp
+    Created on : 05-jun-2017, 05-jun-2017 10:49:37
     Author     : Maria
 --%>
 
@@ -80,7 +80,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Assistencia </h1>
+                    <h1 class="page-header">Consultar Classificació i Calendari de competició </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -99,28 +99,28 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Assistencia</h1>
-                                    <%if("Jugador".equals(userType)){%>
-                                    <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="consultarassistencia"/>
-                                    <input type="hidden" name="jugador" value="<%out.print(userId);%>"/>
-                                    
-                                    <%}else{%>
-                                    <form role="form" method="post" action="controller.do">
-                                       
-                        <input type="hidden" name="form_action" value="obtenirjugadors"/>
-                                        <div class="form-group">
-                                            <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'assistencia. Premi el botó per continuar.</label>
-                                        </div>
-                                    <%}%>    
-                                    
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Omple els camps obligatoris.");
-                        }
-                        %></font></b><br>
-                                        <button type="submit" class="btn btn-default">Continuar</button>
-                                    </form>
+                                    <h1>Consultar Classificació i competició</h1>
+                                    <div class="form-group">
+                                        <a href="http://fcf.cat/classificacio/1617/futbol-11/cadet-segona-divisio/grup-5">
+                                            <div class="panel-footer">
+                                                <span class="pull-left">Enllaç a la web de classficicació</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="form-group">
+                                        <a href="http://fcf.cat/calendari/1617/futbol-11/cadet-segona-divisio/grup-5">
+                                            <div class="panel-footer">
+                                                <span class="pull-left">Enllaç a la web de calendari</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <a href="index.jsp">
+                                            <span class="btn btn-primary">Continuar</span>
+                                            </a>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->
