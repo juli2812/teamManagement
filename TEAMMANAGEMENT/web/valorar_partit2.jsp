@@ -582,7 +582,7 @@
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                         <% if(partits.size()==0){%>
                                         <b><font color = "red">
-                                            <%out.println("No hi ha cap partit sense equip.");%><br></font></b><%}else{%>
+                                            <%out.println("No hi ha cap partit.");%><br></font></b><%}else{%>
                                             <div class="form-group">
                                                 <label>Rival</label>
                                                 <select class="form-control" name="idpartit" required>

@@ -58,11 +58,6 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" type="password" value="" name="contrasenya"required>
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">He oblidat...
-                                    </label>
-                                </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 
                                 <button type="submit" class="btn btn-success">Iniciar sessió</button>

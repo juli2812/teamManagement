@@ -21,7 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
-public class ObtenirSegEntrenamentCommand implements Command {
+public class MarcarFetCommand implements Command {
 
     @Override
     public void execute(
@@ -32,17 +32,38 @@ public class ObtenirSegEntrenamentCommand implements Command {
         // 1. process the request
         ArrayList<Exercici> exercicis= null;
         try {
-            exercicis = getExercicis(Integer.parseInt(request.getParameter("identrenament")));
+            updateExercici(request.getParameter("valoracio"), Integer.parseInt(request.getParameter("idexercici").toString()));
+            exercicis = getExercicis(Integer.parseInt(session.getAttribute("identrenament").toString()));
             // 2. produce the view with the web result
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(ObtenirSegEntrenamentCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MarcarFetCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-            session.setAttribute("identrenament", Integer.parseInt(request.getParameter("identrenament")));
             session.setAttribute("exercicis", exercicis);
-            ServletContext context = request.getSession().getServletContext();
-            context.getRequestDispatcher("/realitzar_seg_entrenament3.jsp").forward(request, response);
+            if("false".equals(request.getParameter("incid"))){
+                ServletContext context = request.getSession().getServletContext();
+                context.getRequestDispatcher("/realitzar_seg_entrenament3.jsp").forward(request, response);
+            }
+            else{
+                ServletContext context = request.getSession().getServletContext();
+                context.getRequestDispatcher("/assignar_incidencia.jsp").forward(request, response);
+            }
     }
+    
+    public void updateExercici (String valoracio, int idExercici) throws SQLException, ClassNotFoundException{
+        Connection con;
+        PreparedStatement ps;
+        System.out.println("DD");
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+        con.setSchema("team_management");
+        String query = "UPDATE `team_management`.`exercici` SET `valoracio`=?, `fet`=true WHERE `id_exercici`= ?;";
+        ps = con.prepareStatement(query);
+        ps.setString(1,valoracio);
+        ps.setInt(2, idExercici);
+        ps.execute();
+    }
+    
     public ArrayList<Exercici> getExercicis (int idActivitat) throws SQLException, ClassNotFoundException{
         Connection con;
         PreparedStatement ps;

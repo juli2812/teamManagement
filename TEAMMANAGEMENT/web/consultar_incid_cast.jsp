@@ -4,7 +4,7 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Exercici"%>
+<%@page import="cat.urv.deim.sob.Jugador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,7 +27,6 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Exercici> exercicis =(ArrayList<Exercici>) session.getAttribute("exercicis");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -473,11 +472,10 @@
         </nav>
 
 
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Realitzar seguiment entrenament</h1>
+                    <h1 class="page-header">Consulta incidència o càstig</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -486,7 +484,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Exercicis de l'entrenament
+                            Llegeix breument
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -495,54 +493,18 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h2>Exercicis</h2>
-                                    <% if(exercicis.size()==0){%>
-                                        <b><font color = "red">
-                                            <%out.println("No hi ha cap entrenament sense equip.");%><br></font></b>
-                                        <%}else{%>
-                                    <%for(int i = 0; i<exercicis.size(); i++){%>
+                                    <h1>Jugador</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="marcarfet"/>
-                                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
-                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <input type="hidden" name="idexercici" value="<%out.print(exercicis.get(i).getIdExercici());%>"/>
-                                            <div class="form-group">
-                                                    <h3>Exercici <%out.print(i);%></h3>
-                                                    <label>Explicació</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="explicacio" value="<%out.print(exercicis.get(i).getExplicacio());%>" disabled/>
-                                                    </div>
-                                                    <label>Temps (minuts)</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="number" name="temps" value="<%out.print(exercicis.get(i).getTempsMin());%>" disabled/>
-                                                    </div>
-                                                    <label>Material</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="material" value="<%out.print(exercicis.get(i).getExplicacio());%>" disabled/>
-                                                    </div>
-                                                    <%if(exercicis.get(i).isFet()!=true){%>
-                                                    <label>Valoració</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="valoracio"/>
-                                                    </div>
-                                                    <b><br>
-                                                        <font color = "red">
-                                                        <%out.println("Pendent de realitzar.");%>
-                                                        </font></b><%}else{%>
-                                                        
-                                                    <label>Valoració</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="valoracio" value="<%out.print(exercicis.get(i).getValoracio());%>" disabled/>
-                                                    </div>
-                                                    <%}%>
-                                            </div>
-                                        <% if(exercicis.get(i).isFet()!=true){%>
-                                            <button type="submit" class="btn btn-primary" value="false" name="incid">Marcar com a fet</button>
-                                            <button type="submit" class="btn btn-primary" value="true" name="incid">Marcar com a fet i assignar incidència</button>
-                                        <%}%>
+                                    <input type="hidden" name="form_action" value="incidjugador"/>
+                                    <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                    <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
+                                        <div class="form-group">
+                                            <label>Clica a continuar per a veure una selecció dels càstigs o incidències obertes.</label>
+                                           </div>
+                        <br>
+                                       <button type="submit" class="btn btn-primary">Continuar</button>
+                                           <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>
-                                    <%}%>
-                                <%}%>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

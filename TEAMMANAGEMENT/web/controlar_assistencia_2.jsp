@@ -4,7 +4,7 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Exercici"%>
+<%@page import="cat.urv.deim.sob.Partit"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,13 +27,13 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Exercici> exercicis =(ArrayList<Exercici>) session.getAttribute("exercicis");
+            ArrayList<Partit> partits =(ArrayList<Partit>) session.getAttribute("partits");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
     response.sendRedirect(redirectURL);}
 %>
-    <title>Team Management</title>
+<title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -274,6 +274,14 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> <% out.println(userName+" "+surName); %></a>
                         </li>
+                        <%if((userType!=null) && userType.equals("Entrenador")){%>
+                        <li><a href="#"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Oficina</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-fw"></i> Partit</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-fw"></i> Entrenament</a>
+                        </li>
+                        <%}%>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -378,7 +386,7 @@
                                     <a href="consultar_tramit_fed_jugador.jsp">Consultar tràmit federatiu jugador</a>
                                 </li>
                                 <li>
-                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                    <a href="consultar_fitxa_entrenador_j.jsp">Consultar fitxa entrenador</a>
                                 </li>
                                 <li>
                                     <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
@@ -396,6 +404,78 @@
                                 </li>
                                 <li>
                                     <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                    <%}else if((userType!=null) && userType.equals("Entrenador")){%>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-info-circle fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="quota.jsp">Consultar quota</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_assistencia.jsp">Consultar assistència</a>
+                                </li>
+                                <li>
+                                    <a href="avisar_absencia.jsp">Avisar absencia</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_entrenador.jsp">Consultar tràmit federatiu entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="assignar_incidencia.jsp">Assignar incidència jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Entrenament<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="valorar_entrenament.jsp">Valorar entrenament</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_seg_entrenament.jsp">Realitzar seguiment entrenament</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="valorar_partit.jsp">Valorar partit</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_alineacio.jsp">Realitzar alineació</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -477,7 +557,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Realitzar seguiment entrenament</h1>
+                    <h1 class="page-header">Partit</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -486,7 +566,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Exercicis de l'entrenament
+                            Escull el rival del partit
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -495,54 +575,28 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h2>Exercicis</h2>
-                                    <% if(exercicis.size()==0){%>
-                                        <b><font color = "red">
-                                            <%out.println("No hi ha cap entrenament sense equip.");%><br></font></b>
-                                        <%}else{%>
-                                    <%for(int i = 0; i<exercicis.size(); i++){%>
+                                    <h1>Partit</h1>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="marcarfet"/>
+                                        <input type="hidden" name="form_action" value="dadesassistencia"/>
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <input type="hidden" name="idexercici" value="<%out.print(exercicis.get(i).getIdExercici());%>"/>
+                                        <% if(partits.size()==0){%>
+                                        <b><font color = "red">
+                                            <%out.println("No hi ha cap partit.");%><br></font></b><%}else{%>
                                             <div class="form-group">
-                                                    <h3>Exercici <%out.print(i);%></h3>
-                                                    <label>Explicació</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="explicacio" value="<%out.print(exercicis.get(i).getExplicacio());%>" disabled/>
-                                                    </div>
-                                                    <label>Temps (minuts)</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="number" name="temps" value="<%out.print(exercicis.get(i).getTempsMin());%>" disabled/>
-                                                    </div>
-                                                    <label>Material</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="material" value="<%out.print(exercicis.get(i).getExplicacio());%>" disabled/>
-                                                    </div>
-                                                    <%if(exercicis.get(i).isFet()!=true){%>
-                                                    <label>Valoració</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="valoracio"/>
-                                                    </div>
-                                                    <b><br>
-                                                        <font color = "red">
-                                                        <%out.println("Pendent de realitzar.");%>
-                                                        </font></b><%}else{%>
-                                                        
-                                                    <label>Valoració</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="valoracio" value="<%out.print(exercicis.get(i).getValoracio());%>" disabled/>
-                                                    </div>
+                                                <label>Rival</label>
+                                                <select class="form-control" name="idpartit" required>
+                                                    <%for(int i = 0; i<partits.size(); i++){%>
+                                                    <option value="<%out.print(partits.get(i).getIdActivitat());%>"><%out.print(partits.get(i).getRival());%></option>
                                                     <%}%>
+                                                </select>
                                             </div>
-                                        <% if(exercicis.get(i).isFet()!=true){%>
-                                            <button type="submit" class="btn btn-primary" value="false" name="incid">Marcar com a fet</button>
-                                            <button type="submit" class="btn btn-primary" value="true" name="incid">Marcar com a fet i assignar incidència</button>
+                                        <%}%>
+                                        <% if(partits.size()!=0){%>
+                                            <button type="submit" class="btn btn-primary">Escull partit</button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
                                         <%}%>
                                     </form>
-                                    <%}%>
-                                <%}%>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

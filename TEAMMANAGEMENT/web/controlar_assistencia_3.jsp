@@ -4,7 +4,7 @@
     Author     : BEC.CA2
 --%>
 
-<%@page import="cat.urv.deim.sob.Exercici"%>
+<%@page import="cat.urv.deim.sob.Convocatoria"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,7 +27,7 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<Exercici> exercicis =(ArrayList<Exercici>) session.getAttribute("exercicis");
+            ArrayList<Convocatoria> convocatorias =(ArrayList<Convocatoria>) session.getAttribute("convocatorias");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -477,7 +477,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Realitzar seguiment entrenament</h1>
+                    <h1 class="page-header">Control d'assistència</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -486,7 +486,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Exercicis de l'entrenament
+                            Confirma qui ha vingut al partit
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -495,52 +495,43 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h2>Exercicis</h2>
-                                    <% if(exercicis.size()==0){%>
+                                    <h2>Convocat</h2>
+                                    <% if(convocatorias.size()==0){%>
                                         <b><font color = "red">
-                                            <%out.println("No hi ha cap entrenament sense equip.");%><br></font></b>
+                                            <%out.println("No hi ha cap jugador convocat");%><br></font></b>
                                         <%}else{%>
-                                    <%for(int i = 0; i<exercicis.size(); i++){%>
+                                    <%for(int i = 0; i<convocatorias.size(); i++){%>
+                                    <%if(convocatorias.get(i).isConfirmat()==true){%>
                                     <form role="form" method="post" action="controller.do">
-                                        <input type="hidden" name="form_action" value="marcarfet"/>
+                                        <input type="hidden" name="form_action" value="marcarconfirmat"/>
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
-                                        <input type="hidden" name="idexercici" value="<%out.print(exercicis.get(i).getIdExercici());%>"/>
+                                        <input type="hidden" name="idpartit" value="<%out.print(convocatorias.get(i).getFkPartit());%>"/>
+                                        <input type="hidden" name="idjugador" value="<%out.print(convocatorias.get(i).getFkJugador());%>"/>
                                             <div class="form-group">
-                                                    <h3>Exercici <%out.print(i);%></h3>
-                                                    <label>Explicació</label>
+                                                    <h3>Convocatoria</h3>
+                                                    <label>Nom</label>
                                                     <div class="form-group">
-                                                        <input class="form-control" type="text" name="explicacio" value="<%out.print(exercicis.get(i).getExplicacio());%>" disabled/>
+                                                        <input class="form-control" type="text" name="nom" value="<%out.print(convocatorias.get(i).getNom());%>" disabled/>
                                                     </div>
-                                                    <label>Temps (minuts)</label>
+                                                    <label>Cognom</label>
                                                     <div class="form-group">
-                                                        <input class="form-control" type="number" name="temps" value="<%out.print(exercicis.get(i).getTempsMin());%>" disabled/>
+                                                        <input class="form-control" type="text" name="cognom" value="<%out.print(convocatorias.get(i).getCognom());%>" disabled/>
                                                     </div>
-                                                    <label>Material</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="material" value="<%out.print(exercicis.get(i).getExplicacio());%>" disabled/>
-                                                    </div>
-                                                    <%if(exercicis.get(i).isFet()!=true){%>
-                                                    <label>Valoració</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="valoracio"/>
-                                                    </div>
+                                                    <%if(convocatorias.get(i).isHaVingut()!=true){%>
                                                     <b><br>
                                                         <font color = "red">
-                                                        <%out.println("Pendent de realitzar.");%>
+                                                        <%out.println("Pendent de confirmar assistència.");%>
                                                         </font></b><%}else{%>
-                                                        
-                                                    <label>Valoració</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="valoracio" value="<%out.print(exercicis.get(i).getValoracio());%>" disabled/>
-                                                    </div>
-                                                    <%}%>
+                                                        <font color = "green">
+                                                    <b><%out.println("Assistència confirmada.");%></b></font><%}%>
                                             </div>
-                                        <% if(exercicis.get(i).isFet()!=true){%>
-                                            <button type="submit" class="btn btn-primary" value="false" name="incid">Marcar com a fet</button>
-                                            <button type="submit" class="btn btn-primary" value="true" name="incid">Marcar com a fet i assignar incidència</button>
+                                        <% if(convocatorias.get(i).isHaVingut()!=true){%>
+                                            <button type="submit" class="btn btn-primary">Confirmar assistència</button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
                                         <%}%>
                                     </form>
+                                    <%}%>
                                     <%}%>
                                 <%}%>
                                 </div>
