@@ -72,7 +72,7 @@ public class LoginCommand implements Command {
             session.setAttribute("idUsuari", resposta);
             session.setAttribute("nomUsuari", nomUsuari.get(0));
             session.setAttribute("cognomUsuari", nomUsuari.get(1));
-            context.getRequestDispatcher("/index.jsp").forward(request, response);        
+            context.getRequestDispatcher("/index.jsp?type=a").forward(request, response);        
         }
     }
     
