@@ -1,5 +1,4 @@
 package cat.urv.deim.sob.command;
-
 import cat.urv.deim.sob.Entrenador;
 import cat.urv.deim.sob.Jugador;
 import javax.servlet.http.HttpServletRequest;
@@ -123,7 +122,7 @@ public class LoginCommand implements Command {
             }
             return entrenador;
     }
-    
+
     public String getLogin (String idUsuari, String contrasenya) throws SQLException, ClassNotFoundException{
         Connection con;
         PreparedStatement ps;

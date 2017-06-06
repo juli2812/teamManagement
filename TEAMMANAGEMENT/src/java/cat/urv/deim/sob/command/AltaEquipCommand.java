@@ -23,7 +23,6 @@ public class AltaEquipCommand implements Command {
             throws ServletException, IOException {
             int numFedClub=0;
         // 1. process the request
-        
         if(!"".equals(request.getParameter("nomequip"))&&!"".equals(request.getParameter("categoria"))){
         try {
             numFedClub=getNumFed(request.getParameter("idusuari"),request.getParameter("tipususuari"));

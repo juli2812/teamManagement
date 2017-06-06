@@ -16,6 +16,7 @@ public class Convocatoria {
     private String cognom;
     private String fkJugador;
     private int fkPartit;
+    private String fkPartit2;
     private Date dataPartit;
     private int numConf;
     private int numNoConf;
@@ -56,11 +57,35 @@ public class Convocatoria {
         this.haVingut = haVingut;
     }
 
-    @Override
-    public String toString() {
-        return "Convocatoria{" + "nom=" + nom + ", cognom=" + cognom + ", fkJugador=" + fkJugador + ", fkPartit=" + fkPartit + ", dataPartit=" + dataPartit + ", numConf=" + numConf + ", numNoConf=" + numNoConf + ", llocPartit=" + llocPartit + ", dataLimit=" + dataLimit + ", minJug=" + minJug + ", maxJug=" + maxJug + ", confirmat=" + confirmat + ", haVingut=" + haVingut + '}';
+    public Convocatoria(String fkJugador, String fkPartit, Date dataPartit, int numConf, int numNoConf, String llocPartit, Date dataLimit, int minJug, int maxJug, boolean confirmat, boolean haVingut) {
+        this.fkJugador = fkJugador;
+        this.fkPartit2 = fkPartit;
+        this.dataPartit = dataPartit;
+        this.numConf = numConf;
+        this.numNoConf = numNoConf;
+        this.llocPartit = llocPartit;
+        this.dataLimit = dataLimit;
+        this.minJug = minJug;
+        this.maxJug = maxJug;
+        this.confirmat = confirmat;
+        this.haVingut = haVingut;
+    }
+
+    public Convocatoria(String fkJugador, String fkPartit) {
+        this.fkJugador = fkJugador;
+        this.fkPartit2 = fkPartit;
     }
     
+    public Convocatoria(){
+    }
+
+    public String getFkPartit2() {
+        return fkPartit2;
+    }
+
+    public void setFkPartit2(String fkPartit2) {
+        this.fkPartit2 = fkPartit2;
+    }
     
 
     public String getFkJugador() {
@@ -94,7 +119,6 @@ public class Convocatoria {
     public void setFkPartit(int fkPartit) {
         this.fkPartit = fkPartit;
     }
-
     public Date getDataPartit() {
         return dataPartit;
     }
@@ -150,7 +174,6 @@ public class Convocatoria {
     public void setMaxJug(int maxJug) {
         this.maxJug = maxJug;
     }
-
     public boolean isConfirmat() {
         return confirmat;
     }
@@ -166,8 +189,6 @@ public class Convocatoria {
     public void setHaVingut(boolean haVingut) {
         this.haVingut = haVingut;
     }
-    
-    
     
     
 }

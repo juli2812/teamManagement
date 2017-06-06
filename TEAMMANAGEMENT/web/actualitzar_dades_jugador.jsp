@@ -4,6 +4,8 @@
     Author     : BEC.CA2
 --%>
 
+<%@page import="cat.urv.deim.sob.Entrenador"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
@@ -469,7 +471,6 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -509,7 +510,6 @@
                                         <button type="submit" class="btn btn-primary">Continuar</button>
                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>
-                        
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
