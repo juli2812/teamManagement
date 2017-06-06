@@ -54,7 +54,7 @@ public class FitxaJugadorCommand  implements Command {
             
             ServletContext context = request.getSession().getServletContext();
             if(dades != null){
-                session.setAttribute("jug", dades);
+                session.setAttribute("jugador", dades);
             context.getRequestDispatcher("/consultar_fitxa_jugador_2.jsp").forward(request, response);
             }else{
                 context.getRequestDispatcher("/index.jsp").forward(request, response);

@@ -27,7 +27,7 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            Jugador jugador =(Jugador) session.getAttribute("jug");
+            Jugador jugador =(Jugador) session.getAttribute("jugador");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -291,12 +291,17 @@
                     
                     <%if((userType!=null) && userType.equals("President")){%>
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="afegir_dir_esportiu.jsp?club=true&af=1"><i class="fa fa-plus-circle fa-fw"></i> Afegir director esportiu</a>                          
-                        </li>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Director Esportiu<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="afegir_dir_esportiu.jsp?club=true&af=1">Afegir director esportiu</a>  
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
@@ -400,6 +405,57 @@
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
+                    <%}else if((userType!=null) && userType.equals("Entrenador")){%>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-info-circle fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="quota.jsp">Consultar quota</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_assistencia.jsp">Consultar assistència</a>
+                                </li>
+                                <li>
+                                    <a href="avisar_absencia.jsp">Avisar absencia</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_entrenador.jsp">Consultar tràmit federatiu entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
                     
                     <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
                     <ul class="nav" id="side-menu">
@@ -468,10 +524,11 @@
         </nav>
 
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dades del jugador</h1>
+                    <h1 class="page-header">Fitxa Entrenador</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -480,138 +537,51 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            Llegeix breument
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="images/presidentes-galicia-17918.jpg" alt="President" width=450 height=250>
+                                    <img src="images/vinilos-decorativos-jugador-futbol.jpg" alt="President" width=370 height=370>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1><%out.print(jugador.getIdUsuari());%></h1>
-                                    
-                                        <!--Dades jugador -->
-                                        <label>NIF</label>
+                                    <form role="form" method="post" action="controller.do">
+                                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                        <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                         <div class="form-group">
-                                            <input type="text" name="NIF" maxlength="9" value="<%out.print(jugador.getNIF());%>" required disabled/>
+                                            <label>Nom</label>
+                                            <input class="form-control" maxlength="20" name="nom" value="<%out.print(jugador.getNom());%>" required disabled>
                                         </div>
-                                        <label>Nom</label>
                                         <div class="form-group">
-                                            <input type="text" name="nom" maxlength="20" value="<%out.print(jugador.getNom());%>" required disabled/>
+                                            <label>Primer cognom</label>
+                                            <input class="form-control" maxlength="20" name="cognom1" value="<%out.print(jugador.getCognom());%>" required disabled>
                                         </div>
-                                        <label>Primer cognom</label>
                                         <div class="form-group">
-                                            <input type="text" name="cognom" maxlength="20" value="<%out.print(jugador.getCognom());%>" required disabled/>
-                                        </div>
-                                        <label>Segon cognom</label>
-                                        <div class="form-group">
-                                            <input type="text" name="cognom2" maxlength="20" value="<%out.print(jugador.getCognom2());%>" disabled/>
-                                        </div>
-                                        <label>Adreça</label>
-                                        <div class="form-group">
-                                            <input type="text" name="address" maxlength="40" value="<%out.print(jugador.getAddress());%>"disabled/>
+                                            <label>Segon cognom</label>
+                                            <%if(null==jugador.getAddress()){%>
+                                            <input class="form-control" placeholder="(Opcional)" maxlength="20" name="cognom2" disabled>
+                                            <%}else{%>
+                                            <input class="form-control" placeholder="(Opcional)" maxlength="20" name="cognom2" value="<%out.print(jugador.getCognom2());%>" disabled>
+                                            <%}%>
                                         </div>
                                         <div class="form-group">
                                             <label>Telèfon</label>
-                                            <input class="form-control" type="number" min="600000000" max="99999999999" name="telefon" value="<%out.print(jugador.getTelefon());%>" required disabled/>
+                                            <input class="form-control" type="number" min="600000000" max="99999999999" name="telefon" value="<%out.print(jugador.getTelefon());%>" required disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>Data naixement</label>
-                                            <input class="form-control" type="date"  name="datanaix"  value="<%out.print(jugador.getDataNaix());%>" required disabled/>
+                                            <input class="form-control" placeholder="yyyy-mm-dd" type="date" name="datanaix" value="<%out.print(jugador.getDataNaix());%>" required disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>Data incorporació</label>
-                                            <input class="form-control" type="date"  name="dataincorp"  value="<%out.print(jugador.getDataIncorporacio());%>" required disabled/>
+                                            <input class="form-control" placeholder="yyyy-mm-dd" type="date" name="dataincorp" value="<%out.print(jugador.getDataIncorporacio());%>" required disabled>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Compte bancari</label>
-                                            <%if("President".equals(userType) || "Director esportiu".equals(userType)){%>
-                                            <input class="form-control" type="text"  name="comptebancari" maxlength="24" value="<%out.print(jugador.getCompteBancari());%>" required disabled/>
-                                            <%}else{%>
-                                            <input class="form-control" type="text"  name="comptebancari" maxlength="24" value="<%out.print(jugador.getCompteBancari().substring(0, 4)+"XXXXXXXXXXXXXXXX"+jugador.getCompteBancari().substring(20, 23));%>" required disabled/>
-                                            <%}%>
-                                        </div>
-                                        <div class="form-group">
-                                        <label>Compte tutoritzat</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <%if(jugador.isCompteTutoritzat()){%>
-                                                    <input type="checkbox" name="comptetutoritzat" value="true" checked disabled/>Compte tutoritzat
-                                                    <%}else{%>
-                                                    <input type="checkbox" name="comptetutoritzat" value="true" disabled/>Compte tutoritzat
-                                                    <%}%>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Dorsal</label>
-                                            <input class="form-control" type="number"  name="dorsal" min="0" max="99" value="<%out.print(jugador.getDorsal());%>" required disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Curs escolar</label>
-                                            <%if(null!=jugador.getCursEscolar()){%>
-                                            <input class="form-control" type="text"  name="cursescolar" maxlength="10" value="<%out.print(jugador.getCursEscolar());%>" disabled/>
-                                            <%}else{%>
-                                            <input class="form-control" type="text"  name="cursescolar" maxlength="10" disabled/>
-                                            <%}%>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Escola</label>
-                                            <%if(null!=jugador.getEscola()){%>
-                                            <input class="form-control" type="text"  name="escola" maxlength="20" value="<%out.print(jugador.getEscola());%>"disabled/>
-                                            <%}else{%>
-                                            <input class="form-control" type="text"  name="escola" maxlength="20" disabled/>
-                                            <%}%>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nom complet pare</label>
-                                            <input class="form-control" type="text"  name="nompare" maxlength="50" value="<%out.print(jugador.getNomCompletPare());%>" required disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nom complet mare</label>
-                                            <input class="form-control" type="text"  name="nommare" maxlength="50" value="<%out.print(jugador.getNomCompletMare());%>" required disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fotocopia DNI</label>
-                                            <input class="form-control" type="text"  name="fotocopiadni" maxlength="40" value="<%out.print(jugador.getFotocopiaDNI());%>" required disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Catsalut</label>
-                                            <input class="form-control" type="text"  name="catsalut" maxlength="40" value="<%out.print(jugador.getNumSalut());%>" required disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Reconeixement mèdic</label>
-                                            <input class="form-control" type="text"  name="reconmedic" maxlength="14" value="<%out.print(jugador.getReconeixementMedic());%>" required disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                        <label>Tot entregat</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <%if(jugador.isTotEntregat()){%>
-                                                    <input type="checkbox" name="totentregat" value="true" checked disabled/>Tot entregat
-                                                    <%}else{%>
-                                                    <input type="checkbox" name="totentergat" value="true" disabled/>Tot entregat
-                                                    <%}%>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                        <label>Lesionat</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <%if(jugador.isLesionat()){%>
-                                                    <input type="checkbox" name="lesionat" value="true" checked disabled/>Lesionat
-                                                    <%}else{%>
-                                                    <input type="checkbox" name="lesionat" value="true" disabled/>Lesionat
-                                                    <%}%>
-                                                </label>
-                                            </div>
-                                        </div>
+                                      
                                         <br>
-                                            
-                                            <a href="index.jsp">
-                                            <span class="btn btn-primary">Tornar</span>
-                                            </a>
+                                        <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                    </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

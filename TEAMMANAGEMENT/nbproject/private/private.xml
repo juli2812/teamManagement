@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/consultar_valor_entrenament_2.jsp</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/ObtenirValoracionsEntrenamentCommand.java</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/consultar_valor_entrenament_1.jsp</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/consultar_valor_entrenament.jsp</file>
-            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/ValoracioEntrenament.java</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/ConsultarDadesJugadorCommand.java</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/src/java/cat/urv/deim/sob/command/FitxaJugadorCommand.java</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/consultar_dades_jugador2.jsp</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/consultar_fitxa_entrenador_j2.jsp</file>
+            <file>file:/C:/Users/Maria/Desktop/tfg/mariaBranch/teamManagement/TEAMMANAGEMENT/web/consultar_fitxa_jugador_2.jsp</file>
         </group>
     </open-files>
 </project-private>

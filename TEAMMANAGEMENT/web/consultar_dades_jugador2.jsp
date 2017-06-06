@@ -484,7 +484,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="images/presidentes-galicia-17918.jpg" alt="President" width=450 height=250>
+                                    <img src="data:image/png;base64,${imageBase64}"  width=450 height=250>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">

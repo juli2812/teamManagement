@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -36,14 +37,14 @@ public class ConsultarDadesJugadorCommand implements Command {
             throws ServletException, IOException {
             int numFedClub=0;
             Jugador dades=null;
-            byte[] fB = null;
+            String imageBase64=null;
             HttpSession session = request.getSession(true);
         // 1. process the request
         
         try {
             
             dades=getJugador(request.getParameter("jugador"));
-            fB = getFotoB("jugador");
+            imageBase64 = getFotoB(request.getParameter("jugador"));
 
             } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DadesJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,7 +52,8 @@ public class ConsultarDadesJugadorCommand implements Command {
         // 2. produce the view with the web result
         
             session.setAttribute("jug", dades);
-            if (fB != null) {
+            if (imageBase64 != null) {
+                session.setAttribute("imageBase64", imageBase64);
                /* response.setContentType("image/jpeg");
             ServletOutputStream out2 = response.getOutputStream();
             out2.write(fB);*/
@@ -87,21 +89,28 @@ public class ConsultarDadesJugadorCommand implements Command {
             return jugador;
     }
     
-    public byte[] getFotoB(String idUsuari)  {
-        Connection cn=null;
-        ResultSet rs = null;
-        PreparedStatement ps;
+    public String getFotoB(String idUsuari) throws SQLException, ClassNotFoundException  {
         
-        byte[] buffer = null;
-        try {
-           
-            String sql = "select foto from `jugador` where id_usuari= '"+idUsuari+"'";
+        Connection cn;
+        Jugador jugador = null;
+        PreparedStatement ps;
+        ResultSet rs = null;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+            cn.setSchema("team_management");
+        //try {
+           System.out.println("idJugador: "+idUsuari);
+            String sql = "select `foto` from `jugador` where fk_usuari= ?";
             ps = cn.prepareStatement(sql);
             ps.setString(1, idUsuari);
             rs=ps.executeQuery();
             
-            while (rs.next()){
-                Blob bin = rs.getBlob("ImgCedula");
+            if (rs.next()){
+                String imageBase64 = new String(Base64.getEncoder().encode(rs.getBytes(1)));
+                System.out.println("imagen: "+imageBase64);
+                return imageBase64;
+            }
+                /*Blob bin = rs.getBlob("ImgCedula");
                 if (bin != null) {
                     InputStream inStream = bin.getBinaryStream();
                     int size = (int) bin.length();
@@ -122,7 +131,7 @@ public class ConsultarDadesJugadorCommand implements Command {
             rs = null;
             
         }
-        return buffer;
+        return buffer;*/return null;
     }
     
 }
