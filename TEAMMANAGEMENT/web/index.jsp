@@ -71,8 +71,7 @@
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                
+            <ul class="nav navbar-top-links navbar-right">                
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -173,7 +172,7 @@
                                     <a href="alta_equip.jsp">Donar alta equip</a>
                                 </li>
                                 <li>
-                                    <a href="assingar_equip.jsp">Assignar equip</a>
+                                    <a href="assignar_equip.jsp">Assignar equip</a>
                                 </li>
                                 <li>
                                     <a href="baixa_equip.jsp">Donar baixa equip</a>
@@ -448,7 +447,6 @@
                         </li>
                     </ul>
                     <%}%>
-                    
                     <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
                     <ul class="nav" id="side-menu">
                         <li>
@@ -458,7 +456,7 @@
                                     <a href="alta_equip.jsp">Donar alta equip</a>
                                 </li>
                                 <li>
-                                    <a href="assingar_equip.jsp">Assignar equip</a>
+                                    <a href="assignar_equip.jsp">Assignar equip</a>
                                 </li>
                                 <li>
                                     <a href="baixa_equip.jsp">Donar baixa equip</a>
@@ -514,7 +512,6 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
 
         <div id="page-wrapper">
             <div class="row">
@@ -1007,5 +1004,4 @@
     <script src="dist/js/sb-admin-2.js"></script>
 
 </body>
-
 </html>

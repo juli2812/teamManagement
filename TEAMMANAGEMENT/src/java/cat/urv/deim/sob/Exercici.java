@@ -83,11 +83,6 @@ public class Exercici {
     public void setValoracio(String valoracio) {
         this.valoracio = valoracio;
     }
-
-    @Override
-    public String toString() {
-        return "Exercici{" + "idExercici=" + idExercici + ", fkEntrenament=" + fkEntrenament + ", explicacio=" + explicacio + ", tempsMin=" + tempsMin + ", material=" + material + ", fet=" + fet + ", valoracio=" + valoracio + '}';
-    }
     
     
     

@@ -3,6 +3,8 @@
     Created on : 03-nov-2016, 12:03:44
     Author     : BEC.CA2
 --%>
+<%@page import="cat.urv.deim.sob.Entrenador"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 
@@ -57,7 +59,6 @@
 <body>
 
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -546,7 +547,6 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
 
         <div id="page-wrapper">
             <div class="row">

@@ -291,6 +291,7 @@
                     
                     <%if((userType!=null) && userType.equals("President")){%>
                     <ul class="nav" id="side-menu">
+<<<<<<< HEAD
                     <ul class="nav" id="side-menu">
                         <li>
                             <a href="#"><i class="fa fa-home fa-fw"></i> Director Esportiu<span class="fa arrow"></span></a>
@@ -302,6 +303,14 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
+=======
+                        <li>
+                            <a href="afegir_dir_esportiu.jsp?club=true&af=1"><i class="fa fa-plus-circle fa-fw"></i> Afegir director esportiu</a>                          
+                        </li>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
+>>>>>>> maria
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
@@ -473,7 +482,10 @@
         </nav>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> maria
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -491,7 +503,11 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
+<<<<<<< HEAD
                                     <img src="images/ancelotti_1407834c.jpg" alt="President" width=460 height=287>
+=======
+                                    <img src="images/presidentes-galicia-17918.jpg" alt="President" width=450 height=250>
+>>>>>>> maria
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
