@@ -145,7 +145,7 @@
                                  out.println("Ompleix els camps obligatoris.");
                         }
                         %></font></b><br>
-                                        <button type="submit" class="btn btn-default">Continuar</button>
+                                        <button type="submit" class="btn btn-primary">Continuar</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
                                 </div>

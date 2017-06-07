@@ -33,7 +33,7 @@
     String redirectURL = "login.jsp";
     response.sendRedirect(redirectURL);}
 %>
-    <title>Team Management</title>
+<title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -76,196 +76,7 @@
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-tasks">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 1</strong>
-                                        <span class="pull-right text-muted">40% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 2</strong>
-                                        <span class="pull-right text-muted">20% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                            <span class="sr-only">20% Complete</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 3</strong>
-                                        <span class="pull-right text-muted">60% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 4</strong>
-                                        <span class="pull-right text-muted">80% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete (danger)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Tasks</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-tasks -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
+            <ul class="nav navbar-top-links navbar-right">                
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -274,6 +85,65 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> <% out.println(userName+" "+surName); %></a>
                         </li>
+                        <%if((userType!=null) && userType.equals("Entrenador")){%>
+                        
+                        <%if((null!=request.getParameter("type")) && "a".equals(request.getParameter("type"))){%>
+                        <%session.setAttribute("type","a");%>
+                        <li><a href="index.jsp?type=a"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Oficina</a>
+                        </li>
+                        <li><a href="index.jsp?type=b"><i class="fa fa-fw"></i> Partit</a>
+                        </li>
+                        <li><a href="index.jsp?type=c"><i class="fa fa-fw"></i> Entrenament</a>
+                        </li>
+                        <%}else if((null!=request.getParameter("type")) && "b".equals(request.getParameter("type"))){%>
+                        <%session.setAttribute("type","b");%>
+                        <li><a href="index.jsp?type=a"><i class="fa fa-fw"></i> Oficina</a>
+                        </li>
+                        <li><a href="index.jsp?type=b"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Partit</a>
+                        </li>
+                        <li><a href="index.jsp?type=c"><i class="fa fa-fw"></i> Entrenament</a>
+                        </li>
+                        <%}else if((null!=request.getParameter("type")) && "c".equals(request.getParameter("type"))){%>
+                        <%session.setAttribute("type","c");%>
+                        <li><a href="index.jsp?type=a"><i class="fa fa-fw"></i> Oficina</a>
+                        </li>
+                        <li><a href="index.jsp?type=b"><i class="fa fa-fw"></i> Partit</a>
+                        </li>
+                        <li><a href="index.jsp?type=c"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Entrenament</a>
+                        </li>
+                        <%}else if((null!=session.getAttribute("type")&&"a".equals(session.getAttribute("type").toString()))){%>
+                        <%session.setAttribute("type","a");%>
+                        <li><a href="index.jsp?type=a"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Oficina</a>
+                        </li>
+                        <li><a href="index.jsp?type=b"><i class="fa fa-fw"></i> Partit</a>
+                        </li>
+                        <li><a href="index.jsp?type=c"><i class="fa fa-fw"></i> Entrenament</a>
+                        </li>
+                        <%}else if((null!=session.getAttribute("type")&&"b".equals(session.getAttribute("type").toString()))){%>
+                        <%session.setAttribute("type","b");%>
+                        <li><a href="index.jsp?type=a"><i class="fa fa-fw"></i> Oficina</a>
+                        </li>
+                        <li><a href="index.jsp?type=b"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Partit</a>
+                        </li>
+                        <li><a href="index.jsp?type=c"><i class="fa fa-fw"></i> Entrenament</a>
+                        </li>
+                        <%}else if((null!=session.getAttribute("type")&&"c".equals(session.getAttribute("type").toString()))){%>
+                        <%session.setAttribute("type","c");%>
+                        <li><a href="index.jsp?type=a"><i class="fa fa-fw"></i> Oficina</a>
+                        </li>
+                        <li><a href="index.jsp?type=b"><i class="fa fa-fw"></i> Partit</a>
+                        </li>
+                        <li><a href="index.jsp?type=c"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Entrenament</a>
+                        </li>
+                        <%}else{%>
+                        <li><a href="index.jsp?type=a"><i class="glyphicon glyphicon-ok" style="color:greenyellow"></i> Oficina</a>
+                        </li>
+                        <li><a href="index.jsp?type=b"><i class="fa fa-fw"></i> Partit</a>
+                        </li>
+                        <li><a href="index.jsp?type=c"><i class="fa fa-fw"></i> Entrenament</a>
+                        </li>
+                        <%}%>
+                        <%}%>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -304,10 +174,13 @@
                             <a href="#"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
+                                    <a href="avisarIncidencia.jsp">Avisar incidència o esdeveniment</a>
+                                </li>
+                                <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
                                 </li>
                                 <li>
-                                    <a href="assingar_equip.jsp">Assignar equip</a>
+                                    <a href="assignar_equip.jsp">Assignar equip</a>
                                 </li>
                                 <li>
                                     <a href="baixa_equip.jsp">Donar baixa equip</a>
@@ -318,7 +191,7 @@
                             <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Entrenador<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="alta_entrenador.jsp">Donar alta entrenador</a>
+                                    <a href="registre_entrenador.jsp">Donar alta entrenador</a>
                                 </li>
                                 <li>
                                     <a href="assignar_entrenador.jsp">Assignar entrenador</a>
@@ -339,7 +212,7 @@
                             <a href="#"><i class="fa fa-gamepad fa-fw"></i> Jugador<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="alta_jugador.jsp">Donar alta jugador</a>
+                                    <a href="registre_jugador.jsp">Donar alta jugador</a>
                                 </li>
                                 <li>
                                     <a href="assignar_jugador.jsp">Assignar jugador</a>
@@ -360,7 +233,7 @@
                     <%}else if((userType!=null) && userType.equals("Jugador")){%>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-info-circle fa-fw"></i> Dades generals<span class="fa arrow"></span></a>
+                            <a href="index.jsp"><i class="fa fa-info-circle fa-fw"></i> General<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="quota.jsp">Consultar quota</a>
@@ -378,7 +251,7 @@
                                     <a href="consultar_tramit_fed_jugador.jsp">Consultar tràmit federatiu jugador</a>
                                 </li>
                                 <li>
-                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                    <a href="consultar_fitxa_entrenador_j.jsp">Consultar fitxa entrenador</a>
                                 </li>
                                 <li>
                                     <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
@@ -387,6 +260,15 @@
                                     <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Entrenament<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            <li>
+                               <a href="consultar_valor_entrenament.jsp">Consultar valoracions entrenament</a>
+                            </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
@@ -400,22 +282,192 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                    </ul>
+                    <%}else if((userType!=null) && userType.equals("Entrenador")){%>
+                    <%if((null!=session.getAttribute("type")&&"a".equals(session.getAttribute("type").toString()))){%>
+                    <ul class="nav" id="side-menu">
                         <li>
-                            <a href="consultar_valor_entrenament.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Consultar valoracions entrenament</a>
+                            <a href="index.jsp"><i class="fa fa-info-circle fa-fw"></i> General<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="consultar_absencia.jsp">Consultar absència</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_entrenador.jsp">Consultar tràmit federatiu entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="assignar_incidencia.jsp">Assignar incidència jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Entrenament<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="planificar_entrenament.jsp">Planificar entrenament</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="alta_partit.jsp">Donar alta partit</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_est_equip.jsp">Consultar estadistica equip</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_convocatoria.jsp">Consultar convocatoria</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_alineacio.jsp">Realitzar alineació</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_convocatoria.jsp">Realitzar convocatoria</a>
+                                </li>
+                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
                     
+                    <%}else if((null!=session.getAttribute("type")&&"b".equals(session.getAttribute("type").toString()))){%>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.jsp"><i class="fa fa-info-circle fa-fw"></i> General<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="consultar_absencia.jsp">Consultar absència</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_entrenador.jsp">Consultar tràmit federatiu entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="assignar_incidencia.jsp">Assignar incidència jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_incid_cast.jsp">Consultar incidència o càstig</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="valorar_partit.jsp">Valorar partit</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_est_equip.jsp">Consultar estadistica equip</a>
+                                </li>
+                                <li>
+                                    <a href="controlar_assistencia.jsp">Controlar assistencia</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_alineacio.jsp">Realitzar alineació</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                    
+                    <%}else if((null!=session.getAttribute("type")&&"c".equals(session.getAttribute("type").toString()))){%>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.jsp"><i class="fa fa-info-circle fa-fw"></i> General<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="consultar_absencia.jsp">Consultar absència</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_jugador.jsp">Consultar fitxa jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_jugador_e.jsp">Consultar tràmit federatiu jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_fitxa_entrenador.jsp">Consultar fitxa entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_tramit_fed_entrenador.jsp">Consultar tràmit federatiu entrenador</a>
+                                </li>
+                                <li>
+                                    <a href="assignar_incidencia.jsp">Assignar incidència jugador</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_class_comp.jsp">Consultar classificació i competició</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Entrenament<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="valorar_entrenament.jsp">Valorar entrenament</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_seg_entrenament.jsp">Realitzar seguiment entrenament</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gamepad fa-fw"></i> Partit<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="consultar_est_partit.jsp">Consultar estadistica partit/s</a>
+                                </li>
+                                <li>
+                                    <a href="consultar_est_equip.jsp">Consultar estadistica equip</a>
+                                </li>
+                                <li>
+                                    <a href="realitzar_convocatoria.jsp">Realitzar convocatoria</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                    <%}%>
                     <%}else if((userType!=null) && userType.equals("Director esportiu")){%>
                     <ul class="nav" id="side-menu">
                         <li>
                             <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
+                                    <a href="avisarIncidencia.jsp">Avisar incidència o esdeveniment</a>
+                                </li>
+                                <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
                                 </li>
                                 <li>
-                                    <a href="assingar_equip.jsp">Assignar equip</a>
+                                    <a href="assignar_equip.jsp">Assignar equip</a>
                                 </li>
                                 <li>
                                     <a href="baixa_equip.jsp">Donar baixa equip</a>
@@ -426,7 +478,7 @@
                             <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Entrenador<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="alta_entrenador.jsp">Donar alta entrenador</a>
+                                    <a href="registre_entrenador.jsp">Donar alta entrenador</a>
                                 </li>
                                 <li>
                                     <a href="assignar_entrenador.jsp">Assignar entrenador</a>
@@ -447,7 +499,7 @@
                             <a href="#"><i class="fa fa-gamepad fa-fw"></i> Jugador<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="alta_jugador.jsp">Donar alta jugador</a>
+                                    <a href="registre_jugador.jsp">Donar alta jugador</a>
                                 </li>
                                 <li>
                                     <a href="assignar_jugador.jsp">Assignar jugador</a>
@@ -471,6 +523,8 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+
+
 
 
 

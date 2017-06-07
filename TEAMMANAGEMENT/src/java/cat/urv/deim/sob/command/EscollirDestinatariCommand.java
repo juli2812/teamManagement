@@ -53,7 +53,7 @@ public class EscollirDestinatariCommand implements Command{
         session.setAttribute("usuaris", usuaris);
         if("".equals(request.getParameter("accio")) || request.getParameter("accio") == null){
         context.getRequestDispatcher("/registre_incidencia.jsp").forward(request, response);
-        }else if ("partit".equals(request.getParameter("accio"))){context.getRequestDispatcher("/alta_partit.jsp").forward(request, response);}
+        }else if ("partit".equals(request.getParameter("accio"))){context.getRequestDispatcher("/alta_partit_1.jsp").forward(request, response);}
         else if ("cde".equals(request.getParameter("accio"))){context.getRequestDispatcher("/consultar_dades_entrenador_1.jsp").forward(request, response);}
         else if ("cdj".equals(request.getParameter("accio"))){context.getRequestDispatcher("/consultar_dades_jugador_1.jsp").forward(request, response);}
         else if ("dbj".equals(request.getParameter("accio"))){context.getRequestDispatcher("/donar_baixa_jugador_1.jsp").forward(request, response);}

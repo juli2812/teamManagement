@@ -552,8 +552,9 @@
                                  out.println("Ompleix els camps obligatoris.");
                         }
                         %></font></b><br>
-                                        <button type="submit" class="btn btn-default">Continuar</button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
+                                        <button type="submit" class="btn btn-primary">Crear</button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                           <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>
                                 </div>
                             </div>

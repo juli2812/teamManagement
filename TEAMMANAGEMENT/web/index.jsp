@@ -169,6 +169,9 @@
                             <a href="#"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
+                                    <a href="avisarIncidencia.jsp">Avisar incidència o esdeveniment</a>
+                                </li>
+                                <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
                                 </li>
                                 <li>
@@ -452,6 +455,9 @@
                         <li>
                             <a href="index.jsp"><i class="fa fa-home fa-fw"></i> Equip<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="avisarIncidencia.jsp">Avisar incidència o esdeveniment</a>
+                                </li>
                                 <li>
                                     <a href="alta_equip.jsp">Donar alta equip</a>
                                 </li>
@@ -977,6 +983,8 @@
             </div>
             <!-- /.row -->
             <div class="row">
+                <h2>Informació important</h2>
+                <p>Aquest servei és gratuit, és un sevei innovador que està en proves així que demanen la col·laboració de tothom per a poder millorar el nostre servei, qualsevol errada no dubteu en contactar amb: <li> <a href="mailto:maria.valenzuela@estudiants.urv.cat">Maria Valenzuela Castro</a></li>  <li><a href="mailto:julian.lopez@estudiants.urv.cat">Julián López Ávila</a></li></p>
                 <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->

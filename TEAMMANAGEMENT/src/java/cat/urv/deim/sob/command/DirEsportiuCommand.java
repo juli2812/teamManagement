@@ -1,5 +1,6 @@
 package cat.urv.deim.sob.command;
 
+import cat.urv.deim.sob.Jugador;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
@@ -8,7 +9,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -20,21 +23,28 @@ public class DirEsportiuCommand implements Command {
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-
+        ServletContext context = request.getSession().getServletContext();
         // 1. process the request
         if(!"".equals(request.getParameter("dni"))&&!"".equals(request.getParameter("nom"))&&!"".equals(request.getParameter("cognom1"))&&!"".equals(request.getParameter("adress"))&&!"".equals(request.getParameter("telefon"))&&!"".equals(request.getParameter("idpresident"))&&!"".equals(request.getParameter("datanaix"))&&!"".equals(request.getParameter("contrasenya"))&&!"".equals(request.getParameter("dataincorporacio"))){
         try {
+            String existeix = getUsuariId(request.getParameter("idpresident"),request.getParameter("dni"));
+            if(existeix.equals("si")){
+            context.getRequestDispatcher("/registre.jsp?faltaParam=true").forward(request, response);
+            }
             registrar(request.getParameter("dni"),request.getParameter("nom"),request.getParameter("cognom1"),request.getParameter("cognom2"),request.getParameter("adress"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("idpresident"),request.getParameter("datanaix"),request.getParameter("contrasenya"),request.getParameter("dataincorp"));
             registrarPresident(request.getParameter("idpresident"), request.getParameter("idsuccessor"));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DirEsportiuCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
-        ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/registre_1.jsp?club=false").forward(request, response);
+        
+        if(null!=request.getParameter("dir")&&"false".equals(request.getParameter("dir"))){
+            context.getRequestDispatcher("/registre_2.jsp").forward(request, response);
+        }else{
+            context.getRequestDispatcher("/registre_1.jsp?club=false").forward(request, response);
+        }
         }
         else{
-        ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/registre.jsp?faltaParam=true").forward(request, response);
         
         }
@@ -59,6 +69,24 @@ public class DirEsportiuCommand implements Command {
                     ps.setString(10, dataIncorp);
             ps.executeUpdate();
     }
+    
+    public String getUsuariId (String idPresident, String dni) throws SQLException, ClassNotFoundException{
+        Connection con;
+        PreparedStatement ps;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+            con.setSchema("team_management");
+            String query = "SELECT `id_usuari` FROM `team_management`.`usuari` WHERE `id_usuari`=? OR `NIF`=?;";
+            ps = con.prepareStatement(query);
+            ps.setString(1, idPresident);
+            ps.setString(2, dni);
+            ResultSet resultSet=ps.executeQuery();
+            if (resultSet.next()) {
+                return "si";
+            }
+            return "no";
+    }
+    
     
     public void registrarPresident (String fkUsuari, String fkSuccessor) throws SQLException, ClassNotFoundException{
             Class.forName("com.mysql.cj.jdbc.Driver");

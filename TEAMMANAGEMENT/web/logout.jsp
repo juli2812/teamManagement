@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : login
     Created on : 03-nov-2016, 12:03:44
     Author     : BEC.CA2
@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <%@ page session="true" %>
         <%
             session.invalidate();
@@ -56,15 +57,10 @@
                             <input type="hidden" name="form_action" value="login"/>
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" type="text" name="idusuari" autofocus>
+                                    <input class="form-control" placeholder="E-mail" type="text" name="idusuari" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" type="password" value="" name="contrasenya">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">He oblidat...
-                                    </label>
+                                    <input class="form-control" placeholder="Password" type="password" value="" name="contrasenya"required>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 
@@ -76,7 +72,7 @@
                                  out.println("Dades èrronees");
                         }
                             %></font></b><br>
-                                <a href="registre.html" >Registrar-me</a>
+                                <a href="registre.jsp" >Registrar-me</a>
                                 </fieldset>
                         </form>
                     </div>
