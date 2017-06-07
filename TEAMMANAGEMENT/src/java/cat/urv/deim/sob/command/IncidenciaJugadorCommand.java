@@ -57,7 +57,7 @@ public class IncidenciaJugadorCommand implements Command {
             Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
             con.setSchema("team_management");
-            String query = "SELECT * FROM `team_management`.`incidencia` WHERE `fk_jugador`=? ORDER BY `data_incidencia` DESC;";
+            String query = "SELECT * FROM `team_management`.`incidencia` WHERE `fk_usuari`=? ORDER BY `data_incidencia` DESC;";
             ps = con.prepareStatement(query);
             ps.setString(1, idUsuari);
             ResultSet resultSet=ps.executeQuery();

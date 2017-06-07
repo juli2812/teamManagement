@@ -48,7 +48,7 @@ public class ObtenirEquipsCommand implements Command{
         HttpSession session = request.getSession(true);
         
         session.setAttribute("usuaris", equips);
-            context.getRequestDispatcher("/consultar_est_partit_equip_1.jsp").forward(request, response);
+            context.getRequestDispatcher("/consultar_est_equip_1.jsp").forward(request, response);
         
     }
     public ArrayList<String> obtenirDestinataris () throws SQLException, ClassNotFoundException{

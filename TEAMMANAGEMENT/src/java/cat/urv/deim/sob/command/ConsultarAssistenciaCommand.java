@@ -35,7 +35,7 @@ public class ConsultarAssistenciaCommand implements Command {
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-            ArrayList<Assistencia> dades=null;
+            ArrayList<Integer> dades=null;
             HttpSession session = request.getSession(true);
         // 1. process the request
         
@@ -59,24 +59,26 @@ public class ConsultarAssistenciaCommand implements Command {
     }
     
     
-    public ArrayList<Assistencia> getAssistencia (String idUsuari) throws SQLException, ClassNotFoundException{
+    public ArrayList<Integer> getAssistencia (String idUsuari) throws SQLException, ClassNotFoundException{
         Connection con;
-        ArrayList<Assistencia> as = new ArrayList<>();
+        ArrayList<Integer> as = new ArrayList<Integer>();
         PreparedStatement ps;
-        ResultSet resultSet2 = null;
             Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
             con.setSchema("team_management");
-            String query = "SELECT `fk_jugador`, `fk_partit`, `assistencia` FROM `team_management`.`valoracio_partit` WHERE `fk_jugador`=?;";
+            String query = "SELECT COUNT(*) FROM `convocatoria` WHERE `fk_jugador`=? AND `ha_vingut`=true;";
             ps = con.prepareStatement(query);
             ps.setString(1, idUsuari);
             ResultSet resultSet=ps.executeQuery();
-            
-            
-            
-                while (resultSet.next()) {
-                    as.add(new Assistencia(resultSet.getString(1),resultSet.getInt(2),resultSet.getInt(3)));
-                    
+            if (resultSet.next()) {
+                    as.add(resultSet.getInt(1));
+                }
+            query = "SELECT COUNT(*) FROM `valoracio_entrenament` WHERE `fk_jugador`=? AND `ha_vingut`=true;";
+            ps = con.prepareStatement(query);
+            ps.setString(1, idUsuari);
+            ResultSet resultSet2=ps.executeQuery();
+            if (resultSet2.next()) {
+                    as.add(resultSet2.getInt(1));
                 }
             return as;
     }

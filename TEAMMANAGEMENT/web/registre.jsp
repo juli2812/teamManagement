@@ -135,10 +135,11 @@
                                     <b><font color = "red">
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Ompleix els camps obligatoris.");
+                                 out.println("Ompleix els camps obligatoris.<br>L'usuari pot estar donat d'alta, prova amb un altre o el teu DNI ja existeix. ");
                         }
                         %></font></b><br>
-                                        <button type="submit" class="btn btn-default">Continuar</button>
+                                        <button type="submit" class="btn btn-primary" name="dir" value="true">Continuar</button>
+                                        <button type="submit" class="btn btn-primary" name="dir" value="false">Continuar sense Director Esportiu</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
                                 </div>
