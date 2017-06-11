@@ -91,6 +91,12 @@
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1></h1>
+                                    <%
+                                        ArrayList<String> partits;
+                                        partits = (ArrayList<String>) session.getAttribute("partits");
+                                        if(partits.size()>0){
+                                    %>
+        
                                     <form role="form" method="post" action="controller.do">
                                        
                         <input type="hidden" name="form_action" value="mostrarestadisticapartitequip"/>
@@ -100,15 +106,15 @@
                                             <label>Escull partit</label>
                                             <select name="partit">   
                                         <%
-                                        ArrayList<String> partits;
-                                        partits = (ArrayList<String>) session.getAttribute("partits");
+                                        
                                         for(String p: partits){
                                         %>
                                         <option value="<%out.print(p);%>"><% out.println(p +"<br/>"); %></option>
                                         <% }%>
                                             </select>
                                         </div>
-                                        </div>                                  
+                                        </div>    
+                                            <font>
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
                                  out.println("Omple els camps obligatoris.");
@@ -116,6 +122,10 @@
                         %></font></b><br>
                                         <button type="submit" class="btn btn-default">Continuar</button>
                                     </form>
+                                        <%}else{%>
+                                        <font color='green'>No hi ha equips amb partits.</font>
+                                    <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                        <%}%>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->

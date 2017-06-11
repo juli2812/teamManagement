@@ -52,7 +52,7 @@ public class MostrarEstadisticaPartitEquipCommand implements Command {
         ServletContext context = request.getSession().getServletContext();
             if(dades != null || partits !=null){
           
-            context.getRequestDispatcher("/consultar_est_partit_equip_2.jsp").forward(request, response);
+            context.getRequestDispatcher("/mostrar_est_temporada.jsp").forward(request, response);
           
             }else context.getRequestDispatcher("/index.jsp").forward(request, response);
         

@@ -20,8 +20,9 @@ public class ValoracioEntrenament {
     private Boolean puntualitat;
     private Boolean haVingut;
     private String comentari;
+    private int nota;
 
-    public ValoracioEntrenament(String fkJugador, int fkEntrenament, Date dataEntrenament, String condicioFisica, String actitud, Boolean puntualitat, Boolean haVingut, String comentari) {
+    public ValoracioEntrenament(String fkJugador, int fkEntrenament, Date dataEntrenament, String condicioFisica, String actitud, Boolean puntualitat, Boolean haVingut, String comentari, int nota) {
         this.fkJugador = fkJugador;
         this.fkEntrenament = fkEntrenament;
         this.dataEntrenament = dataEntrenament;
@@ -30,6 +31,15 @@ public class ValoracioEntrenament {
         this.puntualitat = puntualitat;
         this.haVingut = haVingut;
         this.comentari = comentari;
+        this.nota = nota;
+    }
+
+    public int getNota() {
+        return nota;
+    }
+
+    public void setNota(int nota) {
+        this.nota = nota;
     }
 
     public String getFkJugador() {

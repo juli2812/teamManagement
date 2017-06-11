@@ -544,6 +544,10 @@
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1></h1>
+                                    <%
+                                        ArrayList<String> usuaris;
+                                        usuaris = (ArrayList<String>) session.getAttribute("usuaris");
+                                        if(usuaris.size()>0){%>
                                     <form role="form" method="post" action="controller.do">
                                        
                         <input type="hidden" name="form_action" value="donarbaixajugador"/>
@@ -552,15 +556,15 @@
                                             <label>Escull jugador</label>
                                             <select class="form-control" name="jugador">   
                                         <%
-                                        ArrayList<String> usuaris;
-                                        usuaris = (ArrayList<String>) session.getAttribute("usuaris");
+                                        
                                         for(String user: usuaris){
                                         %>
                                         <option value="<%out.print(user);%>"><% out.println(user +"<br/>"); %></option>
                                         <% }%>
                                             </select>
                                         </div>
-                                        </div>                                  
+                                        </div>  
+                                            <font>
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
                                  out.println("Omple els camps obligatoris.");
@@ -569,6 +573,10 @@
                                         <button type="submit" class="btn btn-primary">Continuar</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                      </form>
+                                        <%}else{%>
+                                        <h1>No hi ha usuaris amb equip assignat</h1>
+                                        <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                        <%}%>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->

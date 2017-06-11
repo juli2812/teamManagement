@@ -18,6 +18,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -31,19 +32,25 @@ public class CrearIncidenciaCommand implements Command{
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        
+            int output = 0;
+            HttpSession session = request.getSession(true);
         
         //if(!"".equals(request.getParameter("idjugador"))&&!"".equals(request.getParameter("dni"))&&!"".equals(request.getParameter("nom"))&&!"".equals(request.getParameter("cognom1"))&&!"".equals(request.getParameter("cognom2"))&&!"".equals(request.getParameter("adress"))&&!"".equals(request.getParameter("contrsenya"))&&!"".equals(request.getParameter("telefon"))&&!"".equals(request.getParameter("dataincorp"))&&!"".equals(request.getParameter("datanaix"))&&!"".equals(request.getParameter("dorsal"))&&!"".equals(request.getParameter("numcatsalut"))&&!"".equals(request.getParameter("reconeixementmedic"))&&!"".equals(request.getParameter("idclub"))&&!"".equals(request.getParameter("compte_bancari"))){
             //si usuarios
         // 1. process the request
         try {
-            registrarIncidencia(request.getParameter("us"), request.getParameter("destinatari"),request.getParameter("motiu"),request.getParameter("dataincorp"),request.getParameter("tipusincidencia"),request.getParameter("numpartits"));
+            output =  registrarIncidencia(request.getParameter("us"), request.getParameter("destinatari"),request.getParameter("motiu"),request.getParameter("dataincorp"),request.getParameter("tipusincidencia"),request.getParameter("numpartits"));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/index.jsp").forward(request, response);
+        if(output == 1){
+            session.setAttribute("result", "OK");
+        }else{
+            session.setAttribute("result", "NOK");
+        }
+        context.getRequestDispatcher("/avisarIncidencia_1.jsp").forward(request, response);
        /* }
         else{
         ServletContext context = request.getSession().getServletContext();
@@ -51,7 +58,7 @@ public class CrearIncidenciaCommand implements Command{
         
         }*/
     }
-    public void registrarIncidencia (String usuaris, String destino, String motiu,String data, String tipusincidencia, String numpartits) throws SQLException, ClassNotFoundException{
+    public int registrarIncidencia (String usuaris, String destino, String motiu,String data, String tipusincidencia, String numpartits) throws SQLException, ClassNotFoundException{
         Connection con;
         PreparedStatement ps;
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -101,5 +108,6 @@ public class CrearIncidenciaCommand implements Command{
                         ps.setString(5, motiu);
                 ps.executeUpdate();
             }
+            return 1;
     }
 }

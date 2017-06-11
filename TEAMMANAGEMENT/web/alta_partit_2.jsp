@@ -1,12 +1,26 @@
 <%-- 
-    Document   : consultar_valor_entrenament_2
-    Created on : 05-jun-2017, 05-jun-2017 13:08:56
+    Document   : alta_partit_2
+    Created on : 11-jun-2017, 11-jun-2017 16:52:08
     Author     : Maria
 --%>
 
-<%@page import="cat.urv.deim.sob.ValoracioEntrenament"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="cat.urv.deim.sob.ClassifCalend"%>
+    <%
+            String userId ="";
+            userId = (String) session.getAttribute("idUsuari");
+            String userName ="";
+            userName = (String) session.getAttribute("nomUsuari");
+            String surName ="";
+            surName = (String) session.getAttribute("cognomUsuari");
+            String userType ="";
+            userType = (String) session.getAttribute("tipusUsuari");
+            String error = (String) session.getAttribute("error");
+        %>
+        <% if(null==userId || "".equals(userId)){
+    String redirectURL = "login.jsp";
+    response.sendRedirect(redirectURL);}
+%>
 <html lang="en">
 
 <head>
@@ -16,23 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
     <%@ page session="true" %>
-        <%
-            String userId ="";
-            userId = (String) session.getAttribute("idUsuari");
-            String userName ="";
-            userName = (String) session.getAttribute("nomUsuari");
-            String surName ="";
-            surName = (String) session.getAttribute("cognomUsuari");
-            String userType ="";
-            userType = (String) session.getAttribute("tipusUsuari");
-            ValoracioEntrenament ve =(ValoracioEntrenament) session.getAttribute("ve");
-        %>
-        <% if(null==userId || "".equals(userId)){
-    String redirectURL = "login.jsp";
-    response.sendRedirect(redirectURL);}
-%>
 <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
@@ -528,7 +526,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Valoració Entrenament</h1>
+                    <h1 class="page-header">Consultar Classificació i Calendari de competició </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -537,64 +535,23 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <img src="images/450_1000.jpg" alt="Jugador" width=450 height=297>
+                                    <img src="images/podio.jpg" alt="Jugador" width=284 height=178>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                    <h1><%out.print(ve.getFkJugador());%></h1>
-                                    
-                                       <!--Dades jugador -->
-                                        <label>Data</label>
-                                        <div class="form-group">
-                                            <input class="form-control" type="data" name="NIF" maxlength="9" value="<%out.print(ve.getDataEntrenament());%>" disabled/>
-                                        </div>
-                                        <label>Condicio fisica</label>
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" name="nom" maxlength="20" value="<%out.print(ve.getCondicioFisica());%>" disabled/>
-                                        </div>
-                                        <label>Actitud</label>
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" name="nom" maxlength="20" value="<%out.print(ve.getActitud());%>" disabled/>
-                                        </div>
-                                        <label>Comentari</label>
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" name="nom" maxlength="20" value="<%out.print(ve.getComentari());%>" disabled/>
-                                        </div>
-                                        <label>Nota</label>
-                                        <div class="form-group">
-                                            <input class="form-control" type="number" name="valoracio" value="<%out.print(ve.getNota());%>" disabled/>
-                                        </div>
-                                        <label>Puntualitat</label>
-                                        <div class="checkbox">
-                                                <label>
-                                                    <%if(ve.getPuntualitat()){%>
-                                                    <input type="checkbox" name="puntualitat" value="true" checked disabled/>Puntual
-                                                    <%}else{%>
-                                                    <input type="checkbox" name="puntualitat" value="true" disabled/>Puntual
-                                                    <%}%>
-                                                </label>
-                                            </div>
-                                                <label>Ha vingut</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <%if(ve.getHaVingut()){%>
-                                                    <input type="checkbox" name="havingut" value="true" checked disabled/>Ha vingut
-                                                    <%}else{%>
-                                                    <input type="checkbox" name="havingut" value="true" disabled/>Ha vingut
-                                                    <%}%>
-                                                </label>
-                                            </div>
-                                                    
-                                                    
-                                        <br>
-                                            
+                                <%if("2".equals(error) ){%>
+                                    <label>S'ha donat d'alta el partit</label>
+                                <%}else if("1".equals(error)){%>
+                                    <label>No s'ha pogut donar d'alta.</label>
+                                <%}%>
                                         <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </div>
-                                <!-- /.col-lg-6 (nested) -->
+                                            
                             </div>
                             <!-- /.row (nested) -->
                         </div>
@@ -603,8 +560,9 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            
             </div>
+            <!-- /.row -->
+        </div>
         <!-- /#page-wrapper -->
 
     </div>
@@ -619,15 +577,10 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="vendor/raphael/raphael.min.js"></script>
-    <script src="vendor/morrisjs/morris.min.js"></script>
-    <script src="data/morris-data.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
 
 </body>
 
 </html>
-    
+

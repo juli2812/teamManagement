@@ -121,7 +121,7 @@ public class EscollirDestinatariCommand implements Command{
             
             ResultSet resultSet=ps.executeQuery();
             
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 resultado.add(resultSet.getString(1));
             }
             return resultado;

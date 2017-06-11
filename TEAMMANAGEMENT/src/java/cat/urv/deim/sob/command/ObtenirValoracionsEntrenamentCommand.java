@@ -100,16 +100,16 @@ public class ObtenirValoracionsEntrenamentCommand implements Command{
             ResultSet resultSet=ps.executeQuery();
             
             if (resultSet.next()) {
-            query = "SELECT `comentari` FROM `team_management`.`valoracio` WHERE `id_valoracio` = ?;";
+            query = "SELECT `comentari`, `nota` FROM `team_management`.`valoracio` WHERE `id_valoracio` = ?;";
             ps = con.prepareStatement(query);
             ps.setString(1, resultSet.getString(1));
             resultSet2=ps.executeQuery();
             
             if(resultSet2.next()){
 
-                resultado=new ValoracioEntrenament(resultSet.getString(2), resultSet.getInt(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBoolean(7), resultSet.getBoolean(8), resultSet2.getString(1));
+                resultado=new ValoracioEntrenament(resultSet.getString(2), resultSet.getInt(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBoolean(7), resultSet.getBoolean(8), resultSet2.getString(1), resultSet2.getInt(2));
             } else{
-                resultado=new ValoracioEntrenament(resultSet.getString(2), resultSet.getInt(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBoolean(7), resultSet.getBoolean(8), null);        
+                resultado=new ValoracioEntrenament(resultSet.getString(2), resultSet.getInt(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBoolean(7), resultSet.getBoolean(8), null, 0);        
                         }
             }
             return resultado;

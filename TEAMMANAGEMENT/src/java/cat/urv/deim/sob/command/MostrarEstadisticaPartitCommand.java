@@ -38,7 +38,6 @@ public class MostrarEstadisticaPartitCommand  implements Command {
         
         try {
             
-            
             dades=obtenirEstadistica(request.getParameter("jugador"), Integer.parseInt(request.getParameter("partit")));
             
 
@@ -64,6 +63,7 @@ public class MostrarEstadisticaPartitCommand  implements Command {
         ArrayList<ValoracioPartit> valtemp = new ArrayList<>();
         PreparedStatement ps;
         ResultSet resultSet2 = null;
+        System.out.println("jugador>>" + idUsuari + ", partit>>" + partit);
             Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
             con.setSchema("team_management");

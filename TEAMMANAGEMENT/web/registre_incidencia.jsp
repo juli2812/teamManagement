@@ -571,8 +571,7 @@
                                     <%if("jugador".equals(destino) || "entrenador".equals(destino)) {%>
                                     <div class="form-group">
                                             <label>Núm. partits sancionats</label>
-                                            <input class="form-control"  maxlength="50" name="numpartits
-                                                   " required>
+                                            <input class="form-control"  maxlength="50" name="numpartits" required>
                                         </div>
                                     <% }
                                     

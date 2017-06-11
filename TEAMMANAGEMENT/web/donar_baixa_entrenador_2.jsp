@@ -534,6 +534,7 @@
                                 <div class="col-lg-6">
                                     <h1></h1>
                                     <font color='green'>S'ha donat de baixa el entreandor seleccionat.</font>
+                                    <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->

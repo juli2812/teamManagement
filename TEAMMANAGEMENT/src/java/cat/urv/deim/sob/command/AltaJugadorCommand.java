@@ -20,6 +20,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -33,19 +34,40 @@ public class AltaJugadorCommand implements Command{
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+            int result0 = 0;
+            int result = 0;
+            String error = "0"; //1 = no s'ha pogut insertar 2= ha anat bé 3 = ja existeix
+            HttpSession session = request.getSession(true);
 
         if(!"".equals(request.getParameter("idjugador"))&&!"".equals(request.getParameter("dni"))&&!"".equals(request.getParameter("nom"))&&!"".equals(request.getParameter("cognom1"))&&!"".equals(request.getParameter("cognom2"))&&!"".equals(request.getParameter("adress"))&&!"".equals(request.getParameter("contrsenya"))&&!"".equals(request.getParameter("telefon"))&&!"".equals(request.getParameter("dataincorp"))&&!"".equals(request.getParameter("datanaix"))&&!"".equals(request.getParameter("dorsal"))&&!"".equals(request.getParameter("numcatsalut"))&&!"".equals(request.getParameter("reconeixementmedic"))&&!"".equals(request.getParameter("idclub"))&&!"".equals(request.getParameter("compte_bancari"))){
             
         // 1. process the request
         try {
-            registrar(request.getParameter("dni"),request.getParameter("nom"),request.getParameter("cognom1"),request.getParameter("cognom2"),request.getParameter("address"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("idjugador"),request.getParameter("datanaix"),request.getParameter("contrasenya"),request.getParameter("dataincorp"));
-            registrarJugador(request.getParameter("idjugador"),request.getParameter("idequip"),request.getParameter("comptebancari"), request.getParameter("cursescolar"), request.getParameter("escola"), request.getParameter("nompare"), request.getParameter("nommare"), request.getParameter("comptetutoritzat"), Integer.parseInt(request.getParameter("dorsal")), request.getParameter("fotocopiadni"), request.getParameter("numcatsalut"), request.getParameter("reconeixementmedic"), Boolean.parseBoolean(request.getParameter("totentregat")), Boolean.parseBoolean(request.getParameter("lesionat")),request.getParameter("foto"));
+            result0 = registrar(request.getParameter("dni"),request.getParameter("nom"),request.getParameter("cognom1"),request.getParameter("cognom2"),request.getParameter("address"),Integer.parseInt(request.getParameter("telefon")),request.getParameter("idjugador"),request.getParameter("datanaix"),request.getParameter("contrasenya"),request.getParameter("dataincorp"));
+            result = registrarJugador(request.getParameter("idjugador"),request.getParameter("idequip"),request.getParameter("comptebancari"), request.getParameter("cursescolar"), request.getParameter("escola"), request.getParameter("nompare"), request.getParameter("nommare"), request.getParameter("comptetutoritzat"), Integer.parseInt(request.getParameter("dorsal")), request.getParameter("fotocopiadni"), request.getParameter("numcatsalut"), request.getParameter("reconeixementmedic"), Boolean.parseBoolean(request.getParameter("totentregat")), Boolean.parseBoolean(request.getParameter("lesionat")),request.getParameter("foto"));
+            error = "2";
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
+        if(result0 == 1 && result != 1){
+            error = "1";
+            // esborrem l'usuari
+            try {
+            esborrarUsuari(request.getParameter("id_usuari"));
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AltaEntrenadorCommand.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        }else if(result0 != 1){
+            error = "3";
+        }
+        // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/index.jsp").forward(request, response);
+        session.setAttribute("error", error);
+        context.getRequestDispatcher("/registre_entrenador_1.jsp").forward(request, response);
         }
         else{
         ServletContext context = request.getSession().getServletContext();
@@ -53,7 +75,20 @@ public class AltaJugadorCommand implements Command{
         
         }
     }
-    public void registrar (String dni, String nom,String cognom1, String cognom2, String address, int telefon, String id_usuari, String dataNaix, String contrasenya, String dataIncorp) throws SQLException, ClassNotFoundException{
+    
+    public void esborrarUsuari (String idUsuari) throws ClassNotFoundException, SQLException{
+         Connection con;
+        PreparedStatement ps;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+            con.setSchema("team_management");
+            String sentenciaSQL = "DELETE FROM `team_management`.`usuari` WHERE `id_usuari` = ?;";
+            ps = con.prepareStatement(sentenciaSQL);
+                    ps.setString(1, idUsuari);
+            ps.executeUpdate();
+    }
+    
+    public int registrar (String dni, String nom,String cognom1, String cognom2, String address, int telefon, String id_usuari, String dataNaix, String contrasenya, String dataIncorp) throws SQLException, ClassNotFoundException{
         Connection con;
         PreparedStatement ps;
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -72,9 +107,11 @@ public class AltaJugadorCommand implements Command{
                     ps.setString(9, DigestUtils.sha1Hex(contrasenya));
                     ps.setString(10, dataIncorp);
             ps.executeUpdate();
+            
+            return 1;
     }
     
-    public void registrarJugador (String fkUsuari, String fkEquip, String compteBancari, String cursEscolar, String escola, String nompare, String nommare, String comptetutoritzat, int dorsal, String fotocopiaDNI, String numCatSalut, String reconeixementMedic, Boolean totEntregat, Boolean lesionat,  String foto) throws SQLException, ClassNotFoundException{
+    public int registrarJugador (String fkUsuari, String fkEquip, String compteBancari, String cursEscolar, String escola, String nompare, String nommare, String comptetutoritzat, int dorsal, String fotocopiaDNI, String numCatSalut, String reconeixementMedic, Boolean totEntregat, Boolean lesionat,  String foto) throws SQLException, ClassNotFoundException{
             Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con;
         PreparedStatement ps;
@@ -149,5 +186,6 @@ public class AltaJugadorCommand implements Command{
 
         
         ps.executeUpdate();
+        return 1;
     }
 }

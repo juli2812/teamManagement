@@ -549,7 +549,7 @@
                       
                                         <div class="form-group">
                                             <label>Nom d'usuari</label>
-                                            <input class="form-control" placeholder="Segueix l'estil EddMMyyXXX" maxlength="9" name="identrenador" required>
+                                            <input class="form-control" placeholder="Segueix l'estil EddMMyyXXX" maxlength="11" name="identrenador" required>
                                             <p>On E és l’identificador del tipus d’usuari que serà sempre aquest per al entrenador, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms.</p>
                                         </div>
                                         <div class="form-group">
