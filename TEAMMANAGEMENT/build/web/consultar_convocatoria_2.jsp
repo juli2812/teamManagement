@@ -540,7 +540,6 @@
                                     
                                        
                         
-                                        <div class="form-group">
                                             <div class="form-group">
                                             <label>Jugador</label>
                                             <input class="form-control" type="String" name="jugador" value="<% out.print(c.getFkJugador()); %>" disabled>
@@ -585,17 +584,33 @@
                                             <input class="form-control" type="Number"  name="jugMax" value="<% out.print(c.getMaxJug()); %>" disabled>
                                         </div>
                                       
-                                             <div class="form-group">
-                                            <label>Confirmació</label>
-                                            <input class="checkbox" type="checkbox" name="confirmacio" value="<%out.print(c.isConfirmat());%>" disabled>
-                                        </div>
-                                      
-                                             <div class="form-group">
-                                            <label>Ha vingut</label>
-                                            <input class="checkbox" type="checkbox" name="havingut" value="<%out.print(c.isHaVingut());%>" disabled>
-                                        </div>
+                                             
                                         
-                                        </div>                                  
+                                             <div class="form-group">
+                                        <label>Confirmació</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <%if(c.isConfirmat()){%>
+                                                    <input type="checkbox" name="confirmacio2" value="true" checked disabled>
+                                                    <%}else{%>
+                                                    <input type="checkbox" name="confirmacio2" value="true" disabled>
+                                                    <%}%>
+                                                </label>
+                                            </div>
+                                        </div>
+                                                
+                                        <div class="form-group">
+                                        <label>Ha vingut</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <%if(c.isHaVingut()){%>
+                                                    <input type="checkbox" name="havingut" value="true" checked disabled>
+                                                    <%}else{%>
+                                                    <input type="checkbox" name="havingut" value="true" disabled>
+                                                    <%}%>
+                                                </label>
+                                            </div>
+                                        </div>   
                                     <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </div>
                             </div>

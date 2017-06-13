@@ -542,7 +542,14 @@
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1>Equip</h1>
+                                    <b><font color = "red">
+                        <%
+                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
+                                 out.println("Ompleix els camps obligatoris. El error pot ser perquè ja existeixi l'equip.");
+                        }
+                            %></font></b><br>
                                     <form role="form" method="post" action="controller.do">
+                                        
                                     <input type="hidden" name="form_action" value="altaequip"/>
                                     <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                     <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
@@ -562,12 +569,7 @@
                                             <label>Calendari</label>
                                             <input class="form-control" placeholder="(Opcional)" maxlength="150"  name="calendari">
                                         </div>
-                                    <b><font color = "red">
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Ompleix els camps obligatoris.");
-                        }
-                        %></font></b><br>
+                                    <br>
                                         <button type="submit" class="btn btn-primary">Crear</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>

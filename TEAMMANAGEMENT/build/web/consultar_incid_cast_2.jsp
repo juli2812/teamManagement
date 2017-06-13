@@ -554,7 +554,11 @@
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                         <label>Motiu</label>
                                         <div class="form-group">
+                                            <%if(null!=incidencia.getMotiu()){%>
                                             <input class="form-control" type="text" name="nomjugador" value="<%out.print(incidencia.getMotiu());%>" disabled/>
+                                            <%}else{%>
+                                            <input class="form-control" type="text" name="nomjugador" value="Sense motiu." disabled/>
+                                            <%}%>
                                         </div>
                                         <label>Tipus incidència</label>
                                         <div class="form-group">

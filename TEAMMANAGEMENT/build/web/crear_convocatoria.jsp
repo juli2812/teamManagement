@@ -604,12 +604,12 @@
                                         </div>
                                       
                                              <div class="form-group">
-                                            <label>Jugadors minims</label>
+                                            <label>Mínims jugadors</label>
                                             <input class="form-control" type="Number" name="jugMin" required>
                                         </div>
                                       
                                              <div class="form-group">
-                                            <label>Jugadors maxims</label>
+                                            <label>Màxims jugadors</label>
                                             <input class="form-control" type="Number"  name="jugMax" required>
                                         </div>
                                       
@@ -617,11 +617,7 @@
                                             <label>Confirmació</label>
                                             <input class="checkbox" type="checkbox" name="confirmacio" >
                                         </div>
-                                      
-                                             <div class="form-group">
-                                            <label>Ha vingut</label>
-                                            <input class="checkbox" type="checkbox" name="havingut" >
-                                        </div>
+                                            <input  type="hidden" name="havingut" value="true">
                                         
                                         </div>                                  
                         <%

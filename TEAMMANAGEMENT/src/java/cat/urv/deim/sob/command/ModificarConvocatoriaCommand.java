@@ -36,7 +36,7 @@ public class ModificarConvocatoriaCommand  implements Command{
             
         // 1. process the request
         try {
-            modificarConvo(request.getParameter("jugador"),request.getParameter("partit"),request.getParameter("datapartit"), Integer.parseInt(request.getParameter("numJconf")), Integer.parseInt(request.getParameter("numJnoconf")), request.getParameter("llocpartit"), request.getParameter("dataLconf"),Integer.parseInt(request.getParameter("jugMin")),Integer.parseInt(request.getParameter("jugMax")),Boolean.parseBoolean(request.getParameter("confirmacio")),Boolean.parseBoolean(request.getParameter("havingut")));
+            modificarConvo(request.getParameter("jugador"),request.getParameter("partit"),request.getParameter("datapartit"), Integer.parseInt(request.getParameter("numJconf")), Integer.parseInt(request.getParameter("numJnoconf")), request.getParameter("llocpartit"), request.getParameter("dataLconf"),Integer.parseInt(request.getParameter("jugMin")),Integer.parseInt(request.getParameter("jugMax")),Boolean.valueOf(request.getParameter("confirmacio")),Boolean.valueOf(request.getParameter("havingut")));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DonarBaixaJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,14 +67,11 @@ public class ModificarConvocatoriaCommand  implements Command{
                     ps.setString(5, dataLconf);
                     ps.setInt(6, jugMin);
                     ps.setInt(7, jugMax);
-                    if("true".equals(confirmacio)){ps.setInt(8, 1);}
-                    else{ps.setInt(8, 0);}
-                    if("true".equals(havingut)){ps.setInt(9, 1);}
-                    else{ps.setInt(9, 0);}
+                    ps.setBoolean(8, confirmacio);
+                    ps.setBoolean(9, false);
                     ps.setString(10, jugador);
                     ps.setString(11, partit);
             ps.executeUpdate();
-            System.out.println("ha arrbiat a fer l'update");
     }
     
     }

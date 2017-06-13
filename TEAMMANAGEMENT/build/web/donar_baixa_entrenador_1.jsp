@@ -1,9 +1,10 @@
 <%-- 
-    Document   : donar_baixa_jugador
+    Document   : donar_baixa_entrenador
     Created on : 03-jun-2017, 03-jun-2017 19:26:50
     Author     : Maria
 --%>
 
+<%@page import="cat.urv.deim.sob.Entrenador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -524,7 +525,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Baixa Jugador </h1>
+                    <h1 class="page-header">Baixa Entrenador </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -544,6 +545,10 @@
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1></h1>
+                                    <%
+                                        ArrayList<Entrenador> usuaris;
+                                        usuaris = (ArrayList<Entrenador>) session.getAttribute("entrenadors");
+                                        if(usuaris.size()>0){%>
                                     <form role="form" method="post" action="controller.do">
                                        
                         <input type="hidden" name="form_action" value="donarbaixaentrenador"/>
@@ -552,11 +557,10 @@
                                             <label>Escull entrenador</label>
                                             <select class="form-control" name="entrenador">   
                                         <%
-                                        ArrayList<String> usuaris;
-                                        usuaris = (ArrayList<String>) session.getAttribute("usuaris");
-                                        for(String user: usuaris){
+                                        
+                                        for(Entrenador user: usuaris){
                                         %>
-                                        <option value="<%out.print(user);%>"><% out.println(user +"<br/>"); %></option>
+                                        <option value="<%out.print(user.getIdUsuari());%>"><% out.println(user.getNom()+" "+user.getCognom() +"<br/>"); %></option>
                                         <% }%>
                                             </select>
                                         </div>
@@ -569,6 +573,10 @@
                                         <button type="submit" class="btn btn-primary">Continuar</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                      </form>
+                                        <%}else{%>
+                                        <h1>No hi ha usuaris amb equip assignat</h1>
+                                        <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                        <%}%>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->

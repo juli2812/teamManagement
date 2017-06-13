@@ -114,7 +114,7 @@ public class AltaEntrenadorCommand implements Command{
         PreparedStatement ps;
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
         con.setSchema("team_management");
-        String sentenciaSQL = "INSERT INTO `entrenador` (`fk_usuari`, `compte_bancari`, `nivell_entrenador`, `tipus_modalitat_actual`, `certificat`, `funcio`, `fotocopia_DNI`, `foto`, `num_salut`, `reconeixement_medic`, `tot_entregat`, `fotoB`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+        String sentenciaSQL = "INSERT INTO `entrenador` (`fk_usuari`, `compte_bancari`, `nivell_entrenador`, `tipus_modalitat_actual`, `certificat`, `funcio`, `fotocopia_DNI`, `foto`, `num_salut`, `reconeixement_medic`, `tot_entregat`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
        
         ps = con.prepareStatement(sentenciaSQL);
         ps.setString(1, fkUsuari);
@@ -139,9 +139,6 @@ public class AltaEntrenadorCommand implements Command{
         if("".equals(fotocopiaDNI)){ ps.setString(7,null);}
         else ps.setString(7, fotocopiaDNI);
         
-        if("".equals(foto)){ ps.setString(8,null);}
-        else ps.setString(8, foto);
-        
         if("".equals(numSalut)){ ps.setString(9,null);}
         else ps.setString(9, numSalut);
         
@@ -153,13 +150,13 @@ public class AltaEntrenadorCommand implements Command{
         
                 //Para la foto
         FileInputStream fis = null;
-        ps.setBinaryStream(12, null);
+        ps.setBinaryStream(8, null);
         try {
             File file = new File(foto);
             System.out.println("llega a aqui");
             fis = new FileInputStream(file);
             
-            ps.setBinaryStream(12, fis, (int) file.length());
+            ps.setBinaryStream(8, fis, (int) file.length());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AltaJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -167,5 +164,7 @@ public class AltaEntrenadorCommand implements Command{
         
         ps.executeUpdate();
         return 1;
+        
+        /*RETOCADO EN EL CURRO*/
     }
 }

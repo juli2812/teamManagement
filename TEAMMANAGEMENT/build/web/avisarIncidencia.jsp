@@ -156,7 +156,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     
                     <%if((userType!=null) && userType.equals("President")){%>
-                    <ul class="nav" id="side-menu">
+                    
                     <ul class="nav" id="side-menu">
                         <li>
                             <a href="#"><i class="fa fa-home fa-fw"></i> Director Esportiu<span class="fa arrow"></span></a>
@@ -558,12 +558,7 @@
                                             </select>
                                         </div>
                                         
-                                    
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Omple els camps obligatoris.");
-                        }
-                        %></font></b><br>
+                        
                                         <button type="submit" class="btn btn-primary">Continuar</button>
                                     </form>
                                 </div>

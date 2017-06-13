@@ -75,7 +75,7 @@ public class ObtenirConvocatoriaCommand implements Command{
         
         System.out.println("element -"+c[1]);
         if(resultSet.next()) {
-            resultado = new Convocatoria(c[1], c[0], Date.valueOf(resultSet.getString(3)), resultSet.getInt(4), resultSet.getInt(5), resultSet.getString(6), Date.valueOf(resultSet.getString(7)), resultSet.getInt(8), resultSet.getInt(9), Boolean.getBoolean(resultSet.getString(10)), Boolean.getBoolean(resultSet.getString(11))); 
+            resultado = new Convocatoria(c[1], c[0], Date.valueOf(resultSet.getString(3)), resultSet.getInt(4), resultSet.getInt(5), resultSet.getString(6), Date.valueOf(resultSet.getString(7)), resultSet.getInt(8), resultSet.getInt(9), Boolean.valueOf(resultSet.getString(10)), Boolean.valueOf(resultSet.getString(11))); 
             return resultado;
         }
         return null;

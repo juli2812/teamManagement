@@ -4,6 +4,7 @@
     Author     : Maria
 --%>
 
+<%@page import="cat.urv.deim.sob.Entrenador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -545,8 +546,8 @@
                                 <div class="col-lg-6">
                                     <h1></h1>
                                     <%
-                                        ArrayList<String> usuaris;
-                                        usuaris = (ArrayList<String>) session.getAttribute("usuaris");
+                                        ArrayList<Entrenador> usuaris;
+                                        usuaris = (ArrayList<Entrenador>) session.getAttribute("entrenadors");
                                         if(usuaris.size()>0){%>
                                     <form role="form" method="post" action="controller.do">
                                        
@@ -557,9 +558,9 @@
                                             <select class="form-control" name="entrenador">   
                                         <%
                                         
-                                        for(String user: usuaris){
+                                        for(Entrenador user: usuaris){
                                         %>
-                                        <option value="<%out.print(user);%>"><% out.println(user +"<br/>"); %></option>
+                                        <option value="<%out.print(user.getIdUsuari());%>"><% out.println(user.getNom()+" "+user.getCognom() +"<br/>"); %></option>
                                         <% }%>
                                             </select>
                                         </div>

@@ -558,7 +558,7 @@
                                             <TABLE class="table">
                                                 <tr>
                                                 <td>Crear</td>
-                                                <td><input type="radio" class="radio" name="opcio" value="crear" ></td>
+                                                <td><input type="radio" class="radio" name="opcio" value="crear" checked></td>
                                                 </tr>
                                                 <tr>
                                                 <td>Modificar</td>

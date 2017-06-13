@@ -566,7 +566,7 @@
                                         </div>
                                         <label>Nota</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="number" name="nom" value="7.3" disabled/>
+                                            <input class="form-control" type="number" name="valoracio" value="<%out.print(ve.getNota());%>" disabled/>
                                         </div>
                                         <label>Puntualitat</label>
                                         <div class="checkbox">

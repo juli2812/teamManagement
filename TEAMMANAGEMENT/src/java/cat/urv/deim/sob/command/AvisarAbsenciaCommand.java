@@ -33,7 +33,7 @@ public class AvisarAbsenciaCommand implements Command{
             //si usuarios
         // 1. process the request
         try {
-            registrarAbsencia(request.getParameter("usuari"),request.getParameter("motiu"),request.getParameter("data"), Boolean.getBoolean(request.getParameter("justificada")),Integer.parseInt(request.getParameter("num_absencies")),request.getParameter("justificantop"));
+            registrarAbsencia(request.getParameter("usuari"),request.getParameter("motiu"),request.getParameter("data"), Boolean.valueOf(request.getParameter("justificada")),Integer.parseInt(request.getParameter("num_absencies")),request.getParameter("justificantop"));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,8 +93,7 @@ public class AvisarAbsenciaCommand implements Command{
                         ps.setString(1, idjugador);
                         ps.setString(2, motiu);
                         ps.setString(3, data);
-                        if("true".equals(justificada)){ ps.setInt(4, 1);}
-                        else ps.setInt(4, 0);
+                        ps.setBoolean(4, justificada);
                         ps.setString(6, justificantop);
                         ps.setInt(5, num_absencies);
                 ps.executeUpdate();

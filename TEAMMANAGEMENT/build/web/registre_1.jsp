@@ -86,6 +86,12 @@
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1>Director Esportiu</h1>
+                                    <font color = "red"><b>
+                        <%
+                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
+                                 out.println("Ompleix els camps obligatoris.<br>L'usuari pot estar donat d'alta, prova amb un altre o el teu DNI ja existeix. ");
+                        }
+                        %></font></b><br>
                                     <form role="form" method="post" action="controller.do">
                                         <%
                             if((request.getParameter("club")!=null) && request.getParameter("club").equals("true")){%>
@@ -97,7 +103,7 @@
                         <% } %>
                                         <div class="form-group">
                                             <label>Nom d'usuari</label>
-                                            <input class="form-control" placeholder="Segueix l'estil DEddMMyyXXX" maxlength="9" name="iddiresportiu" required>
+                                            <input class="form-control" placeholder="Segueix l'estil DEddMMyyXXX" maxlength="11" name="iddiresportiu" required>
                                             <p>On DE és l’identificador del tipus d’usuari que serà sempre aquest per al director esportiu, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms.</p>
                                         </div>
                                         <div class="form-group">
@@ -139,13 +145,9 @@
                                         <div class="form-group">
                                             <label>Compte bancari</label>
                                             <input class="form-control" placeholder="ESXXXXXXXXXXXXXXXXXX" maxlength="24" name="comptebancari" required>
-                                        </div><b><font color = "red">
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Ompleix els camps obligatoris.");
-                        }
-                        %></font></b><br>
+                                        </div><br>
                                         <button type="submit" class="btn btn-primary">Continuar</button>
+                                        <input type="button" onclick="location.href='registre_2.jsp';" value="No afegir director esportiu" class="btn btn-primary"/>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
                                 </div>

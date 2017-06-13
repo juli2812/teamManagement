@@ -526,7 +526,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Classificació i Calendari de competició </h1>
+                    <h1 class="page-header">Afegir Usuari</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -551,6 +551,7 @@
                                 <%}else if("3".equals(error)){%>
                                     <label>L'usuari ja existeix</label>
                                 <%}%>
+                                <br>
                                         <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </div>
                                             

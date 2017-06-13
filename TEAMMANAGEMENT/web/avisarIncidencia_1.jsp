@@ -524,7 +524,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Classificació i Calendari de competició </h1>
+                    <h1 class="page-header">Avisar Incidencia </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

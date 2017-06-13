@@ -86,7 +86,6 @@ public class CrearIncidenciaCommand implements Command{
                     resultSet=ps.executeQuery();
                     
                     while (resultSet.next()) {
-                        System.out.println("equipU-  " +resultSet.getString(1));
                         idsUsuari.add(resultSet.getString(1));
                     }
                     break;

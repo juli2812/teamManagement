@@ -56,7 +56,7 @@ public class AltaJugadorCommand implements Command{
             error = "1";
             // esborrem l'usuari
             try {
-            esborrarUsuari(request.getParameter("id_usuari"));
+            esborrarUsuari(request.getParameter("idjugador"));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaEntrenadorCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -85,7 +85,8 @@ public class AltaJugadorCommand implements Command{
             String sentenciaSQL = "DELETE FROM `team_management`.`usuari` WHERE `id_usuari` = ?;";
             ps = con.prepareStatement(sentenciaSQL);
                     ps.setString(1, idUsuari);
-            ps.executeUpdate();
+            ps.execute();
+            System.out.println("s'ha esborrat l'usuari "+idUsuari);
     }
     
     public int registrar (String dni, String nom,String cognom1, String cognom2, String address, int telefon, String id_usuari, String dataNaix, String contrasenya, String dataIncorp) throws SQLException, ClassNotFoundException{

@@ -579,7 +579,7 @@
                                             
                                        <div class="form-group">
                                             <label>Motiu</label>
-                                            <input class="form-control"  maxlength="50" name="motiu" required>
+                                            <input class="form-control"  maxlength="24" name="motiu" >
                                         </div>
                                         <div class="form-group">
                                             <label>Data</label>
@@ -587,7 +587,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Tipus d'incidencia</label>
-                                            <input class="form-control"  maxlength="50" name="tipusincidencia" required>
+                                            <input class="form-control"  maxlength="20" name="tipusincidencia" required>
                                         </div>
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){

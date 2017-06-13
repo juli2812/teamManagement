@@ -22,28 +22,30 @@ public class AltaEquipCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
             int numFedClub=0;
+            
+        ServletContext context = request.getSession().getServletContext();
         // 1. process the request
         if(!"".equals(request.getParameter("nomequip"))&&!"".equals(request.getParameter("categoria"))){
         try {
+            String existeix = getEquipId(request.getParameter("nomequip"));
+            if(existeix.equals("si")){
+                context.getRequestDispatcher("/alta_equip.jsp?faltaParam=true").forward(request, response);
+            }else{
             numFedClub=getNumFed(request.getParameter("idusuari"),request.getParameter("tipususuari"));
             if(numFedClub!=0){
             altaEquip(request.getParameter("nomequip"),request.getParameter("categoria"),request.getParameter("classificacio"),request.getParameter("calendari"),numFedClub);
-            }
+            }}
             } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaEquipCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
         if(numFedClub!=0){
-            ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/index.jsp").forward(request, response);
         }else{
-            ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/alta_equip.jsp?faltaParam=true").forward(request, response);
         }
         }
         else{
-            System.out.println("NUM: "+numFedClub);
-        ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/alta_equip.jsp?faltaParam=true").forward(request, response);
         
         }
@@ -63,6 +65,24 @@ public class AltaEquipCommand implements Command {
                     ps.setString(5, calendari);
             ps.executeUpdate();
     }
+    
+    public String getEquipId (String nomEquip) throws SQLException, ClassNotFoundException{
+        Connection con;
+        PreparedStatement ps;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+            con.setSchema("team_management");
+            String query = "SELECT `nom_equip` FROM `team_management`.`equip` WHERE `nom_equip`=?;";
+            ps = con.prepareStatement(query);
+            ps.setString(1, nomEquip);
+            ResultSet resultSet=ps.executeQuery();
+            if (resultSet.next()) {
+                return "si";
+            }
+            return "no";
+    }
+    
+    
     
     public int getNumFed (String idUsuari, String tipusUsuari) throws SQLException, ClassNotFoundException{
         Connection con;

@@ -84,12 +84,18 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Club</h1>
+                                    <h1>Club</h1><b>
+                                    <font color = "red">
+                        <%
+                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
+                                 out.println("Ompleix els camps obligatoris.<br>Un dels usuaris pot no estar donat d'alta prova amb un altre.");
+                        }
+                        %></font></b><br>
                                     <form role="form" method="post" action="controller.do">
                                     <input type="hidden" name="form_action" value="crear"/>
                                         <div class="form-group">
                                             <label>Usuari president</label>
-                                            <input class="form-control" placeholder="Segueix l'estil PddMMyyXXX" maxlength="9" name="fkpresident" required>
+                                            <input class="form-control" placeholder="Segueix l'estil PddMMyyXXX" maxlength="11" name="fkpresident" required>
                                             <p>On P és l’identificador del tipus d’usuari que serà sempre aquest per al president, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms)</p>
                                         </div>
                                         <div class="form-group">

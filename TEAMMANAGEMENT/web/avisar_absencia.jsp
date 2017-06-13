@@ -560,7 +560,7 @@
                                         </div>
                                         <label>Dia</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="data" name="data" placeholder="yyyy-mm-dd" value="" required/>
+                                            <input class="form-control" type="date" name="data"  value="" required/>
                                         </div>
                                         <label>Justificada</label>
                                         <div class="form-group">
@@ -576,6 +576,7 @@
                                         
                                         <br>
                                             <button type="submit" class="btn btn-primary">Continuar</button>
+                                    <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

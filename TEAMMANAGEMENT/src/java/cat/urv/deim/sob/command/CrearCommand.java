@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,24 +21,48 @@ public class CrearCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        ServletContext context = request.getSession().getServletContext();
         if(!"".equals(request.getParameter("nomclub"))&&!"".equals(request.getParameter("idclub"))&&!"".equals(request.getParameter("telefon"))&&!"".equals(request.getParameter("adress"))&&!"".equals(request.getParameter("colorlocal"))&&!"".equals(request.getParameter("colorvisitant"))&&!"".equals(request.getParameter("quotatotal"))){
         try {
             // 1. process the request
+            String existeix = getUsuariId(request.getParameter("fkpresident"));
+            
+            String existeix2 = getUsuariId(request.getParameter("fkdiresportiu"));
+            if(existeix.equals("no")||(null!=request.getParameter("fkdiresportiu")&&!request.getParameter("fkdiresportiu").equals("")&&existeix2.equals("no"))){
+            context.getRequestDispatcher("/registre_2.jsp?faltaParam=true").forward(request, response);
+            }else{
             registrarClub(request.getParameter("fkpresident"),request.getParameter("fkdiresportiu"),request.getParameter("nomclub"),Integer.parseInt(request.getParameter("idclub")),Integer.parseInt(request.getParameter("telefon")),request.getParameter("address"),request.getParameter("colorlocal"),request.getParameter("colorvisitant"),Float.parseFloat(request.getParameter("quotatotal")));
-        } catch (SQLException ex) {
+            }
+            } catch (SQLException ex) {
             Logger.getLogger(CrearCommand.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(CrearCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 2. produce the view with the web result
-        ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/login.jsp").forward(request, response);
         }
         else{
-        ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/registre_2.jsp?faltaParam=true").forward(request, response);}
         
     }
+    
+    
+    public String getUsuariId (String idPresident) throws SQLException, ClassNotFoundException{
+        Connection con;
+        PreparedStatement ps;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+            con.setSchema("team_management");
+            String query = "SELECT `id_usuari` FROM `team_management`.`usuari` WHERE `id_usuari`=?;";
+            ps = con.prepareStatement(query);
+            ps.setString(1, idPresident);
+            ResultSet resultSet=ps.executeQuery();
+            if (resultSet.next()) {
+                return "si";
+            }
+            return "no";
+    }
+    
     
     public void registrarClub (String fkPresident, String fkDirEsportiu,String nomClub, int idClub, int telefon, String address, String colorLocal, String colorVisitant, float preuTotalQuota) throws SQLException, ClassNotFoundException{
         Connection con;

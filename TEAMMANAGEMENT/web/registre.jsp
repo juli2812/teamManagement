@@ -83,7 +83,12 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>President</h1>
+                                    <h1>President</h1><b><font color = "red">
+                        <%
+                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
+                                 out.println("Ompleix els camps obligatoris.<br>L'usuari pot estar donat d'alta, prova amb un altre o el teu DNI ja existeix. ");
+                        }
+                        %></font></b><br>
                                     <form role="form" method="post" action="controller.do">
                                     <input type="hidden" name="form_action" value="diresportiu"/>
                                         <div class="form-group">
@@ -112,7 +117,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Usuari</label>
-                                            <input class="form-control" placeholder="Segueix l'estil PddMMyyXXX" maxlength="9"  name="idpresident" required>
+                                            <input class="form-control" placeholder="Segueix l'estil PddMMyyXXX" maxlength="11"  name="idpresident" required>
                                             <p>On P és l’identificador del tipus d’usuari que serà sempre aquest per al president, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms)</p>
                                         </div>
                                         <div class="form-group">
@@ -132,12 +137,7 @@
                                             <input class="form-control" placeholder="(Opcional) Segueix l'estil PddMMyyXXX" maxlength="9"  name="idsuccessor">
                                             <p>On P és l’identificador del tipus d’usuari que serà sempre aquest per al president, ddMMyy és la data de naixement en el format diaMESany i finalment XXX són les inicials del nom i cognoms.</p>
                                         </div>
-                                    <b><font color = "red">
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Ompleix els camps obligatoris.<br>L'usuari pot estar donat d'alta, prova amb un altre o el teu DNI ja existeix. ");
-                        }
-                        %></font></b><br>
+                                    <b><br>
                                         <button type="submit" class="btn btn-primary" name="dir" value="true">Continuar</button>
                                         <button type="submit" class="btn btn-primary" name="dir" value="false">Continuar sense Director Esportiu</button>
                                         <button type="reset" class="btn btn-default">Reset</button>

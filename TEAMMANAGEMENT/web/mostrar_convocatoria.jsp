@@ -557,11 +557,14 @@
                                         <div class="form-group">
                                             <div class="form-group">
                                             <label>Jugador</label>
-                                            <input class="form-control" type="String" name="jugador" value="<% out.print(c.getFkJugador()); %>" disabled>
+                                            <input class="form-control" type="text" name="jugador1" value="<% out.print(c.getFkJugador()); %>" disabled>
+                                                <input type="hidden" name="jugador" value="<% out.print(c.getFkJugador()); %>" >
+                                        
                                         </div>
                                              <div class="form-group">
                                             <label>Partit</label>
-                                            <input class="form-control" type="String" name="partit" value="<% out.print(c.getFkPartit2()); %>" disabled>
+                                            <input class="form-control" type="text" name="partit1" value="<% out.print(c.getFkPartit2()); %>" disabled>
+                                            <input type="hidden" name="partit" value="<% out.print(c.getFkPartit2()); %>">
                                             </div>
                                             
                                         <div class="form-group">
@@ -600,14 +603,19 @@
                                         </div>
                                       
                                              <div class="form-group">
-                                            <label>Confirmació</label>
-                                            <input class="checkbox" type="checkbox" name="confirmacio" value="<%out.print(c.isConfirmat());%>" >
+                                        <label>Confirmació</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <%if(c.isConfirmat()){%>
+                                                    <input type="checkbox" name="confirmacio" value="true" checked>Confirmar
+                                                    <%}else{%>
+                                                    <input type="checkbox" name="confirmacio" value="true">Confirmar
+                                                    <%}%>
+                                                </label>
+                                            </div>
                                         </div>
-                                      
-                                             <div class="form-group">
-                                            <label>Ha vingut</label>
-                                            <input class="checkbox" type="checkbox" name="havingut" value="<%out.print(c.isHaVingut());%>">
-                                        </div>
+                                        
+                                      <input type="hidden" name="havingut" value="true">
                                         
                                         </div>                                  
                         <%
