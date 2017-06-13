@@ -91,7 +91,7 @@ public class ControllerServlet extends HttpServlet {
         this.commands.put("baixaequip", new BaixaEquipCommand());
         this.commands.put("dadesentrenador", new DadesEntrenadorCommand());
         this.commands.put("actualitzardadesentrenador", new ActualitzarDadesEntrenadorCommand());
-
+        this.commands.put("consultarclasscomp", new ConsultarClassCalendCommand());
     }
 
     protected void processCommand(

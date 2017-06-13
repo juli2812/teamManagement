@@ -1,25 +1,12 @@
 <%-- 
-    Document   : consultar_class_comp_2
-    Created on : 11-jun-2017, 11-jun-2017 2:15:00
+    Document   : mostrar_estadistica_partit_equip
+    Created on : 13-jun-2017, 13-jun-2017 18:02:22
     Author     : Maria
 --%>
+
+<%@page import="cat.urv.deim.sob.ValoracioPartit"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <%
-            String userId ="";
-            userId = (String) session.getAttribute("idUsuari");
-            String userName ="";
-            userName = (String) session.getAttribute("nomUsuari");
-            String surName ="";
-            surName = (String) session.getAttribute("cognomUsuari");
-            String userType ="";
-            userType = (String) session.getAttribute("tipusUsuari");
-            ArrayList<String> equips = (ArrayList<String>) session.getAttribute("equips");
-        %>
-        <% if(null==userId || "".equals(userId)){
-    String redirectURL = "login.jsp";
-    response.sendRedirect(redirectURL);}
-%>
 <html lang="en">
 
 <head>
@@ -29,8 +16,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
     <%@ page session="true" %>
-       
+        <%
+            String userId ="";
+            userId = (String) session.getAttribute("idUsuari");
+            String userName ="";
+            userName = (String) session.getAttribute("nomUsuari");
+            String surName ="";
+            surName = (String) session.getAttribute("cognomUsuari");
+            String userType ="";
+            userType = (String) session.getAttribute("tipusUsuari");
+            ArrayList <ValoracioPartit> as =(ArrayList <ValoracioPartit>) session.getAttribute("valoracio");
+            ValoracioPartit vp = (ValoracioPartit) session.getAttribute("vp");
+        %>
+        <% if(null==userId || "".equals(userId)){
+    String redirectURL = "login.jsp";
+    response.sendRedirect(redirectURL);}
+%>
+      
 <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
@@ -523,10 +527,11 @@
         </nav>
 
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Classificació i calendari</h1>
+                    <h1 class="page-header">Estadístiques de equip al partit</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -535,39 +540,34 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <img src="images/podio.jpg" alt="Jugador" width=480 height=280>
+                                    <img src="images/presidentes-galicia-17918.jpg" alt="President" width=450 height=250>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Classificació i calendari</h1>
-                                     <%if(equips != null){%>
-                                    <form role="form" method="post" action="controller.do">
-                                    <input type="hidden" name="form_action" value="consultarclasscomp"/>
-                                    <input type="hidden" name="origin" value="equipSelect"/>
+                                    <h1>Estadistica del partit <%out.print(session.getAttribute("partit"));%></h1>
+                                    <div class="form-group">
+                                            
                                         <div class="form-group">
-                                            <select class="form-control" name="equip">   
-                                        <%
-                                        for(String e: equips){
-                                        %>
-                                        <option value="<%out.print(e);%>"><% out.println(e +"<br/>"); %></option>
-                                        <% }%>
-                                            </select>
-                                        
-                                        </div> 
-                                        <button type="submit" class="btn btn-primary">Continuar</button>
-                                    <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
-                                    </form>
-                                    <%}else{%>
-                                    <label> No hi ha equips </label>
-                                        <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
-                                    <%}%>
-                                </div>
+                                            <label>Total d'assistències</label>
+                                            <input class="form-control" type="number" name="assistencies" maxlength="9" value="<%out.print(vp.getAssistencia());%>" disabled/>
+                                            </div>
+                                                <div class="form-group">
+                                            <label>Gols</label>
+                                            <input class="form-control" type="number" name="gols" maxlength="9" value="<%out.print(vp.getGols());%>" disabled/>
+                                                <div class="form-group">
+                                            <label>Nota</label>
+                                            <input class="form-control" type="number" name="mitjanavaloracio" maxlength="9" value="<%out.print(vp.getNota());%>" disabled/>
+                                            </div>
+                                        </div>
+                                        <br>
+                                            
+                                <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                    </div>
+                                <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>
@@ -576,9 +576,8 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
+            
             </div>
-            <!-- /.row -->
-        </div>
         <!-- /#page-wrapper -->
 
     </div>
@@ -592,6 +591,11 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="vendor/raphael/raphael.min.js"></script>
+    <script src="vendor/morrisjs/morris.min.js"></script>
+    <script src="data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>

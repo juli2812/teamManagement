@@ -34,15 +34,18 @@ public class MostrarEstadisticaEquipCommand  implements Command {
             throws ServletException, IOException {
             ArrayList<ValoracioPartit> dades=null;
             ArrayList<String> partits=null;
+            String equip = "";
             HttpSession session = request.getSession(true);
         // 1. process the request
         
         try {
-            
+            //obtenim l'equip de l'entrenador
+            equip = getEquip(request.getParameter("idusuari"));
+            System.out.println(equip);
             if("temporada".equals(request.getParameter("opcio"))){
-            dades=obtenirEstadistica(request.getParameter("equip"));
+                dades=obtenirEstadistica(request.getParameter("equip"));
             }else{
-                 partits = (ArrayList<String>)obtenirPartits(request.getParameter("equip"));
+                partits = (ArrayList<String>)obtenirPartits(equip);
                 session.setAttribute("partits", partits);
             }
 
@@ -52,7 +55,7 @@ public class MostrarEstadisticaEquipCommand  implements Command {
         // 2. produce the view with the web result
         
             session.setAttribute("valoracio", dades);
-            session.setAttribute("equip", request.getParameter("equip"));
+            session.setAttribute("equip", equip);
         ServletContext context = request.getSession().getServletContext();
             if(dades != null || partits !=null){
             if("temporada".equals(request.getParameter("opcio"))){
@@ -65,6 +68,28 @@ public class MostrarEstadisticaEquipCommand  implements Command {
         
     }
     
+    
+     public String getEquip(String user)throws SQLException, ClassNotFoundException{
+        Connection con;
+        PreparedStatement ps;
+        ResultSet resultSet = null;
+        
+        String query = "";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+            con.setSchema("team_management");
+            query = "SELECT fk_equip FROM `team_management`.`entrenador` WHERE `fk_usuari`=?;";    
+            
+                ps = con.prepareStatement(query);
+                ps.setString(1, user);
+                resultSet=ps.executeQuery();
+            
+                
+            if (resultSet.next()) {
+                return resultSet.getString(1);
+            }
+            return null;
+    }
     
     public ArrayList<ValoracioPartit> obtenirEstadistica (String idUsuari) throws SQLException, ClassNotFoundException{
         Connection con;

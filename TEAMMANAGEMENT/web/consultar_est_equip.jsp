@@ -3,6 +3,8 @@
     Created on : 05-jun-2017, 05-jun-2017 8:55:31
     Author     : Maria
 --%>
+
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%
             String userId ="";
@@ -17,17 +19,8 @@
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
     response.sendRedirect(redirectURL);}
-%>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <%@ page session="true" %>
+%><%@ page session="true" %>
+       
 <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
@@ -519,11 +512,10 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Estadistiques </h1>
+                    <h1 class="page-header">Consultar Estadistiques</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -532,7 +524,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            
+                            Formulari a omplir
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -542,18 +534,32 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Estadistica Equip</h1>
-                                   
+                                    <h1></h1>
                                     <form role="form" method="post" action="controller.do">
-                                       
-                        <input type="hidden" name="form_action" value="obtenirequips"/>
-                        <input type="hidden" name="opcio" value="estadistica"/>
+                                    <input type="hidden" name="form_action" value="mostrarestadisticaequip"/>   
+                                    <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                         <div class="form-group">
-                                            <label>A continuació es mostraràn una llista de equips on podrà escollir de quin veure'n l'estadistica. Premi el botó per continuar.</label>
-                                        </div>
-                                    
-                                         <button type="submit" class="btn btn-primary">Continuar</button>
-                                           <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                           
+                                             <div class="form-group">
+                                            <TABLE class="table">
+                                                <tr>
+                                                <td>Partit</td>
+                                                <td><input type="radio" class="radio" name="opcio" value="partit" checked></td>
+                                                </tr>
+                                                <tr>
+                                                <td>Temporada</td>
+                                                <td><input type="radio" class="radio" name="opcio" value="temporada" ></td>
+                                                </tr>
+                                              </table>
+                                        </div> 
+                                        </div> 
+                                           
+                        <%
+                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
+                                 out.println("Omple els camps obligatoris.");
+                        }
+                        %></font></b><br>
+                                        <button type="submit" class="btn btn-default">Continuar</button>
                                     </form>
                                 </div>
                             </div>
@@ -572,7 +578,7 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
+       <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -584,7 +590,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
 
-</body>
+    </body>
 
 </html>
-

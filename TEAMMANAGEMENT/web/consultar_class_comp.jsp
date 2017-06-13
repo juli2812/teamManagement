@@ -545,27 +545,17 @@
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1>Consultar Classificació i competició</h1>
-                                    <div class="form-group">
-                                        <a href="http://fcf.cat/classificacio/1617/futbol-11/cadet-segona-divisio/grup-5">
-                                            <div class="panel-footer">
-                                                <span class="pull-left">Enllaç a la web de classficicació</span>
-                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </a>
+                                    <div class="col-lg-6">
+                                    <form role="form" method="post" action="controller.do">
+                                    <input type="hidden" name="form_action" value="consultarclasscomp"/>
+                                    <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
+                                    <input type="hidden" name="destinatari" value="<%out.print(userType);%>"/>
+                                    <label>A continuació es mostrarà la informació referent a la classificació i al calendari si n'hi ha. Pulsa el botó continuar.</label>
+                                    <br>
+                                        <button type="submit" class="btn btn-primary">Continuar</button>
+                                    <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                    </form>
                                     </div>
-                                    <div class="form-group">
-                                        <a href="http://fcf.cat/calendari/1617/futbol-11/cadet-segona-divisio/grup-5">
-                                            <div class="panel-footer">
-                                                <span class="pull-left">Enllaç a la web de calendari</span>
-                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                        <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
-                                    </div>
-                            </div>
                             <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->

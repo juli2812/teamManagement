@@ -549,7 +549,7 @@
                                 <div class="col-lg-6">
                                     <h1>Consultar Classificació i competició</h1>
                                     <div class="form-group">
-                                        <a href="<%out.print(clcal.getClassificacio());%>">
+                                        <a href="<%out.print(clcal.getClassificacio());%>" target="_blank">
                                             <div class="panel-footer">
                                                 <span class="pull-left">Enllaç a la web de classficicació</span>
                                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -558,7 +558,7 @@
                                         </a>
                                     </div>
                                     <div class="form-group">
-                                        <a href="<%out.print(clcal.getCalendari());%>">
+                                        <a href="<%out.print(clcal.getCalendari());%>" target="_blank">
                                             <div class="panel-footer">
                                                 <span class="pull-left">Enllaç a la web de calendari</span>
                                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -567,8 +567,9 @@
                                         </a>
                                     </div>
                                             <%}else{%>
-                                            <label>No hi ha dades de la classificació</label>
+                                            <label>No hi ha dades de la classificació i/o calendari.</label>
                                             <%}%>
+                                            <br>
                                         <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </div>
                                             

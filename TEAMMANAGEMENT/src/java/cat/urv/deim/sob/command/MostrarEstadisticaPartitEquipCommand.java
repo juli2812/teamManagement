@@ -33,14 +33,15 @@ public class MostrarEstadisticaPartitEquipCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
             ArrayList<ValoracioPartit> dades=null;
-            ArrayList<String> partits=null;
             HttpSession session = request.getSession(true);
+            ValoracioPartit mitjaPartit = null;
         // 1. process the request
         
         try {
             
             
             dades=obtenirEstadistica(request.getParameter("equip"), Integer.parseInt(request.getParameter("partit")));
+            mitjaPartit = obtenirMitjaPartit(dades);
          
             } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DadesJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
@@ -48,16 +49,32 @@ public class MostrarEstadisticaPartitEquipCommand implements Command {
         // 2. produce the view with the web result
         
             session.setAttribute("valoracio", dades);
-            session.setAttribute("jugador", request.getParameter("jugador"));
+            session.setAttribute("partit", request.getParameter("partit"));
+            session.setAttribute("vp", mitjaPartit);
         ServletContext context = request.getSession().getServletContext();
-            if(dades != null || partits !=null){
+            if(dades != null ){
           
-            context.getRequestDispatcher("/mostrar_est_temporada.jsp").forward(request, response);
+            context.getRequestDispatcher("/mostrar_estadistica_partit_equip.jsp").forward(request, response);
           
             }else context.getRequestDispatcher("/index.jsp").forward(request, response);
         
     }
     
+    public ValoracioPartit obtenirMitjaPartit( ArrayList<ValoracioPartit> dades){
+        ValoracioPartit mitjana = new ValoracioPartit(0, 0, 0);
+        int contValoracions = 0;
+        
+        for(ValoracioPartit vp: dades){
+            mitjana.setAssistencia(mitjana.getAssistencia()+vp.getAssistencia());
+            mitjana.setGols(mitjana.getGols()+vp.getGols());
+            mitjana.setNota(mitjana.getNota()+vp.getNota());
+            contValoracions++;
+        }
+        if(contValoracions > 0){
+            mitjana.setNota(mitjana.getNota()/contValoracions);
+        }
+        return mitjana;
+    }
     
     public ArrayList<ValoracioPartit> obtenirEstadistica (String idUsuari, int fk_partit) throws SQLException, ClassNotFoundException{
         Connection con;
@@ -83,7 +100,14 @@ public class MostrarEstadisticaPartitEquipCommand implements Command {
             
             
                 if (resultSet2.next()) {
-                    valtemp.add(new ValoracioPartit(resultSet2.getString(2),resultSet2.getInt(3),resultSet2.getInt(4),resultSet2.getInt(5),resultSet2.getInt(6),resultSet2.getInt(7),resultSet2.getInt(1),resultSet2.getString(8),resultSet2.getBoolean(9),resultSet2.getInt(10),resultSet2.getInt(11)));
+                    String quer3 = "SELECT * FROM `team_management`.`valoracio` WHERE `id_valoracio` = ? ;";
+                    ps = con.prepareStatement(quer3);
+                    ps.setString(1, resultSet2.getString(1));
+            
+                    ResultSet resultSet3=ps.executeQuery();
+                    if (resultSet3.next()) {
+                    valtemp.add(new ValoracioPartit(resultSet2.getString(2),resultSet2.getInt(3),resultSet2.getInt(4),resultSet2.getInt(5),resultSet2.getInt(6),resultSet2.getInt(7),resultSet2.getInt(1),resultSet2.getString(8),resultSet2.getBoolean(9),resultSet2.getInt(10),resultSet2.getInt(11), resultSet3.getInt(1)));
+                    }
                 }
             }    
             
