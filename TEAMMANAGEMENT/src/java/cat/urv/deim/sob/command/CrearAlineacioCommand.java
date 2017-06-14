@@ -31,8 +31,8 @@ private static int id=0;
         // 2. produce the view with the web result
         lista = request.getParameterValues("jugadors_alineacio");
         if((Integer.parseInt(request.getParameter("numjugtit"))+Integer.parseInt(request.getParameter("numjugsup")))==lista.length){
-            crearJugadorAlineacio(lista, lista.length);
             crearAlineacio(request.getParameter("nomequip"), Integer.parseInt(request.getParameter("idpartit")), Integer.parseInt(request.getParameter("numjugtit")), Integer.parseInt(request.getParameter("numjugsup")),Integer.parseInt(request.getParameter("numdeftit")),Integer.parseInt(request.getParameter("nummigtit")),Integer.parseInt(request.getParameter("numdavtit")), request.getParameter("formacio"));
+            crearJugadorAlineacio(lista, lista.length);
         }
     } catch (ClassNotFoundException | SQLException ex) {
         Logger.getLogger(CrearAlineacioCommand.class.getName()).log(Level.SEVERE, null, ex);

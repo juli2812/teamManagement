@@ -580,12 +580,12 @@
                                             </div>
                                         <% if(convocatorias.get(i).isHaVingut()!=true){%>
                                             <button type="submit" class="btn btn-primary">Confirmar assistència</button>
-                                            <button type="reset" class="btn btn-default">Reset</button>
-                                        <%}%>
+                                            <%}%>
                                     </form>
                                     <%}%>
                                     <%}%>
                                 <%}%>
+                                <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

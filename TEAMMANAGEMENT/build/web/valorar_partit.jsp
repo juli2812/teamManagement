@@ -27,7 +27,6 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            Jugador jugador =(Jugador) session.getAttribute("jugador");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";

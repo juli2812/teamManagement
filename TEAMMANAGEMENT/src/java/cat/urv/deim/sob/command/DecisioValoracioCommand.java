@@ -92,11 +92,18 @@ public class DecisioValoracioCommand implements Command {
                     ResultSet resultSet3=ps.executeQuery();
                     if(resultSet3.next()){}
                     else{
-                        jugador = new Jugador(resultSet2.getString(1),resultSet2.getString(2),resultSet.getString(1));
-                        jugadors.add(jugador);
+                        query = "SELECT * FROM `team_management`.`convocatoria` WHERE `fk_jugador`=? AND `fk_partit`=? AND `ha_vingut`=true;";
+                        ps = con.prepareStatement(query);
+                        ps.setString(1, resultSet.getString(1));
+                        ps.setInt(2, idActivitat);
+                        ResultSet resultSet4=ps.executeQuery();
+                            if(resultSet4.next()){
+                                jugador = new Jugador(resultSet2.getString(1),resultSet2.getString(2),resultSet.getString(1));
+                                jugadors.add(jugador);
+                            }
+                        }
                     }
                 }
-            }
             return jugadors;
     }
     

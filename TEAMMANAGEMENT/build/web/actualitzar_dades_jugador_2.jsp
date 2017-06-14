@@ -664,7 +664,7 @@
                                                     <%if(jugador.isTotEntregat()){%>
                                                     <input type="checkbox" name="totentregat" value="true" checked>Tot entregat
                                                     <%}else{%>
-                                                    <input type="checkbox" name="totentergat" value="true">Tot entregat
+                                                    <input type="checkbox" name="totentregat" value="true">Tot entregat
                                                     <%}%>
                                                 </label>
                                             </div>

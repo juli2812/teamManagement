@@ -596,13 +596,15 @@
                                         <font color = "red"><b>
                         <%
                             if((request.getParameter("falten")!=null) && request.getParameter("falten").equals("true")){
-                                 out.println("El númmero de jugadors titulars i suplents no es correspon al seleccionat.");
+                                 out.println("El número de jugadors titulars i suplents no es correspon al seleccionat.");
                         }
                             %></b></font><br>
                                             <button name="decisio" type="submit" class="btn btn-primary" value="false">Assignar jugadors a alineació</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
+                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                         <%}%>
                                         </form>
+                                        
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

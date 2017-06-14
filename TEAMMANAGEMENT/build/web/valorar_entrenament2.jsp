@@ -568,6 +568,7 @@
                                         <% if(entrenaments.size()!=0){%>
                                             <button type="submit" class="btn btn-primary">Escull entrenament</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
+                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                         <%}%>
                                     </form>
                                 </div>

@@ -553,12 +553,12 @@
                                         <div class="form-group">
                                             <label>A continuació vosté podrà realitzar l'alineació d'un partit.</label>
                                            </div>
-                        <br><font color = "blue">
+                        <br><font color = "green">
                         <%
                             if((request.getParameter("afegit")!=null) && request.getParameter("afegit").equals("true")){
                                  out.println("S'ha creat l'alineació correctament.");
                         }
-                            %></font>
+                        %></font><br>
                                        <button type="submit" class="btn btn-primary">Continuar</button>
                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>

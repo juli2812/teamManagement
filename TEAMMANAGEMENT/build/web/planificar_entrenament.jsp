@@ -39,6 +39,9 @@
              exercicis = (ArrayList<Exercici>)session.getAttribute("exercicis");
              entrenament = (Entrenament)session.getAttribute("entrenament");
             }
+            else{
+                session.setAttribute("numexercicis", 1);
+            }
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
@@ -584,15 +587,15 @@
                                     <h3>Exercici 1</h3>
                                         <label>Explicació</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="explicacio0" required/>
+                                            <input class="form-control" type="text" name="explicacio0" maxlength="150" required/>
                                         </div>
                                         <label>Temps (minuts)</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="number" name="temps0" required/>
+                                            <input class="form-control" type="number" name="temps0" min="0" max="400" required/>
                                         </div>
                                         <label>Material</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="material0" required/>
+                                            <input class="form-control" type="text" name="material0" maxlength="75" required/>
                                         </div>
                                         <button type="submit" class="btn btn-primary" name="afegir" value="true">Afegir exercici</button>
                                         <br>
@@ -602,15 +605,15 @@
                                     <h3>Exercici <%out.print(i+1);%></h3>
                                         <label>Explicació</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="explicacio<%out.print(i);%>" value="<%out.print(exercicis.get(i).getExplicacio());%>" required/>
+                                            <input class="form-control" type="text" name="explicacio<%out.print(i);%>" maxlength="150" value="<%out.print(exercicis.get(i).getExplicacio());%>" required/>
                                         </div>
                                         <label>Temps (minuts)</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="number" name="temps<%out.print(i);%>" value="<%out.print(exercicis.get(i).getTempsMin());%>" required/>
+                                            <input class="form-control" type="number" name="temps<%out.print(i);%>" min="0" max="400" value="<%out.print(exercicis.get(i).getTempsMin());%>" required/>
                                         </div>
                                         <label>Material</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="material<%out.print(i);%>" value="<%out.print(exercicis.get(i).getMaterial());%>" required/>
+                                            <input class="form-control" type="text" name="material<%out.print(i);%>" maxlength="75" value="<%out.print(exercicis.get(i).getMaterial());%>" required/>
                                         </div>
                                         <%if(numExercicis!=6){%>
                                         <button type="submit" class="btn btn-primary" name="afegir" value="true">Afegir exercici</button>
@@ -620,15 +623,15 @@
                                         <h3>Exercici <%out.print(numExercicis);%></h3>
                                         <label>Explicació</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="explicacio<%out.print(numExercicis-1);%>"  required/>
+                                            <input class="form-control" type="text" name="explicacio<%out.print(numExercicis-1);%>" maxlength="150" required/>
                                         </div>
                                         <label>Temps (minuts)</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="number" name="temps<%out.print(numExercicis-1);%>" required/>
+                                            <input class="form-control" type="number" name="temps<%out.print(numExercicis-1);%>" min="0" max="400" required/>
                                         </div>
                                         <label>Material</label>
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="material<%out.print(numExercicis-1);%>" required/>
+                                            <input class="form-control" type="text" name="material<%out.print(numExercicis-1);%>" maxlength="75" required/>
                                         </div>
                                         <%if(numExercicis!=6){%>
                                         <button type="submit" class="btn btn-primary" name="afegir" value="true">Afegir exercici</button>

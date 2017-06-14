@@ -624,7 +624,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Foto</label>
+                                            <%if(null==entrenador.getFoto()){%>
+                                            <input class="form-control"  maxlength="40" name="foto" value="" required>
+                                            <%}else{%>
                                             <input class="form-control"  maxlength="40" name="foto" value="<%out.print(entrenador.getFoto());%>" required>
+                                            <%}%>
                                         </div>
                                         <div class="form-group">
                                             <label>Catsalut</label>
@@ -635,8 +639,16 @@
                                             <input class="form-control"  maxlength="40" name="reconeixement_medic" value="<%out.print(entrenador.getReconeixementMedic());%>" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Tot entregat</label>
-                                            <input class="checkbox"  type="checkbox" name="tot_entregat" value="<%out.print(entrenador.isTotEntregat());%>">
+                                        <label>Tot entregat</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <%if(entrenador.isTotEntregat()){%>
+                                                    <input type="checkbox" name="tot_entregat" value="true" checked>Tot entregat
+                                                    <%}else{%>
+                                                    <input type="checkbox" name="tot_entregat" value="true">Tot entregat
+                                                    <%}%>
+                                                </label>
+                                            </div>
                                         </div>
                                         <br>
                                             <button type="submit" class="btn btn-primary">Actualitzar dades</button>

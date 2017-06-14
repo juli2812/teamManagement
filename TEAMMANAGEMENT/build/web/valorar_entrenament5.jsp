@@ -593,8 +593,9 @@
                                             </div>
                                         </div>
                                             <button name="decisio" type="submit" class="btn btn-primary" value="false">Valorar jugador</button>
-                                            <button name="decisio" type="submit" class="btn btn-primary" value="true">Valorar jugador i continuar</button>
+                                            <button name="decisio" type="submit" class="btn btn-primary" value="true">Valorar jugador i continuar valorant</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
+                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

@@ -560,7 +560,7 @@
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
                                         <input type="hidden" name="idexercici" value="<%out.print(exercicis.get(i).getIdExercici());%>"/>
                                             <div class="form-group">
-                                                    <h3>Exercici <%out.print(i);%></h3>
+                                                    <h3>Exercici <%out.print(i+1);%></h3>
                                                     <label>Explicació</label>
                                                     <div class="form-group">
                                                         <input class="form-control" type="text" name="explicacio" value="<%out.print(exercicis.get(i).getExplicacio());%>" disabled/>
@@ -576,7 +576,7 @@
                                                     <%if(exercicis.get(i).isFet()!=true){%>
                                                     <label>Valoració</label>
                                                     <div class="form-group">
-                                                        <input class="form-control" type="text" name="valoracio"/>
+                                                        <textarea class="form-control" rows="3" name="valoracio" maxlength="100"></textarea>
                                                     </div>
                                                     <b><br>
                                                         <font color = "red">
@@ -585,17 +585,18 @@
                                                         
                                                     <label>Valoració</label>
                                                     <div class="form-group">
-                                                        <input class="form-control" type="text" name="valoracio" value="<%out.print(exercicis.get(i).getValoracio());%>" disabled/>
+                                                        <textarea class="form-control" rows="3" name="valoracio" maxlength="100" disabled><%out.print(exercicis.get(i).getValoracio());%></textarea>
                                                     </div>
                                                     <%}%>
                                             </div>
                                         <% if(exercicis.get(i).isFet()!=true){%>
                                             <button type="submit" class="btn btn-primary" value="false" name="incid">Marcar com a fet</button>
                                             <button type="submit" class="btn btn-primary" value="true" name="incid">Marcar com a fet i assignar incidència</button>
-                                        <%}%>
+                                            <%}%><br><br>
                                     </form>
                                     <%}%>
                                 <%}%>
+                                       <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

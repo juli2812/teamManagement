@@ -566,6 +566,7 @@
                                             <button name="decisio" type="submit" class="btn btn-primary" value="false">Valorar partit</button>
                                             <button name="decisio" type="submit" class="btn btn-primary" value="true">Valorar partit y jugadors</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
+                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
