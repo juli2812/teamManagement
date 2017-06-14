@@ -58,7 +58,8 @@ public class MostrarEstadisticaCommand implements Command {
             if(dades != null || partits !=null){
             if("temporada".equals(request.getParameter("opcio"))){
             context.getRequestDispatcher("/mostrar_est_temporada.jsp").forward(request, response);
-            }else{               
+            }else{
+               
             context.getRequestDispatcher("/seleccionar_partit.jsp").forward(request, response);    
             }
             }else context.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -81,14 +82,7 @@ public class MostrarEstadisticaCommand implements Command {
             ResultSet resultSet=ps.executeQuery();
        
                 while (resultSet.next()) {
-                    String quer3 = "SELECT * FROM `team_management`.`valoracio` WHERE `id_valoracio` = ? ;";
-                    ps = con.prepareStatement(quer3);
-                    ps.setString(1, resultSet.getString(1));
-            
-                    ResultSet resultSet3=ps.executeQuery();
-                    if(resultSet3.next()){
-                        valtemp.add(new ValoracioPartit(resultSet.getString(2),resultSet.getInt(3),resultSet.getInt(4),resultSet.getInt(5),resultSet.getInt(6),resultSet.getInt(7),resultSet.getInt(1),resultSet.getString(8),resultSet.getBoolean(9),resultSet.getInt(10),resultSet.getInt(11), resultSet3.getInt(2), resultSet3.getString(3)));
-                    }
+                    valtemp.add(new ValoracioPartit(resultSet.getString(2),resultSet.getInt(3),resultSet.getInt(4),resultSet.getInt(5),resultSet.getInt(6),resultSet.getInt(7),resultSet.getInt(1),resultSet.getString(8),resultSet.getBoolean(9),resultSet.getInt(10),resultSet.getInt(11)));
                 }
             return valtemp;
     }

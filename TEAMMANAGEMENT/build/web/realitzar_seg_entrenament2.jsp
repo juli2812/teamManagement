@@ -561,7 +561,7 @@
                                                 <label>Rival</label>
                                                 <select class="form-control" name="identrenament" required>
                                                     <%for(int i = 0; i<entrenaments.size(); i++){%>
-                                                    <option value="<%out.print(entrenaments.get(i).getIdActivitat());%>"><%out.print(entrenaments.get(i).getDataHora().toString());%></option>
+                                                    <option value="<%out.print(entrenaments.get(i).getIdActivitat());%>"><%out.print(entrenaments.get(i).getData());%></option>
                                                     <%}%>
                                                 </select>
                                             </div>
@@ -569,7 +569,8 @@
                                         <% if(entrenaments.size()!=0){%>
                                             <button type="submit" class="btn btn-primary">Escull entrenament</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
-                                        <%}%>
+                                        <%}%>       <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                    
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

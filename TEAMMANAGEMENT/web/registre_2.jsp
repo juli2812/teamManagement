@@ -88,7 +88,7 @@
                                     <font color = "red">
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Ompleix els camps obligatoris.<br>Un dels usuaris pot no estar donat d'alta prova amb un altre.");
+                                 out.println("Ompleix els camps obligatoris.<br>Un dels usuaris pot no estar donat d'alta prova amb un altre o el núm. federatiu ja existeix.");
                         }
                         %></font></b><br>
                                     <form role="form" method="post" action="controller.do">
@@ -130,12 +130,7 @@
                                         <div class="form-group">
                                             <label>Quota total</label>
                                             <input class="form-control" type="number" min="0" max="999999" name="quotatotal" required>
-                                        </div><b><font color = "red">
-                        <%
-                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Ompleix els camps obligatoris.");
-                        }
-                        %></font></b><br>
+                                        </div><br>
                                         <button type="submit" class="btn btn-primary">Crear</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
@@ -155,8 +150,7 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -164,6 +158,11 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="vendor/raphael/raphael.min.js"></script>
+    <script src="vendor/morrisjs/morris.min.js"></script>
+    <script src="data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>

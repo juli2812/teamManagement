@@ -546,22 +546,17 @@
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1></h1>
-                                    <%
-                                                    ArrayList<String> absencies;
-                                                    absencies = (ArrayList<String>) session.getAttribute("absencies");
-                                                    if(absencies.size()>0){
-                                                %>
                                     <form role="form" method="post" action="controller.do">
                                        
                         <input type="hidden" name="form_action" value="obtenirAbsencies"/>
                         <input type="hidden" name="accio" value="una"/>
                                         <div class="form-group">
                                             <div class="form-group">
-                                                
                                             <label>Escull absencia</label>
                                             <select class="form-control" name="absencia">   
                                         <%
-                                        
+                                        ArrayList<String> absencies;
+                                        absencies = (ArrayList<String>) session.getAttribute("absencies");
                                         for(String ab: absencies){
                                         %>
                                         <option value="<%out.print(ab);%>"><% out.println(ab +"<br/>"); %></option>
@@ -571,11 +566,6 @@
                                         </div>      
                                         <button type="submit" class="btn btn-primary">Continuar</button>
                                     </form>
-                                            <%}else{%>
-                                                <br>
-                                                <label>No hi ha absències</label>
-                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
-                                            <%}%>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->
@@ -592,8 +582,7 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -612,4 +601,4 @@
 
 </body>
 
-</html>    
+</html>

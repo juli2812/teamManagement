@@ -549,7 +549,6 @@
                                 <%}else if("1".equals(error)){%>
                                     <label>No s'ha pogut donar d'alta.</label>
                                 <%}%>
-                                <br>
                                         <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </div>
                                             
@@ -568,8 +567,7 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

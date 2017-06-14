@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Contrasenya</label>
-                                            <input class="form-control" type="password" maxlength="40"  name="contrasenya" required>
+                                            <input class="form-control" type="password" minlength="8" maxlength="40"  name="contrasenya" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Data incorporació</label>
@@ -159,8 +159,7 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -168,6 +167,11 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="vendor/raphael/raphael.min.js"></script>
+    <script src="vendor/morrisjs/morris.min.js"></script>
+    <script src="data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>

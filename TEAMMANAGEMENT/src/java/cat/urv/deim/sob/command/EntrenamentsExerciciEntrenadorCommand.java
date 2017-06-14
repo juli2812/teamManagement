@@ -77,7 +77,7 @@ public class EntrenamentsExerciciEntrenadorCommand implements Command {
                     data= new Date(0);
                     data.setDate(d.getDate());
                     data.setTime(t.getTime());
-                    entrenament = new Entrenament( resultSet.getInt(1), data, resultSet.getString(5));
+                    entrenament = new Entrenament(resultSet.getDate(3).toString(), resultSet.getInt(1), data, resultSet.getString(5));
                     entrenaments.add(entrenament);
                 }
             }

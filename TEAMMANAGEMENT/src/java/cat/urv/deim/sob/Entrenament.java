@@ -12,9 +12,24 @@ import java.sql.Date;
  * @author realm
  */
 public class Entrenament extends Activitat{
+    private String data;
 
     public Entrenament(int idActivitat, Date dataHora, String valoracioGeneral) {
         super(idActivitat, dataHora, valoracioGeneral);
     }
+
+    public Entrenament(String data, int idActivitat, Date dataHora, String valoracioGeneral) {
+        super(idActivitat, dataHora, valoracioGeneral);
+        this.data = data;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }    
+    
     
 }

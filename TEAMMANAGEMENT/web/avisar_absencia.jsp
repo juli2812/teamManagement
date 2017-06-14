@@ -594,8 +594,7 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

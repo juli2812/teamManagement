@@ -577,8 +577,7 @@
 
     </div>
     <!-- /#wrapper -->
-
- <!-- jQuery -->
+<!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -595,6 +594,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
 
-    </body>
+</body>
 
 </html>
