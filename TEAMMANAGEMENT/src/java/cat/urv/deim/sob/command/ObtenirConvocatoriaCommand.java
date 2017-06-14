@@ -49,6 +49,7 @@ public class ObtenirConvocatoriaCommand implements Command{
         //session.setAttribute("convocatories", convocatories);
              session.setAttribute("convocatoria", convocatoria);
              if("consulta".equals(request.getParameter("origen"))){
+                 System.out.println("ha vingut? "+convocatoria.isHaVingut());
               context.getRequestDispatcher("/consultar_convocatoria_2.jsp").forward(request, response);    
              }else{
              context.getRequestDispatcher("/mostrar_convocatoria.jsp").forward(request, response);
@@ -73,9 +74,9 @@ public class ObtenirConvocatoriaCommand implements Command{
         ps.setString(2, c[0]);
         ResultSet resultSet=ps.executeQuery();
         
-        System.out.println("element -"+c[1]);
+        
         if(resultSet.next()) {
-            resultado = new Convocatoria(c[1], c[0], Date.valueOf(resultSet.getString(3)), resultSet.getInt(4), resultSet.getInt(5), resultSet.getString(6), Date.valueOf(resultSet.getString(7)), resultSet.getInt(8), resultSet.getInt(9), Boolean.valueOf(resultSet.getString(10)), Boolean.valueOf(resultSet.getString(11))); 
+            resultado = new Convocatoria(c[1], c[0], Date.valueOf(resultSet.getString(3)), resultSet.getInt(4), resultSet.getInt(5), resultSet.getString(6), Date.valueOf(resultSet.getString(7)), resultSet.getInt(8), resultSet.getInt(9), resultSet.getBoolean(10), resultSet.getBoolean(11)); 
             return resultado;
         }
         return null;

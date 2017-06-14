@@ -1,10 +1,9 @@
 <%-- 
-    Document   : consultar_absencia_2
-    Created on : 05-jun-2017, 05-jun-2017 12:19:02
+    Document   : mostrar_estadistica_partit_jugador
+    Created on : 14-jun-2017, 14-jun-2017 13:15:53
     Author     : Maria
 --%>
-
-<%@page import="cat.urv.deim.sob.Absencia"%>
+<%@page import="cat.urv.deim.sob.ValoracioPartit"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -27,12 +26,14 @@
             surName = (String) session.getAttribute("cognomUsuari");
             String userType ="";
             userType = (String) session.getAttribute("tipusUsuari");
-            Absencia absencia =(Absencia) session.getAttribute("absencia");
+            ArrayList <ValoracioPartit> as =(ArrayList <ValoracioPartit>) session.getAttribute("valoracio");
+            //ValoracioPartit vp = (ValoracioPartit) session.getAttribute("vp");
         %>
         <% if(null==userId || "".equals(userId)){
     String redirectURL = "login.jsp";
     response.sendRedirect(redirectURL);}
 %>
+      
 <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
@@ -57,6 +58,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+        
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </head>
 
 <body>
@@ -529,7 +536,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Absencia</h1>
+                    <h1 class="page-header">Estadístiques de equip al partit</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -546,33 +553,46 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Absència</h1>
-                                    
-                                       <!--Dades jugador -->
-                                        <label>Motiu</label>
+                                    <h1>Estadistica del partit <%out.print(session.getAttribute("partit"));%></h1>
+                                    <div class="form-group">
+                                              <%for(ValoracioPartit vp: as){%>
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="NIF" maxlength="9" value="<%out.print(absencia.getMotiu());%>" disabled/>
-                                        </div>
-                                        <label>Dia</label>
-                                        <div class="form-group">
-                                            <input class="form-control" type="data" name="nom" maxlength="20" value="<%out.print(absencia.getDia());%>" disabled/>
-                                        </div>
-                                        <label>Justificada</label>
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <%if(absencia.getJustificada()){%>
-                                                        <font color="green">Justificada</font>
-                                                        <%}else{%>
-                                                        <font color="red">No Justificada</font>
-                                                        <%}%>
-                                                    </label>
-                                                </div>
+                                            <label>Total d'assistències</label>
+                                            <input class="form-control" type="number" name="assistencies" maxlength="9" value="<%out.print(vp.getAssistencia());%>" disabled/>
                                             </div>
+                                                <div class="form-group">
+                                            <label>Gols</label>
+                                            <input class="form-control" type="number" name="gols" maxlength="9" value="<%out.print(vp.getGols());%>" disabled/>
+                                                <div class="form-group">
+                                            <label>Nota</label>
+                                            <input class="form-control" type="number" name="mitjanavaloracio" maxlength="9" value="<%out.print(vp.getNota());%>" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                            <label>Targetes Grogues</label>
+                                            <input class="form-control" type="number" name="mitjanavaloracio" maxlength="9" value="<%out.print(vp.getTarjetes_grogues());%>" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                            <label>Targetes Vermelles</label>
+                                            <input class="form-control" type="number" name="mitjanavaloracio" maxlength="9" value="<%out.print(vp.getTarjetes_vermelles());%>" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                            <label>Minuts jugats</label>
+                                            <input class="form-control" type="number" name="mitjanavaloracio" maxlength="9" value="<%out.print(vp.getMin_jugats());%>" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                            <label>Lessions</label>
+                                            <input class="form-control" type="number" name="mitjanavaloracio" maxlength="9" value="<%out.print(vp.getLessions());%>" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                            <label>Comentari</label>
+                                            <input class="form-control" type="number" name="mitjanavaloracio" maxlength="9" value="<%out.print(vp.getNota());%>" disabled/>
+                                            </div>
+                                        </div>
+                                              <%}%>
+                                      
                                         <br>
                                             
-                                    <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -588,9 +608,32 @@
         <!-- /#page-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
 
-    <!-- jQuery -->
+                                            <script >
+                                                new Morris.Bar({
+  // ID of the element in which to draw the chart.
+  element: 'myfirstchart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+      <%for(ValoracioPartit val:as){%>
+    { Jugador: '<%out.print(val.getFk_jugador());%>', value: <%out.print(val.getGols());%> },
+     <%}%>
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'Jugador',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+
+                                            </script>
+       
+                                            <!-- /#wrapper -->
+
+        <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -606,8 +649,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-
 </body>
 
 </html>
-    

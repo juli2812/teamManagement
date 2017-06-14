@@ -88,7 +88,7 @@
                                     <font color = "red">
                         <%
                             if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
-                                 out.println("Ompleix els camps obligatoris.<br>Un dels usuaris pot no estar donat d'alta prova amb un altre o el núm. federatiu ja existeix.");
+                                 out.println("Ompleix els camps obligatoris.<br>Un dels usuaris pot no estar donat d'alta prova amb un altre.");
                         }
                         %></font></b><br>
                                     <form role="form" method="post" action="controller.do">
@@ -130,7 +130,12 @@
                                         <div class="form-group">
                                             <label>Quota total</label>
                                             <input class="form-control" type="number" min="0" max="999999" name="quotatotal" required>
-                                        </div><br>
+                                        </div><b><font color = "red">
+                        <%
+                            if((request.getParameter("faltaParam")!=null) && request.getParameter("faltaParam").equals("true")){
+                                 out.println("Ompleix els camps obligatoris.");
+                        }
+                        %></font></b><br>
                                         <button type="submit" class="btn btn-primary">Crear</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </form>

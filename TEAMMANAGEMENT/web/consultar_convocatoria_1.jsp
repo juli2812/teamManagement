@@ -546,6 +546,10 @@
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1></h1>
+                                    <%
+                                        ArrayList<Convocatoria> convocatories;
+                                        convocatories = (ArrayList<Convocatoria>) session.getAttribute("convocatories");
+                                        if(convocatories.size()>0){%>
                                     <form role="form" method="post" action="controller.do">
                                        
                         <input type="hidden" name="form_action" value="obtenirConvo"/>
@@ -555,8 +559,6 @@
                                             <label>Escull convocatoria</label>
                                             <select class="form-control" name="convo">   
                                         <%
-                                        ArrayList<Convocatoria> convocatories;
-                                        convocatories = (ArrayList<Convocatoria>) session.getAttribute("convocatories");
                                         for(Convocatoria c: convocatories){
                                         %>
                                         <option value="<%out.print(c.getFkPartit2()+"-"+c.getFkJugador());%>"><% out.println(c.getFkPartit2()+" - "+c.getFkJugador() +"<br/>"); %></option>
@@ -572,6 +574,10 @@
                                         <button type="submit" class="btn btn-primary">Continuar</button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
+                                        <%}else{%>
+                                        <label>No hi ha convocatories</label>
+                                        <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                        <%}%>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->

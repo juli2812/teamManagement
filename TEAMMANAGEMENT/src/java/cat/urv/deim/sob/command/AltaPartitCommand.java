@@ -43,7 +43,7 @@ public class AltaPartitCommand  implements Command{
             
         // 1. process the request
         try {
-            registrarPartit(Date.valueOf(request.getParameter("data")),Time.valueOf(request.getParameter("hora")),request.getParameter("rival"), request.getParameter("equip"));
+            registrarPartit(Date.valueOf(request.getParameter("data")),request.getParameter("hora"),request.getParameter("rival"), request.getParameter("equip"));
             error = "2";
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AltaJugadorCommand.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,7 +61,7 @@ public class AltaPartitCommand  implements Command{
         
         }
     }
-    public void registrarPartit (Date dataActivitat, Time horaActivitat, String rival, String equip) throws SQLException, ClassNotFoundException{
+    public void registrarPartit (Date dataActivitat, String horaActivitat, String rival, String equip) throws SQLException, ClassNotFoundException{
         Connection con;
         PreparedStatement ps;
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -70,7 +70,7 @@ public class AltaPartitCommand  implements Command{
             String sentenciaSQL = "INSERT INTO `team_management`.`activitat` (data, hora, fk_equip) VALUES (?,?,?);";
             ps = con.prepareStatement(sentenciaSQL);
                     ps.setString(1, dataActivitat.toString());
-                    ps.setString(2, horaActivitat.toString());
+                    ps.setString(2, horaActivitat+":00");
                     ps.setString(3, equip);
             ps.executeUpdate();
             

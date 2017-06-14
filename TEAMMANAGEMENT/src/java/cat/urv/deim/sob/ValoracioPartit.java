@@ -22,6 +22,31 @@ public class ValoracioPartit {
     private int min_jugats;
     private int partits_jugats;
     private int nota;
+    private String comentari;
+
+    public String getComentari() {
+        return comentari;
+    }
+
+    public void setComentari(String comentari) {
+        this.comentari = comentari;
+    }
+
+    public ValoracioPartit(String fk_jugador, int fk_partit, int assistencia, int gols, int tarjetes_grogues, int tarjetes_vermelles, int valoracio, String lessions, boolean puntualitat, int min_jugats, int partits_jugats, int nota, String comentari) {
+        this.fk_jugador = fk_jugador;
+        this.fk_partit = fk_partit;
+        this.assistencia = assistencia;
+        this.gols = gols;
+        this.tarjetes_grogues = tarjetes_grogues;
+        this.tarjetes_vermelles = tarjetes_vermelles;
+        this.valoracio = valoracio;
+        this.lessions = lessions;
+        this.puntualitat = puntualitat;
+        this.min_jugats = min_jugats;
+        this.partits_jugats = partits_jugats;
+        this.nota = nota;
+        this.comentari = comentari;
+    }
 
     public ValoracioPartit(String fk_jugador, int fk_partit, int assistencia, int gols, int tarjetes_grogues, int tarjetes_vermelles, int valoracio, String lessions, boolean puntualitat, int min_jugats, int partits_jugats, int nota) {
         this.fk_jugador = fk_jugador;
@@ -43,6 +68,8 @@ public class ValoracioPartit {
         this.gols = gols;
         this.nota = nota;
     }
+
+  
     
     public int getNota() {
         return nota;

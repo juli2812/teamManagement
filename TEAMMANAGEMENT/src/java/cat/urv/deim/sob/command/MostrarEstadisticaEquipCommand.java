@@ -41,9 +41,8 @@ public class MostrarEstadisticaEquipCommand  implements Command {
         try {
             //obtenim l'equip de l'entrenador
             equip = getEquip(request.getParameter("idusuari"));
-            System.out.println(equip);
             if("temporada".equals(request.getParameter("opcio"))){
-                dades=obtenirEstadistica(request.getParameter("equip"));
+                dades=obtenirEstadistica(equip);
             }else{
                 partits = (ArrayList<String>)obtenirPartits(equip);
                 session.setAttribute("partits", partits);
@@ -91,32 +90,61 @@ public class MostrarEstadisticaEquipCommand  implements Command {
             return null;
     }
     
-    public ArrayList<ValoracioPartit> obtenirEstadistica (String idUsuari) throws SQLException, ClassNotFoundException{
+    public ArrayList<ValoracioPartit> obtenirEstadistica (String equip) throws SQLException, ClassNotFoundException{
         Connection con;
         ArrayList<ValoracioPartit> valtemp = new ArrayList<>();
+        int gols=0, nota=0, as=0, tg =0, tv = 0;
         PreparedStatement ps;
         ResultSet resultSet2 = null;
             Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
             con.setSchema("team_management");
-            String query = "SELECT `fk_usuari` FROM `team_management`.`jugador` WHERE `fk_equip` = ?;";
+            
+            //Obtenemos todos los partidos de un equipo
+            String query = "SELECT `fk_activitat` FROM `team_management`.`partit` WHERE fk_activitat IN (SELECT `id_activitat` FROM `team_management`.`activitat` WHERE `fk_equip` = ?);";
             ps = con.prepareStatement(query);
-            ps.setString(1, idUsuari);
-            
+            ps.setString(1, equip);
             ResultSet resultSet=ps.executeQuery();
-       
+            
             while(resultSet.next()){
-            String quer = "SELECT * FROM `team_management`.`valoracio_partit` WHERE `fk_jugador` = ?;";
-            ps = con.prepareStatement(quer);
-            ps.setString(1, resultSet.getString(1));
+                //obtenemos la valoración de cada partido
+                String quer = "SELECT * FROM `team_management`.`valoracio_partit` WHERE `fk_partit` = ?;";
+                ps = con.prepareStatement(quer);
+                ps.setInt(1, resultSet.getInt(1));
+                resultSet2=ps.executeQuery();
             
-            resultSet2=ps.executeQuery();
+                //de cada valoración obtenemos el total
+                while(resultSet2.next()) {
+                    String quer3 = "SELECT * FROM `team_management`.`valoracio` WHERE `id_valoracio` = ? ;";
+                    ps = con.prepareStatement(quer3);
+                    ps.setString(1, resultSet2.getString(1));
             
-            
-                if (resultSet2.next()) {
-                    valtemp.add(new ValoracioPartit(resultSet2.getString(2),resultSet2.getInt(3),resultSet2.getInt(4),resultSet2.getInt(5),resultSet2.getInt(6),resultSet2.getInt(7),resultSet2.getInt(1),resultSet2.getString(8),resultSet2.getBoolean(9),resultSet2.getInt(10),resultSet2.getInt(11)));
+                    ResultSet resultSet3=ps.executeQuery();
+                    if (resultSet3.next()) {
+                        gols += resultSet2.getInt(5); 
+                        nota += resultSet3.getInt(2); 
+                        as += resultSet2.getInt(4); 
+                        tg += resultSet2.getInt(6); 
+                        tv += resultSet2.getInt(7); 
+                        //valtemp.add(new ValoracioPartit(resultSet2.getString(2),resultSet2.getInt(3),resultSet2.getInt(4),resultSet2.getInt(5),resultSet2.getInt(6),resultSet2.getInt(7),resultSet2.getInt(1),resultSet2.getString(8),resultSet2.getBoolean(9),resultSet2.getInt(10),resultSet2.getInt(11), resultSet3.getInt(2)));
+                    }
                 }
+                /*System.out.println("-------- ");
+                System.out.println("partit: "+resultSet.getInt(1)+"= gols: "+gols+", nota: "+nota+", assist: "+as+", tg: "+tg+", tv: "+tv);
+                System.out.println("-------- ");*/
+                
+                valtemp.add(new ValoracioPartit(null, resultSet.getInt(1), as, gols, tg, tv, 0, null, false, 0, 0, nota));
+                
+                gols = 0; 
+                nota = 0; 
+                as = 0; 
+                tg = 0; 
+                tv = 0; 
             }    
+            
+            /*for(ValoracioPartit vpp: valtemp){
+                System.out.println("partit: "+vpp.getFk_partit()+"= gols: "+vpp.getGols()+", nota: "+vpp.getNota()+", assist: "+vpp.getAssistencia()+", tg: "+vpp.getTarjetes_grogues()+", tv: "+vpp.getTarjetes_vermelles());
+            }*/
             
             return valtemp;
     }
