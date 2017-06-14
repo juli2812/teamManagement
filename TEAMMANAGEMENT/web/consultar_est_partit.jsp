@@ -552,7 +552,7 @@
                                             <TABLE class="table">
                                                 <tr>
                                                 <td>Partit</td>
-                                                <td><input type="radio" class="radio" name="opcio" value="partit" ></td>
+                                                <td><input type="radio" class="radio" name="opcio" value="partit" checked ></td>
                                                 </tr>
                                                 <tr>
                                                 <td>Temporada</td>
@@ -565,6 +565,7 @@
                                        
                         <input type="hidden" name="form_action" value="obtenirjugadors"/>
                         <input type="hidden" name="opcio" value="estadistica"/>
+                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                         <div class="form-group">
                                             <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'estadistica. Premi el botó per continuar.</label>
                                         </div>
@@ -594,7 +595,8 @@
 
     </div>
     <!-- /#wrapper -->
-<!-- jQuery -->
+
+    <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -614,5 +616,4 @@
 </body>
 
 </html>
-
 

@@ -544,7 +544,7 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1>Estadistica</h1>
+                                    <h1>Absències</h1>
                                     <form role="form" method="post" action="controller.do">
                                     <input type="hidden" name="form_action" value="obtenirAbsencies"/>
                                     <input type="hidden" name="accio" value="tots"/>
@@ -575,7 +575,8 @@
 
     </div>
     <!-- /#wrapper -->
-<!-- jQuery -->
+  
+    <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -591,7 +592,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-
 </body>
 
 </html>

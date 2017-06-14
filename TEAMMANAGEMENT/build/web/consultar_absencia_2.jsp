@@ -546,7 +546,7 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1><%out.print(absencia.getFk_jugador());%></h1>
+                                    <h1>Absència</h1>
                                     
                                        <!--Dades jugador -->
                                         <label>Motiu</label>

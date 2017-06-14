@@ -3,6 +3,7 @@
     Created on : 04-jun-2017, 04-jun-2017 19:48:54
     Author     : Maria
 --%>
+<%@page import="cat.urv.deim.sob.Jugador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <%
@@ -541,11 +542,11 @@
                                             <label>Escull jugador</label>
                                             <select name="jugador">   
                                         <%
-                                        ArrayList<String> usuaris;
-                                        usuaris = (ArrayList<String>) session.getAttribute("usuaris");
-                                        for(String user: usuaris){
+                                        ArrayList<Jugador> usuaris;
+                                        usuaris = (ArrayList<Jugador>) session.getAttribute("usuarisJ");
+                                        for(Jugador user: usuaris){
                                         %>
-                                        <option value="<%out.print(user);%>"><% out.println(user +"<br/>"); %></option>
+                                        <option value="<%out.print(user.getIdUsuari());%>"><% out.println(user.getNom()+" "+user.getCognom()+"<br/>"); %></option>
                                         <% }%>
                                             </select>
                                         </div>
@@ -553,7 +554,7 @@
                                             <TABLE class="table">
                                                 <tr>
                                                 <td>Partit</td>
-                                                <td><input type="radio" class="radio" name="opcio" value="partit" ></td>
+                                                <td><input type="radio" class="radio" name="opcio" value="partit" checked></td>
                                                 </tr>
                                                 <tr>
                                                 <td>Temporada</td>
@@ -586,7 +587,8 @@
 
     </div>
     <!-- /#wrapper -->
-<!-- jQuery -->
+
+    <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

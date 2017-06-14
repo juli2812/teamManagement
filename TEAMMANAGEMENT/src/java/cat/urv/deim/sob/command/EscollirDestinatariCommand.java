@@ -52,6 +52,8 @@ public class EscollirDestinatariCommand implements Command{
                 else{
                 usuaris=obtenirDestinatarisAmbEquip(request.getParameter("destinatari"));}
             }else{
+            jugadors = obtenirDestinatarisJ();
+            entrenadors = obtenirDestinatarisE();
             usuaris=obtenirDestinataris(request.getParameter("destinatari"));
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -76,6 +78,55 @@ public class EscollirDestinatariCommand implements Command{
         context.getRequestDispatcher("/index.jsp").forward(request, response);
         
         }
+    }
+     public ArrayList<Entrenador> obtenirDestinatarisE () throws SQLException, ClassNotFoundException{
+        Connection con;
+        ArrayList<Entrenador> jugadors = new ArrayList();
+        Entrenador jugador = null;
+        PreparedStatement ps;
+        ResultSet resultSet2 = null;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+            con.setSchema("team_management");
+            String query = "SELECT `fk_usuari` FROM `team_management`.`entrenador`;";
+            ps = con.prepareStatement(query);
+            ResultSet resultSet=ps.executeQuery();
+            while (resultSet.next()) {
+                query = "SELECT `nom`, `cognom1` FROM `team_management`.`usuari` WHERE `id_usuari`=?;";
+                ps = con.prepareStatement(query);
+                ps.setString(1, resultSet.getString(1));
+                resultSet2=ps.executeQuery();
+                if (resultSet2.next()) {
+                    jugador = new Entrenador(resultSet2.getString(1),resultSet2.getString(2),resultSet.getString(1));
+                    jugadors.add(jugador);
+                }
+            }
+            return jugadors;
+    }
+    
+    public ArrayList<Jugador> obtenirDestinatarisJ () throws SQLException, ClassNotFoundException{
+        Connection con;
+        ArrayList<Jugador> jugadors = new ArrayList();
+        Jugador jugador = null;
+        PreparedStatement ps;
+        ResultSet resultSet2 = null;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_management?serverTimezone=UTC", "root", "");
+            con.setSchema("team_management");
+            String query = "SELECT `fk_usuari` FROM `team_management`.`jugador`;";
+            ps = con.prepareStatement(query);
+            ResultSet resultSet=ps.executeQuery();
+            while (resultSet.next()) {
+                query = "SELECT `nom`, `cognom1` FROM `team_management`.`usuari` WHERE `id_usuari`=?;";
+                ps = con.prepareStatement(query);
+                ps.setString(1, resultSet.getString(1));
+                resultSet2=ps.executeQuery();
+                if (resultSet2.next()) {
+                    jugador = new Jugador(resultSet2.getString(1),resultSet2.getString(2),resultSet.getString(1));
+                    jugadors.add(jugador);
+                }
+            }
+            return jugadors;
     }
     public ArrayList<String> obtenirDestinataris (String destinatari) throws SQLException, ClassNotFoundException{
         ArrayList<String> resultado;

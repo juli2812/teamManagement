@@ -524,7 +524,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Consultar Ftixa Jugador </h1>
+                    <h1 class="page-header">Consultar Fitxa Jugador </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -543,7 +543,7 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1><%out.print(userId);%></h1>
+                                    <h1>Fitxa Jugador</h1>
                                     <%if("Jugador".equals(userType)){%>
                                     <form role="form" method="post" action="controller.do">
                                     <input type="hidden" name="form_action" value="fitxajugador"/>
@@ -552,6 +552,7 @@
                                     <form role="form" method="post" action="controller.do">
                                        
                         <input type="hidden" name="form_action" value="obtenirjugadors"/>
+                        <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                         <input type="hidden" name="opcio" value="fitxajugador"/>
                                         <div class="form-group">
                                             <label>A continuació es mostraràn una llista de jugadors on podrà escollir de quin veure'n l'estadistica. Premi el botó per continuar.</label>
@@ -582,7 +583,8 @@
 
     </div>
     <!-- /#wrapper -->
-<!-- jQuery -->
+  
+    <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -598,7 +600,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-
 </body>
 
 </html>

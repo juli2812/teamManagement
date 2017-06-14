@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Contrasenya</label>
-                                            <input class="form-control" type="password" minlength="8" maxlength="40"  name="contrasenya" required>
+                                            <input class="form-control" type="password" maxlength="40"  name="contrasenya" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Data incorporació</label>
@@ -159,7 +159,8 @@
 
     </div>
     <!-- /#wrapper -->
-<!-- jQuery -->
+  
+    <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -175,7 +176,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-
 </body>
 
 </html>

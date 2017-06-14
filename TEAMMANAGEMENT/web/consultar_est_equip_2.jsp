@@ -33,6 +33,7 @@
     String redirectURL = "login.jsp";
     response.sendRedirect(redirectURL);}
 %>
+      
 <title>Team Management</title>
 
     <!-- Bootstrap Core CSS -->
@@ -57,6 +58,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+        
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </head>
 
 <body>
@@ -525,10 +532,11 @@
         </nav>
 
 
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Estadística equip</h1>
+                    <h1 class="page-header">Estadistica de la temporada de l'equip</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -545,49 +553,63 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1></h1>
+                                    <h1>Estadistica de la temporada de l'equip</h1>
                                     <div class="form-group">
-                                           <!-- <TABLE class="table">
-                                                 <tr>
-                                                <td>Jugdor</td>
-                                                <td>Partit</td>
-                                                <td>Gols</td>
-                                                <td>Valoració</td>
-                                                </tr>
-                                    <%for(ValoracioPartit a: as){%>
-                                                <tr>
-                                                <td><input type="text" name="jugador" maxlength="9" value="<%out.print(a.getFk_jugador());%>" disabled/></td>
-                                                <td><input type="text" name="partit" maxlength="9" value="<%out.print(a.getFk_partit());%>" disabled/></td>
-                                                <td><input type="text" name="gols" maxlength="9" value="<%out.print(a.getGols());%>" disabled/></td>
-                                                <td><input type="text" name="valoracio" maxlength="9" value="<%out.print(a.getValoracio());%>" disabled/></td>
-                                                </tr>
-                                        <%}%>
-                                        </table>-->
-                                            <div class="form-group">
-                                            <label>Total d'assistències</label>
-                                            <input class="form-control" type="number" name="assistencies" maxlength="9" value="35" disabled/>
+                                        <!--grafica-->
+                                        <br>
+                                        <label>Grafica de gols-partit</label>
+                                        <div class="container">
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div id="myfirstchart" style="height: 250px;"></div>
+                                                </div>
                                             </div>
-                                                <div class="form-group">
-                                            <label>Gols</label>
-                                            <input class="form-control" type="number" name="gols" maxlength="9" value="31" disabled/>
-                                            </div>
-                                                <div class="form-group">
-                                            <label>Tarjetes grogues</label>
-                                            <input class="form-control" type="number" name="tgrogues" maxlength="9" value="4" disabled/>
-                                            </div>
-                                                <div class="form-group">
-                                            <label>Tarjetes vermelles</label>
-                                            <input class="form-control" type="number" name="tvermelles" maxlength="9" value="0" disabled/>
-                                            </div>
-                                                <div class="form-group">
-                                            <label>Mitjana de valoracions</label>
-                                            <input class="form-control" type="number" name="mitjanavaloracio" maxlength="9" value="6.34" disabled/>
-                                            </div>
-                                                
                                         </div>
                                         <br>
+                                        <label>Grafica de assistencies-partit</label>
+                                        <div class="container">
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div id="assistChart" style="height: 250px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <label>Grafica de targetes grogues-partit</label>
+                                        <div class="container">
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div id="tgChart" style="height: 250px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <label>Grafica de targetes vermelles-partit</label>
+                                        <div class="container">
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div id="tvChart" style="height: 250px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <label>Grafica de notes-partit</label>
+                                        <div class="container">
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div id="chartL" style="height: 250px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/grafica-->
+                                        <br>
                                             
-                                    <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
+                                <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -603,9 +625,120 @@
         <!-- /#page-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
 
-    <!-- jQuery -->
+                                            <script >
+                                                new Morris.Bar({
+  // ID of the element in which to draw the chart.
+  element: 'myfirstchart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+      <%for(ValoracioPartit val:as){%>
+    { Partit: '<%out.print(val.getFk_partit());%>', value: <%out.print(val.getGols());%> },
+     <%}%>
+    
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'Partit',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+
+                                            </script>
+                                            <script >
+                                                new Morris.Bar({
+  // ID of the element in which to draw the chart.
+  element: 'assistChart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+      <%for(ValoracioPartit val:as){%>
+    { Partit: '<%out.print(val.getFk_partit());%>', value: <%out.print(val.getAssistencia());%> },
+     <%}%>
+    
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'Partit',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+
+                                            </script>
+                                            <script >
+                                                new Morris.Bar({
+  // ID of the element in which to draw the chart.
+  element: 'tgChart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+      <%for(ValoracioPartit val:as){%>
+    { Partit: '<%out.print(val.getFk_partit());%>', value: <%out.print(val.getTarjetes_grogues());%> },
+     <%}%>
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'Partit',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+
+                                            </script>
+                                            <script >
+                                                new Morris.Bar({
+  // ID of the element in which to draw the chart.
+  element: 'tvChart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+      <%for(ValoracioPartit val:as){%>
+    { Partit: '<%out.print(val.getFk_partit());%>', value: <%out.print(val.getTarjetes_vermelles());%> },
+     <%}%>
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'Partit',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+
+                                            </script>
+                                            <script >
+new Morris.Line({
+  // ID of the element in which to draw the chart.
+  parseTime:false,
+  element: 'chartL',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+      <%for(ValoracioPartit val:as){%>
+    { Partit: '<%out.print(val.getFk_partit());%>', value: <%out.print(val.getNota());%> },
+     <%}%>
+    
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'Partit',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+
+                                            </script>
+       
+                                            <!-- /#wrapper -->
+
+       <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -621,8 +754,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-
 </body>
 
 </html>
-    

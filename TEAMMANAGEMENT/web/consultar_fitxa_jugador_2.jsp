@@ -529,7 +529,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Fitxa Entrenador</h1>
+                    <h1 class="page-header">Fitxa Jugador</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -547,7 +547,8 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
-                                    <h1><%out.print(jugador.getIdUsuari());%></h1>
+                                    <h1>Fitxa del jugador: </h1>
+                                    <h3><%out.print(jugador.getIdUsuari());%></h3>
                                     <form role="form" method="post" action="controller.do">
                                         <input type="hidden" name="idusuari" value="<%out.print(userId);%>"/>
                                         <input type="hidden" name="tipususuari" value="<%out.print(userType);%>"/>
