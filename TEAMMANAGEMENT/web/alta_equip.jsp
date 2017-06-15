@@ -570,7 +570,8 @@
                                             <input class="form-control" placeholder="(Opcional)" maxlength="150"  name="calendari">
                                         </div>
                                     <br>
-                                        <button type="submit" class="btn btn-primary">Crear</button>
+                                        <button type="submit" class="btn btn-primary" name="altaeq" value="false">Crear</button>
+                                        <button type="submit" class="btn btn-primary" name="altaeq" value="true">Crear i assignar equip</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                            <input type="button" onclick="location.href='index.jsp';" value="Tornar a Inici" class="btn btn-default"/>
                                     </form>

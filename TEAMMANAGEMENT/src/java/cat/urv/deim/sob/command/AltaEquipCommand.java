@@ -40,7 +40,11 @@ public class AltaEquipCommand implements Command {
         }
         // 2. produce the view with the web result
         if(numFedClub!=0){
+            if(null!=request.getParameter("altaeq")&&"true".equals(request.getParameter("altaeq"))){
+            context.getRequestDispatcher("/assignar_equip.jsp").forward(request, response);
+            }else{
             context.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
         }else{
             context.getRequestDispatcher("/alta_equip.jsp?faltaParam=true").forward(request, response);
         }
